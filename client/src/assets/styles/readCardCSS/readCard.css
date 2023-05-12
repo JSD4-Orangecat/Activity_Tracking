@@ -31,9 +31,19 @@
     margin-top: 10px;
 }
 
+.r-card {
+     /* border: 1px solid black; */
+     position: relative;
+     margin: 0 auto;
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     margin-bottom: 15px;
+}
+
 .r-btn-create {
     position: relative;
-    margin-top: 1.5rem;
+    top: 1.5rem;
     font-family: 'Sono', sans-serif;
     font-weight: 600;
     font-size:x-large;
@@ -43,7 +53,9 @@
     border: #FF7B54;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 1.5rem;
+    margin: 0 auto;
+    display: flex;
+    
 }
 
 .r-page{
@@ -52,6 +64,7 @@
     justify-content: end;
     margin-right: 5%;
     gap: 40px;
+    top: 2.5rem;
 }
 
 .r-page span{

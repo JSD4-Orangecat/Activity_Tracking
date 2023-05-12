@@ -113,9 +113,11 @@ function ReadCard () {
                     <SocialMedia />
                 </div>
 
-                {cardDatas.map((ele) => 
-                    <Card key={ele.id}  data={ele} />
-                )}
+                <div className='r-card'>
+                    {cardDatas.map((ele) => 
+                        <Card key={ele.id}  data={ele} />
+                    )}
+                </div>
 
                 {/* submit button */}
                 <input type="submit" value="Create new card" className="r-btn-create"></input>
