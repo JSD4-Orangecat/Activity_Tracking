@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import MainNav from "./mainNav";
+import "../assets/styles/layout.css"
 
 //
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="layout-container">
       <MainNav />
       {children}
     </div>

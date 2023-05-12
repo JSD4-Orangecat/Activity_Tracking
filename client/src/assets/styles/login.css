@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 4rem;
+    padding: 4rem;
 }
 
 .login-box {
