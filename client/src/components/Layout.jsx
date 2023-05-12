@@ -1,9 +1,11 @@
-import NavBar from "./NavBar";
+/* eslint-disable react/prop-types */
+import MainNav from "./mainNav";
 
+//
 const Layout = ({ children }) => {
   return (
     <div>
-      <NavBar />
+      <MainNav />
       {children}
     </div>
   );

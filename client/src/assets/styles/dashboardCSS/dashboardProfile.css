@@ -1,0 +1,29 @@
+.dashboard-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+}
+
+.profile-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8rem;
+    width: 42rem;
+    padding: 5%;
+    background-color: #c0c0c0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-picture img {
+    width: 150%;
+}
+
+.dashboard-profile h3 {
+    font-size: 200%;
+    font-weight: bold;
+    margin-left: 25px;
+    color: black;
+}
