@@ -74,6 +74,10 @@ label{
     /* margin-bottom: 15%; */
     width: 70%;
 }
+.texterr{
+color: red;
+font-size: small;
+}
 
 .wrap{
     height: 200px;
@@ -124,4 +128,9 @@ input[type="radio"]{
     margin-top: 40px;
     width: 30%;
  
+}
+.allInform{
+    
+    display:inline;
+    
 }

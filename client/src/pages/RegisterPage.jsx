@@ -1,65 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-// import { useForm } from "react-hook-form";
+
 import "../assets/styles/Register.css";
 
 function FormRegister() {
   //useStates and variables
-  const [photo, setPhoto] = useState("");
+  const [userData, setUserData] = useState({});
   const [srcImg, setSrcImg] = useState(null);
-  let src;
-  let preview;
-
-  //use react hook form for validation
-  // const { register, handleSubmit, errors } = useForm();
-
-  // console.log({ userData });
-  // const inputPhoto = (event) => {
-  //   setPhoto(event.target.files[0]);
-  //   if (event.target.files.length > 0) {
-  //     src = URL.createObjectURL(event.target.files[0]);
-  //     preview = document.getElementById("profilePhoto");
-  //     preview.src = src;
-  //     setSrcImg(event.target.preview.src);
-  //   }
-  // };
-
-  // const inputPassword = (event) => {
-  //   setPassword(event.target.value);
-  //   // console.log({password})
-  // };
-  // const inputConfirmPassword = (event) => {
-  //   setConfirmPassword(event.target.value);
-  //   // console.log({confirmPassword})
-  // };
-  // const inputGender = (event) => {
-  //   setGender(event.target.value);
-  //   // console.log({gender})
-  // };
-  // const inputBirthDate = (event) => {
-  //   setBirthDate(event.target.value);
-  // };
 
   //set initial values
   const initialValues = {
     photo: "",
     name: "",
-    birthDate: "",
-    lastName: "",
-    userName: "",
-    weight: 0,
-    height: 0,
+    birthdate: "",
+    lastname: "",
+    weight: null,
+    height: null,
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmpassword: "",
     gender: "",
   };
-  //   console.log(initialValues);
+  // all useState
   const [formValues, setFormValues] = useState(initialValues);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  //function to handle change in input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -71,23 +39,32 @@ function FormRegister() {
     }
   };
   console.log(formValues);
-  let err = [];
+  // fuction to handle save inputs
   const saveInput = (event) => {
     event.preventDefault();
-    err = validate(formValues);
-    setFormErrors({ ...err });
+    setFormErrors(validate(formValues));
     console.log(formErrors);
+    setIsSubmit(true);
   };
+  // useEffect for watching errors in this form
+  useEffect(() => {
+    console.log(formErrors);
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues);
 
+      setUserData(formValues);
+    }
+  }, [formErrors]);
+
+  console.log(userData);
+  //function for validate user data
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-    // if (!values.username) {
-    //   errors.username = "Username is required!";
-    // }
     if (!values.name) {
-      errors.username = "Name is required!";
+      errors.name = "Name is required!";
     }
     if (!values.lastname) {
       errors.lastname = "Lastname is required!";
@@ -99,10 +76,9 @@ function FormRegister() {
     }
     if (!values.password) {
       errors.password = "Password is required";
-    } else if (values.password.length < 6) {
-      errors.password = "Password must be more than 6 characters";
-    } else if (values.password.length > 20) {
-      errors.password = "Password cannot exceed more than 20 characters";
+    } else if (!regexPassword.test(values.password)) {
+      errors.password =
+        "Password must contain at least one uppercase letter, one lowercase letter, and six number";
     }
     if (!values.confirmpassword) {
       errors.confirmpassword = "Confirm Password is required";
@@ -112,18 +88,23 @@ function FormRegister() {
     }
 
     if (!values.birthdate) {
-      errors.birthdate = "Birthdate Password is required";
-      return errors;
+      errors.birthdate = "Birthdate is required";
     }
     if (!values.gender) {
       errors.gender = "Gender is required";
     }
     if (!values.height) {
       errors.height = "Height is required";
+    } else if (values.height < 0) {
+      errors.height = "Height must be a  positive number";
     }
     if (!values.weight) {
       errors.weight = "Weight is required";
+    } else if (values.weight < 0) {
+      errors.weight = "Weight must be a  positive number";
     }
+
+    return errors;
   };
 
   return (
@@ -156,39 +137,32 @@ function FormRegister() {
                 type="text"
                 className="input"
               />
-              <span className="red"> {formErrors.name}</span> <br />
+
+              <span className="texterr"> {formErrors.name}</span>
               <br />
               <label>Last Name* :</label>
               <input
                 onChange={handleChange}
-                name="lastName"
-                value={formValues.lastName}
+                name="lastname"
+                value={formValues.lastname}
                 type="text"
                 className="input"
               />
+
+              <span className="texterr"> {formErrors.lastname}</span>
               <br />
-              <span className="red"> {formErrors.lastname}</span>
-              {/* <label>Username* :</label>
-              <input
-                onChange={handleChange}
-                value={formValues.userName}
-                name="userName"
-                type="text"
-                className="input"
-              />
-              <br />
-              {formErrors.username}
-              <br /> */}
               <label>
                 Date Of Birth* :
                 <input
                   onChange={handleChange}
-                  value={formValues.birthDate}
-                  name="birthDate"
+                  value={formValues.birthdate}
+                  name="birthdate"
                   type="date"
                   className="input"
                 />
               </label>
+
+              <span className="texterr"> {formErrors.birthdate}</span>
               <br />
               <label>
                 Weight* :
@@ -201,7 +175,9 @@ function FormRegister() {
                 />
                 kg
               </label>
+              <span className="texterr"> {formErrors.weight}</span>
               <br />
+
               <label>
                 Height* :
                 <input
@@ -213,6 +189,7 @@ function FormRegister() {
                 />
                 cm
               </label>
+              <span className="texterr"> {formErrors.height}</span>
               <br />
               <label>Email* :</label>
               <input
@@ -222,6 +199,7 @@ function FormRegister() {
                 type="email"
                 className="input"
               />
+              <span className="texterr"> {formErrors.email}</span>
               <br />
               <label>Password* :</label>
               <input
@@ -231,36 +209,41 @@ function FormRegister() {
                 type="password"
                 className="input"
               />
+              <span className="texterr"> {formErrors.password}</span>
               <br />
               <label>Confirm Password* :</label>
               <input
                 onChange={handleChange}
-                value={formValues.confirmPassword}
-                name="confirmPassword"
+                value={formValues.confirmpassword}
+                name="confirmpassword"
                 type="password"
                 className="input"
               />
+              <span className="texterr"> {formErrors.confirmpassword}</span>
               <br />
             </div>
             <div className="radio">
               <input
                 onChange={handleChange}
                 value="male"
-                name="genger"
+                name="gender"
                 id="1"
                 type="radio"
+                required
               />
               <label>Male</label>
               <input
                 onChange={handleChange}
                 type="radio"
-                name="genger"
+                name="gender"
                 id="2"
                 value="female"
+                required
               />
               <label>Female</label>
-              <br />
             </div>
+            <span className="texterr"> {formErrors.gender}</span>
+            <br />
             <button onClick={saveInput} className="btn">
               SAVE
             </button>
