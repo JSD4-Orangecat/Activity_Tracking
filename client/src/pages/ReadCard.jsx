@@ -9,10 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleLeft, faCircleRight } from '@fortawesome/free-regular-svg-icons'
 
 
-import biking from '/biking.png';
-import running from '/running.png';
-import swimming from '/swimming.png';
-import cardio from '/cardio.png';
+// import biking from '/biking.png';
+// import running from '/running.png';
+// import swimming from '/swimming.png';
+// import cardio from '/cardio.png';
 
 
 const cardDatas = [{
@@ -23,7 +23,7 @@ const cardDatas = [{
         date: '2023-03-18',
         task: '',
         image: 'https://images.unsplash.com/photo-1501147830916-ce44a6359892?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-        activity: {biking}
+        activity: '/biking.png'
     },
     {
         id: 2,
@@ -33,7 +33,7 @@ const cardDatas = [{
         date: '2023-04-17',
         task: '',
         image: 'https://images.unsplash.com/photo-1621244246296-c6be56267cc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1222&q=80',
-        activity: {running}
+        activity: '/running.png'
     },
     {
         id: 3,
@@ -43,7 +43,7 @@ const cardDatas = [{
         date: '2023-03-16',
         task: '',
         image: 'https://plus.unsplash.com/premium_photo-1680981143179-8a6cd94d2901?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
-        activity: {swimming}
+        activity: "/swimming.png"
     },
     {
         id: 4,
@@ -53,7 +53,7 @@ const cardDatas = [{
         date: '2023-03-07',
         task: '',
         image: 'https://images.unsplash.com/photo-1557330359-ffb0deed6163?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        activity: {cardio}
+        activity: '/cardio.png'
     }
 ]
 
