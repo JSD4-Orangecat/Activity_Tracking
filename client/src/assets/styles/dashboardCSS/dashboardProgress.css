@@ -1,5 +1,7 @@
 .progress-container {
-    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .progress-text {
