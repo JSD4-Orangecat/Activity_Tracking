@@ -70,7 +70,7 @@ form {
     /* border: 1px solid rgba(216, 216, 216, 0.275); */
 }
 
-input[type="radio"] {
+.tile input[type="radio"] {
     -webkit-appearance: none;
     position: relative;
     background-color: white;
@@ -103,7 +103,7 @@ input[type="radio"] {
 }
 
 /* when mouse hover: icon get more bigger */
-input[type="radio"]:hover + label .activity-image {
+.tile input[type="radio"]:hover + label .activity-image {
     width: 60px; 
     height: 60px;
 }
@@ -115,7 +115,7 @@ input[type="radio"]:hover + label .activity-image {
 }
 
 /* after clicked, words turn to orange */
-input[type="radio"]:checked + .activity-label {
+.tile input[type="radio"]:checked + .activity-label {
     color:orange;
 }
 
