@@ -61,7 +61,7 @@ const NavBar = () => {
         </ul>
         <div className="allNavRight">
           <div className="nav-right">
-            <img id="profilepic" src="/public/Login_logo.png" />
+            <img id="profilepic" src="/Login_logo.png" />
             <button onClick={toggle} id="nav-toggle">
               Username
             </button>

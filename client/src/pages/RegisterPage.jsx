@@ -252,7 +252,7 @@ function FormRegister() {
           </form>
         </div>
         <div className="right">
-          <img src="/public/mascot.png" />
+          <img src="/mascot.png" />
         </div>
       </section>
     </Layout>
