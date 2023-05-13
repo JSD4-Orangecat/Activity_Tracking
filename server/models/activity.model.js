@@ -3,10 +3,7 @@ const { Schema } = mongoose;
 
 //Define Schema
 const ActivitySchema = new Schema({
-    activityID: {
-        type: 'string',
-        required: true,
-    },
+    
     title: {
         type: 'string',
         required: true,

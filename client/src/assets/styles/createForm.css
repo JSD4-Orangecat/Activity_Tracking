@@ -315,9 +315,11 @@ form {
     border: #FF7B54;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 0.5rem;
+    top: 0.5rem;
     left: -10%;
-    ;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .btn-cancel {
@@ -332,7 +334,8 @@ form {
     border: lightgray;
     border-radius: 5px;
     cursor: pointer;
-    text-align: center;
-    top: -1%;
     left: 10%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
