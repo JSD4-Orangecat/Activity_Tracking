@@ -1,0 +1,146 @@
+/* 
+Color -->
+Main : #FF7B54
+50% : #FFBDAA
+
+*/
+
+.homeNav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background-color: #FF7B54;
+    font-size: 1.25rem;
+    font-weight: 600;
+    /* position: relative; */
+    position: sticky;
+    z-index: 10;
+    color: #fff;
+}
+
+.logo-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.homeNav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    font-size: 1.5rem;
+}
+
+.homeNav li:last-child {
+    word-spacing: -0.4rem;
+}
+
+.nav-login-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.homeNav a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.homeNav a:hover,
+.homeNav a:active {
+    color: #FFBDAA;
+    transition: all linear 0.15s 0.05s;
+}
+
+.homeNav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FFBDAA;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.homeNav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    padding: 0.25rem;
+    background-color: grey;
+    border-radius: 9999px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 150%;
+    height: auto;
+}
+
+.profile-username {
+    cursor: pointer;
+}
+
+.dropdown-btn {
+    display: none;
+    align-items: center;
+}
+
+.dropdown-menu {
+    /* display: flex; */
+    /* display: none; */
+    flex-direction: column;
+    position: absolute;
+    right: 48px;
+    top: 60px;
+    font-size: 0.8rem;
+    color: black;
+    background-color: #e4e4e4;
+    padding: 0.8rem;
+    padding-top: 0;
+    border-radius: 8px;
+}
+
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    top: -8px;
+    right: 6px;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #e4e4e4;
+  }
+  
+
+/* MEDIA QUERY */
+
+@media only screen and (max-width: 990px) {
+    .nav, .nav-login-container, .profile-container {
+        display: none;
+    }
+
+    .dropdown-btn {
+        display: flex;
+    }
+}

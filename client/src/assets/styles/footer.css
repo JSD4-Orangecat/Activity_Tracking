@@ -1,0 +1,49 @@
+/*
+Color -->
+Main : #FF7B54
+50% : #FFBDAA
+*/
+
+.footer {
+    background-color: #ff7b54;
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 6rem;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: start;
+}
+
+.footer-contact span {
+    font-size: 1.25rem;
+}
+
+.footer h4 {
+    font-size: 2rem;
+    text-decoration: underline;
+    color: #FFBDAA;
+}
+
+.footer-social-icon {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.footer li {
+    list-style: none;
+}
+
+.footer a {
+    color: inherit;
+}
+
+.footer a:hover,
+.footer a:active {
+    color: #FFBDAA;
+    transition: all linear 0.15s 0.05s;
+}
