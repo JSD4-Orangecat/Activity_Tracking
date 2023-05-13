@@ -37,7 +37,7 @@ const cardDatas = [{
     },
     {
         id: 3,
-        title: 'No time to sleep',
+        title: 'No time to sleep sleep sleep sleep sleep sleep sleep sleep sleeps',
         caption: 'I eat, sleep, and run',
         duration: ' 30 m',
         date: '2023-03-16',
