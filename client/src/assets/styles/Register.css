@@ -5,6 +5,7 @@
     --yellow:#FFD56F;
     --green: #939B62;
 }
+
 body{
     /* background-image: linear-gradient(var(--oryellow),var(--green)); */
     /* font-size: large; */
@@ -102,15 +103,26 @@ margin: auto;
 .radio{
     display: flex;
     justify-content: center;
+    align-items: center;
     width: auto;
     height: auto;
     text-align: center;
     gap: 2rem;
     font-size: 1rem;
+    
 }
 input[type="radio"]{
-    width: 25px;
+    font: inherit;
+border-radius: 50%;
+    width: 1.15rem;
+height: 1.15rem;
 
+}
+input:checked{
+outline: 1px solid #FF7B54;
+width: 1.15rem;
+height: 1.15rem;
+background-color: #FF7B54;
 }
 
 
