@@ -112,9 +112,9 @@
 
 .r-title-text {
     color: #525252;
-    font-size: 25px;
+    font-size: 22px;
     position: absolute;
-    top: -4px;
+    top: -3px;
     text-align: center;
     width: 100%;
     font-weight: 450;
@@ -135,7 +135,7 @@
     width: 100%;
     bottom: 0px;
     text-align: start;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
 }
 
@@ -145,7 +145,7 @@
     width: 100%;
     bottom: 0px;
     text-align: end;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
     letter-spacing: -1px;
 }
