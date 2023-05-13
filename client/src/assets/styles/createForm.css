@@ -70,7 +70,7 @@ form {
     /* border: 1px solid rgba(216, 216, 216, 0.275); */
 }
 
-input[type="radio"] {
+.tile input[type="radio"] {
     -webkit-appearance: none;
     position: relative;
     background-color: white;
@@ -103,7 +103,7 @@ input[type="radio"] {
 }
 
 /* when mouse hover: icon get more bigger */
-input[type="radio"]:hover + label .activity-image {
+.tile input[type="radio"]:hover + label .activity-image {
     width: 60px; 
     height: 60px;
 }
@@ -115,7 +115,7 @@ input[type="radio"]:hover + label .activity-image {
 }
 
 /* after clicked, words turn to orange */
-input[type="radio"]:checked + .activity-label {
+.tile input[type="radio"]:checked + .activity-label {
     color:orange;
 }
 
@@ -296,7 +296,9 @@ input[type="radio"]:checked + .activity-label {
     border: #FF7B54;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 0.5rem;
+    top: 0.5rem;
+    margin: 0 auto;
+    display: flex;
 }
 
 /* --------- edit card  ------------*/
@@ -313,8 +315,11 @@ input[type="radio"]:checked + .activity-label {
     border: #FF7B54;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 0.5rem;
+    top: 0.5rem;
     left: -10%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .btn-cancel {
@@ -329,7 +334,8 @@ input[type="radio"]:checked + .activity-label {
     border: lightgray;
     border-radius: 5px;
     cursor: pointer;
-    text-align: center;
-    top: -1%;
     left: 10%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
