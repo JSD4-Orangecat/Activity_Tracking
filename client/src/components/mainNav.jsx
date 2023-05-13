@@ -15,7 +15,7 @@ export default function MainNav() {
   const loginContainer = (
     <div className="nav-login-container">
       <Link to="/login"> Login </Link>
-      <a href="#">Sign-up</a>
+      <Link to="/register">Sign-up</Link>
     </div>
   );
 
