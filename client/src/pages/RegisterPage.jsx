@@ -229,18 +229,20 @@ function FormRegister() {
                 name="gender"
                 id="1"
                 type="radio"
-                required
+                checked={formValues.gender === "male"}
+                className="selctor"
               />
-              <label>Male</label>
+              <label for="1">Male</label>
               <input
                 onChange={handleChange}
                 type="radio"
                 name="gender"
                 id="2"
                 value="female"
-                required
+                checked={formValues.gender === "female"}
+                className="selctor"
               />
-              <label>Female</label>
+              <label for="2">Female</label>
             </div>
             <span className="texterr"> {formErrors.gender}</span>
             <br />
