@@ -9,6 +9,12 @@
     margin: 5% auto;
 }
 
+#challenge-text-title {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 5%;
+}
+
 .friend-image {
     display: flex;
     align-items: center;
