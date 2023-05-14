@@ -71,10 +71,6 @@
 }
 
 .password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-72.5%);
     background-color: transparent;
     border: none;
     cursor: pointer;
