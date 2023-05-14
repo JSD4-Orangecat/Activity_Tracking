@@ -1,13 +1,7 @@
 import { useState } from "react";
-import {
-  FaGoogle,
-  FaGithub,
-  FaFacebook,
-  FaEye,
-  FaEyeSlash,
-} from "react-icons/fa";
-import "../assets/styles/loginBox.css";
 import { useAuth } from "../contexts/authentication";
+import { FaGoogle, FaGithub, FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
+import "../assets/styles/loginBox.css";
 
 export default function LoginBox() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,46 +19,54 @@ export default function LoginBox() {
 
   return (
     <div className="login-container">
-      <form onSubmit={handleSubmit}>
-        <div className="login-fields">
-          <h1 className="login-title">Login</h1>
-          <div className="username-container">
-            <p>email</p>
+
+      <form onSubmit={handleSubmit} className="login-fields">
+
+        <h1 className="login-title">Login</h1>
+        <div className="username-container">
+          <p>Email</p>
+          <input
+            className="username-input-container"
+            type="text"
+            placeholder="Email"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            value={email}
+          />
+        </div>
+
+        <div className="password-container">
+          <p>Password</p>
+          <div className="password-input-container">
             <input
-              className="username-input-container"
-              type="text"
-              placeholder="email"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
               onChange={(event) => {
-                setEmail(event.target.value);
+                setPassword(event.target.value);
               }}
-              value={email}
+              value={password}
             />
           </div>
-          <div className="password-container">
-            <p>Password</p>
-            <div className="password-input-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-                value={password}
-              />
-            </div>
-            <p className="password-forget">
-              <a href="#">Forgot Password?</a>
-            </p>
-          </div>
+
+          <p className="password-forget">
+            <a href="#">Forgot Password?</a>
+          </p>
         </div>
         <button className="login-button">Sign In</button>
       </form>
-      <button
+
+
+
+      {/* <button
         className="password-toggle"
         onClick={() => setShowPassword(!showPassword)}
       >
         {showPassword ? <FaEyeSlash /> : <FaEye />}
-      </button>
+      </button> */}
+
+
+
       <div className="login-social-container">
         <p>or continue with</p>
         <div className="login-social">
@@ -80,11 +82,14 @@ export default function LoginBox() {
         </div>
       </div>
 
+
+
       <div className="login-footer">
         <p>
           Don't have an account yet? <a href="#">Register for free.</a>
         </p>
       </div>
+
     </div>
   );
 }
