@@ -8,8 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10rem;
-    height: 10rem;
+    width: 100%;
     padding: 5%;
     background-color: #c0c0c0;
     border-radius: 50%;
@@ -26,4 +25,16 @@
     font-weight: bold;
     margin-left: 25px;
     color: black;
+}
+
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .profile-picture {
+        width: 20%;
+        margin-right: 5%;
+    }
 }
