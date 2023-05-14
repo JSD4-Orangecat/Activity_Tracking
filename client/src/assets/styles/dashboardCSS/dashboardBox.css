@@ -31,3 +31,9 @@
 #column-2 {
     flex-grow: 2;
 }
+
+@media screen and (max-width: 1200px) {
+    .dashboard-container {
+        flex-wrap: wrap;
+    }
+}
