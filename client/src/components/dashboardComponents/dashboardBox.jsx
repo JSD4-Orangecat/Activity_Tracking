@@ -40,17 +40,6 @@ export default function DashboardBox() {
                     <DashboardGoals />
                 </div>
             </div>
-            <div className="dashboard-column" id="column-1">
-                <div className="dashboard-card">
-                    <DashboardProfile />
-                </div>
-                <div className="dashboard-card">
-                    <DashboardProgress />
-                </div>
-                <div className="dashboard-card">
-                    <DashboardChallenge />
-                </div>
-            </div>
         </div>
     )
 }

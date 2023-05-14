@@ -4,7 +4,7 @@ export default function DashboardChallenge() {
 
     return (
         <div>
-            <h2 className="progress-text" id="progress-text-title">Challenge!</h2>
+            <h2 className="progress-text" id="challenge-text-title">Challenge!</h2>
             <div className="friend-profile-container">
                 {friendsMockData.map((friend, index) => (
                     <div key={index} className="friend-profile">

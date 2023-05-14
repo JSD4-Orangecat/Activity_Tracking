@@ -1,5 +1,5 @@
 .friend-profile-container {
-    height: 10rem;
+    height: 14rem;
     overflow: auto;
 }
 
@@ -7,6 +7,12 @@
     display: flex;
     align-items: center;
     margin: 5% auto;
+}
+
+#challenge-text-title {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 5%;
 }
 
 .friend-image {
