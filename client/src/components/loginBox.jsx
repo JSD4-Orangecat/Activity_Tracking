@@ -28,7 +28,7 @@ export default function LoginBox() {
           <input
             className="username-input-container"
             type="text"
-            placeholder="email"
+            placeholder="Email"
             onChange={(event) => {
               setEmail(event.target.value);
             }}
@@ -58,12 +58,12 @@ export default function LoginBox() {
 
 
 
-      <button
+      {/* <button
         className="password-toggle"
         onClick={() => setShowPassword(!showPassword)}
       >
         {showPassword ? <FaEyeSlash /> : <FaEye />}
-      </button>
+      </button> */}
 
 
 
