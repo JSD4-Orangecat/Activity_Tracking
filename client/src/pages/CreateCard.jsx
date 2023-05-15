@@ -4,8 +4,13 @@ import Layout from "../components/Layout";
 import PrevCard from "../components/createPrevCard";
 import Form from "../components/createForm";
 import SideContainer from "../components/sideContainer";
+import { useAuth } from "../contexts/authentication";
+import axios from 'axios'
 
 function CreateCard() {
+  const { currentUser } = useAuth();
+  console.log(currentUser)
+
   const [task, setTask] = useState("");
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState("no selected file");
@@ -13,19 +18,20 @@ function CreateCard() {
     title: "This is title",
     caption:
       "I wish I was a cat, no school, no work, no exercise, just meow meow meow meow meow",
-    time_start: "",
-    time_end: "",
-    duration: "0 h 0 m",
+    timeStart: "",
+    timeEnd: "",
+    duration: "1 h 30 m",
     date: "2023-03-18",
     task: "",
     type: "",
     img: "",
+    userID: currentUser._id
   });
 
   function calcDuration() {
-    let tStart = inputs.time_start;
-    let tEnd = inputs.time_end;
-    // console.log(tStart, tEnd);
+    let tStart = inputs.timeStart;
+    let tEnd = inputs.timeEnd;
+    
 
     //convert timeStart and timeEnd to milliseconds
     let milliseconds1 =
@@ -104,6 +110,29 @@ function CreateCard() {
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://127.0.0.1:4000/activities/createActivityCard', inputs);
+      console.log(response)
+      // reset activity state after successful post
+      setInputs({
+        title: '',
+        date: '',
+        type: '',
+        timeStart: '',
+        timeEnd: '',
+        duration: '',
+        caption: '',
+        img: ''
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
   console.log(inputs);
 
   function handleFileChange(e) {
@@ -138,6 +167,7 @@ function CreateCard() {
               handleChangeInput={handleChangeInput}
               calcDuration={calcDuration}
               changeColor={changeColor}
+              handleFormSubmit={handleFormSubmit}
             />
           </div>
         </div>

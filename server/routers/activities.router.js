@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { postActivities } from "../controllers/activities.controller.js";
+import { postActivities, getActivity } from "../controllers/activities.controller.js";
 
 const activitiesRouter = Router();
 
-activitiesRouter.post("/", postActivities);
+activitiesRouter.post("/createActivityCard", postActivities);
+activitiesRouter.get("/", getActivity);
 
 
 

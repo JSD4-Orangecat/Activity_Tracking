@@ -6,9 +6,9 @@ import swimming from '/swimming.png';
 import cardio from '/cardio.png';
 import walking from '/walking.png';
 
-function Form( {handleChangeInput, calcDuration, changeColor}) {
+function Form( {handleChangeInput, calcDuration, changeColor, handleFormSubmit}) {
     return (
-        <form>
+        <form onSubmit={handleFormSubmit}>
             <div className='title-date'>
 
                 {/* Add data: Title  */}
@@ -65,9 +65,9 @@ function Form( {handleChangeInput, calcDuration, changeColor}) {
             {/* Add data: Duration */}
             <div className='time_duration'>
                 <label htmlFor='time_start'>Time-Start:</label>
-                <input type='time' className='time' name='time_start' onChange={handleChangeInput} required></input>
+                <input type='time' className='time' name='timeStart' onChange={handleChangeInput} required></input>
                 <label htmlFor='time-end'className='time2'>Time-End:</label>
-                <input type='time' className='time' name='time_end' onChange={handleChangeInput} required></input>
+                <input type='time' className='time' name='timeEnd' onChange={handleChangeInput} required></input>
                 <button type='button' onClick={calcDuration}>Duration</button>
             </div>
 
