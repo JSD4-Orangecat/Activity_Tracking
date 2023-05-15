@@ -46,6 +46,8 @@ function FormRegister() {
     console.log(formErrors);
     setIsSubmit(true);
   };
+  // console.log(userData)
+
   // useEffect for watching errors in this form
   useEffect(() => {
     console.log(formErrors);
