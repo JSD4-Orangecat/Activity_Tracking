@@ -42,6 +42,6 @@ const friendsMockData = [
     },
     {
         profileImg: '/head-logo.png',
-        username: 'michael_wright'
+        username: 'mike_wright'
     },
 ];
