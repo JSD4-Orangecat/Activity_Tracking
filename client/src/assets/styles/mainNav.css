@@ -121,6 +121,10 @@ Main : #FF7B54
     border-radius: 8px;
 }
 
+.dropdown-menu a {
+    cursor: pointer;
+}
+
 .arrow-up {
     width: 0; 
     height: 0; 
