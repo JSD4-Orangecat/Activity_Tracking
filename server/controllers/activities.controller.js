@@ -10,6 +10,7 @@ export const postActivities = async (req, res) => {
             timeStart: req.body.timeStart,
             timeEnd: req.body.timeEnd,
             duration: req.body.duration,
+            task: req.body.task,
             caption: req.body.caption,
             img: req.body.img,
             userID: req.body.userID

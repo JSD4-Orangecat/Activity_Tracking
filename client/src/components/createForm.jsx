@@ -6,7 +6,7 @@ import swimming from '/swimming.png';
 import cardio from '/cardio.png';
 import walking from '/walking.png';
 
-function Form( {handleChangeInput, calcDuration, changeColor, handleFormSubmit}) {
+function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert }) {
     return (
         <form onSubmit={handleFormSubmit}>
             <div className='title-date'>
@@ -69,6 +69,7 @@ function Form( {handleChangeInput, calcDuration, changeColor, handleFormSubmit})
                 <label htmlFor='time-end'className='time2'>Time-End:</label>
                 <input type='time' className='time' name='timeEnd' onChange={handleChangeInput} required></input>
                 <button type='button' onClick={calcDuration}>Duration</button>
+                {durationAlert && (<p className='alert-duration'>*press button</p>)}
             </div>
 
             {/* Add data: Task status */}

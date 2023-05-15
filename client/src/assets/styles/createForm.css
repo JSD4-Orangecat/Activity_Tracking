@@ -125,6 +125,7 @@ form {
     display: flex;
     justify-content: start;
     gap: 20px;
+    /* border: 1px solid black; */
 }
 
 .time_duration button {
@@ -148,6 +149,14 @@ form {
 
 .time::-webkit-calendar-picker-indicator {
     filter: invert(56%) sepia(66%) saturate(1162%) hue-rotate(325deg) brightness(103%) contrast(105%);
+}
+
+.alert-duration {
+    /* border: 1px solid black; */
+    color: #FF7B54;
+    right: 45px;
+    position: absolute;
+    font-size: small;
 }
 
 /* --------- task satus --------- */
