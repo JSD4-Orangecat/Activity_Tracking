@@ -28,6 +28,10 @@ const ActivitySchema = new Schema({
         type: 'string',
         required: true
     },
+    task: {
+        type: 'string',
+        required: true
+    },
     caption: {
         type: 'string',
         required: true

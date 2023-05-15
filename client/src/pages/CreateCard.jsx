@@ -15,7 +15,7 @@ function CreateCard() {
       "I wish I was a cat, no school, no work, no exercise, just meow meow meow meow meow",
     time_start: "",
     time_end: "",
-    duration: "1 h 30 m",
+    duration: "0 h 0 m",
     date: "2023-03-18",
     task: "",
     type: "",
