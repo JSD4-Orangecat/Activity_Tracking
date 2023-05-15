@@ -31,10 +31,9 @@ export default function DashboardAchievements() {
 }
 
 const achievementsMockData = [
-    { achievementImg: '/head-logo.png' },
-    { achievementImg: '/head-logo.png' },
-    { achievementImg: '/head-logo.png' },
-    { achievementImg: '/head-logo.png' },
-    { achievementImg: '/head-logo.png' },
-    { achievementImg: '/head-logo.png' },
+    { achievementImg: '/medals/Biking/medalBikingGold.png' },
+    { achievementImg: '/medals/Cardio/medalCardioSilver.png' },
+    { achievementImg: '/medals/Running/medalRunningBronze.png' },
+    { achievementImg: '/medals/Swimming/medalSwimmingBronze.png' },
+    { achievementImg: '/medals/Walking/medalWalkingSilver.png' },
 ];
