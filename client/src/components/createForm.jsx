@@ -69,7 +69,7 @@ function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit,
                 <label htmlFor='time-end'className='time2'>Time-End:</label>
                 <input type='time' className='time' name='timeEnd' onChange={handleChangeInput} required></input>
                 <button type='button' onClick={calcDuration}>Duration</button>
-                {durationAlert && (<p className='alert-duration'>*press button</p>)}
+                {durationAlert && (<p className='alert-duration'>*check your duration</p>)}
             </div>
 
             {/* Add data: Task status */}

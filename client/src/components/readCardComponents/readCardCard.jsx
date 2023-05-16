@@ -28,7 +28,7 @@ function Card({ data }) {
       <div className="r-prevcard">
         {/* preview Image */}
         <div className="r-prevImg">
-          <img src={data.image} className="r-img" />
+          <img src={data.img} className="r-img" />
         </div>
 
         {/* preview title */}
@@ -69,7 +69,6 @@ function Card({ data }) {
             {data.type === "walking" && (
               <img src={walking} className="r-icon-img" />
             )}
-            {/* <img src={data.activity} className='r-activity' /> */}
             <p className="r-duration-text">{data.duration}</p>
           </div>
         </div>

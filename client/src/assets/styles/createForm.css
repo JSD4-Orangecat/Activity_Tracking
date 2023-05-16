@@ -154,9 +154,10 @@ form {
 .alert-duration {
     /* border: 1px solid black; */
     color: #FF7B54;
-    right: 45px;
+    right: 0px;
     position: absolute;
     font-size: small;
+    letter-spacing: -5;
 }
 
 /* --------- task satus --------- */

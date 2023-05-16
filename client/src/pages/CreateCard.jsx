@@ -117,7 +117,7 @@ function CreateCard() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (inputs.duration === "0 h 0 m") {
+    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m" ) {
       setDurationAlert(true);
       return;
     }

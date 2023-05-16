@@ -25,7 +25,7 @@ export const postActivities = async (req, res) => {
 };
 
 export const getActivity = async (req, res) => {
-  console.log(req.user.info._id);
+  // console.log(req.user.info._id);
   try {
     const user_ID = req.user.info._id;
     const activities = await Activity.find({ userID: user_ID });
@@ -40,4 +40,24 @@ export const getActivity = async (req, res) => {
     console.log(err);
     res.status(500).send("Failed to get activity");
   }
+};
+
+export const deleteActivity = async (req, res) => {
+
+  try {
+      const { activityID } = req.params;
+
+      const deleteActivity = await Activity.findOneAndDelete({ activityID });
+
+      if(!deleteActivity) {
+          return res.status(404).send('Activity not found');
+      }
+
+      res.status(200).send('Activity deleted successfully');
+
+  } catch (err) {
+      console.log(err);
+      res.status(500).send('Deleting activity failed');
+  }
+
 };
