@@ -6,7 +6,6 @@ import DashboardProgress from './dashboardProgress';
 import DashboardChallenge from './dashboardChallenge';
 import DashboardAchievements from './dashboardAchievements';
 import DashboardCards from './dashboardCard';
-import DashboardGoals from './dashboardGoals';
 
 export default function DashboardBox() {
     useEffect(() => {
@@ -35,9 +34,6 @@ export default function DashboardBox() {
                 </div>
                 <div className="dashboard-card">
                     <DashboardCards />
-                </div>
-                <div className="dashboard-card">
-                    <DashboardGoals />
                 </div>
             </div>
         </div>
