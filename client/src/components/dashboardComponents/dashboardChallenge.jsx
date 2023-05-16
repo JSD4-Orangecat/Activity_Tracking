@@ -8,9 +8,7 @@ export default function DashboardChallenge() {
             <div className="friend-profile-container">
                 {friendsMockData.map((friend, index) => (
                     <div key={index} className="friend-profile">
-                        <div className="friend-image">
-                            <img src={friend.profileImg} alt="Friend Profile" />
-                        </div>
+                        <img src={friend.profileImg} alt="Friend Profile" />
                         <h3>{friend.username}</h3>
                     </div>
                 ))}
@@ -21,27 +19,35 @@ export default function DashboardChallenge() {
 
 const friendsMockData = [
     {
-        profileImg: '/head-logo.png',
-        username: 'jane_smith'
+        profileImg: '/mockProfiles/mockProfile2.jpg',
+        username: 'ben_dover'
     },
     {
-        profileImg: '/head-logo.png',
-        username: 'alex_jones'
+        profileImg: '/mockProfiles/mockProfile3.jpg',
+        username: 'kimmy_hed'
     },
     {
-        profileImg: '/head-logo.png',
-        username: 'sarah_taylor'
+        profileImg: '/mockProfiles/mockProfile4.jpg',
+        username: 'dixie_normus'
     },
     {
-        profileImg: '/head-logo.png',
-        username: 'david_brown'
+        profileImg: '/mockProfiles/mockProfile5.jpg',
+        username: 'hugh_jass'
     },
     {
-        profileImg: '/head-logo.png',
-        username: 'emily_clark'
+        profileImg: '/mockProfiles/mockProfile6.jpg',
+        username: 'jenna-tolls'
     },
     {
-        profileImg: '/head-logo.png',
-        username: 'mike_wright'
+        profileImg: '/mockProfiles/mockProfile7.jpg',
+        username: 'gabe-itch'
+    },
+    {
+        profileImg: '/mockProfiles/mockProfile8.jpg',
+        username: 'rae_piste'
+    },
+    {
+        profileImg: '/mockProfiles/mockProfile9.jpg',
+        username: 'moe_lester'
     },
 ];

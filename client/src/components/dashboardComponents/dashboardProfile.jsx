@@ -12,5 +12,5 @@ export default function DashboardProfile() {
 
 const profileData = {
     profilePicture: '/mockProfiles/mockProfile1.jpg',
-    username: 'john_doe'
+    username: 'mike_hunt'
 };

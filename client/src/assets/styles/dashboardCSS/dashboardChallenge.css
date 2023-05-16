@@ -13,22 +13,13 @@
     font-size: 32px;
     margin-top: 0;
     margin-bottom: 5%;
+    text-align: center;
 }
 
-.friend-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5rem;
-    height: 5rem;
-    padding: 1rem;
-    background-color: #c0c0c0;
+.friend-profile img {
+    width: 30%;
+    height: auto;
     border-radius: 50%;
-    overflow: hidden;
-}
-
-.friend-image img {
-    width: 150%;
 }
 
 .friend-profile h3 {
