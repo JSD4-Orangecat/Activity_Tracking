@@ -18,6 +18,10 @@
     margin-bottom: 5%;
 }
 
+#progress-text-title-2 {
+    display: none
+}
+
 .progress-content {
     display: flex;
     flex-direction: column;
@@ -90,5 +94,24 @@ progress {
 
     #progress-next-container {
         justify-content: flex-end;
+    }
+
+    .progress-img {
+        max-width: 50%;
+    }
+
+    #progress-text-title {
+        display: none
+    }
+
+    #progress-text-title-2 {
+        display: initial;
+        font-size: 200%;
+    }
+
+    .progress-medal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
