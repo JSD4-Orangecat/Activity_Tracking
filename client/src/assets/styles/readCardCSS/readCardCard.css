@@ -5,6 +5,7 @@
   height: 170px;
   margin: 0 auto;
   margin-top: 25px;
+  margin-bottom: 30px;
   position: relative;
 }
 
@@ -132,7 +133,7 @@
   color: #7c7c7c;
   position: relative;
   width: 100%;
-  bottom: 0px;
+  top: 5px;
   text-align: start;
   font-size: 17px;
   font-weight: 400;
@@ -142,7 +143,7 @@
   color: #7c7c7c;
   position: relative;
   width: 100%;
-  bottom: 0px;
+  top: 5px;
   text-align: end;
   font-size: 17px;
   font-weight: 400;
