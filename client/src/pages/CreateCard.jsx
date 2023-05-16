@@ -128,7 +128,7 @@ function CreateCard() {
         inputs
       );
       console.log(response);
-      
+
       navigate("/readcard");
     } catch (error) {
       console.log(error);

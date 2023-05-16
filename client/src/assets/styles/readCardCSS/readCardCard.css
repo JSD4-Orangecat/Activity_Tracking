@@ -1,185 +1,199 @@
 .r-prevcard {
-    border: 0.5px solid rgb(204, 204, 204);
-    border-radius: 20px;
-    width: 650px;
-    height: 170px;
-    margin: 0 auto;
-    margin-top: 25px;
-    position: relative;
+  border: 0.5px solid rgb(204, 204, 204);
+  border-radius: 20px;
+  width: 650px;
+  height: 170px;
+  margin: 0 auto;
+  margin-top: 25px;
+  position: relative;
 }
 
 .r-previewStatus {
-    background-color: rgb(204, 204, 204);
-    height: 20%;
-    width: 100%;
-    border-radius: 0 0 19px 19px;
-    position: absolute;
-    top: 80%;
+  background-color: rgb(204, 204, 204);
+  height: 20%;
+  width: 100%;
+  border-radius: 0 0 19px 19px;
+  position: absolute;
+  top: 80%;
 }
 
-.r-container-text{
-    /* border: 1px solid rgb(65, 84, 182); */
-    height: 110px;
-    width: 63.6%;
-    position: absolute;
-    left: 34.7%;
-    top: 13px;
+.r-container-text {
+  /* border: 1px solid rgb(65, 84, 182); */
+  height: 110px;
+  width: 63.6%;
+  position: absolute;
+  left: 34.7%;
+  top: 13px;
 }
 
 .r-prevTextbox {
-    /* border: 1px solid burlywood; */
-    height: 23px;
-    width: 85%; 
-    overflow-y: scroll;
-    position: absolute;  
+  /* border: 1px solid burlywood; */
+  height: 23px;
+  width: 85%;
+  overflow-y: scroll;
+  position: absolute;
 }
 
 .r-prevTextbox::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 .r-prevTextbox::-webkit-scrollbar-thumb {
-    background-color: #FF7B54;
-    border-radius: 12px;
+  background-color: #ff7b54;
+  border-radius: 12px;
 }
 
-
 .r-faPenToSquare {
-    width: 15px;
-    height: 15px;
-    color: #FF7B54;
-    position: absolute;
-    top: 0;
-    right: 7.5%;
-    cursor: pointer;
+  width: 15px;
+  height: 15px;
+  color: #ff7b54;
+  position: absolute;
+  top: 0;
+  right: 7.5%;
+  cursor: pointer;
 }
 
 .r-faTrashCan {
-    width: 15px;
-    height: 15px;
-    color: #FF7B54;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
+  width: 15px;
+  height: 15px;
+  color: #ff7b54;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 
 .r-prevCaption {
-    margin-top: 33px;
-    /* border: 1px solid rgb(212, 106, 24); */
-    height: 50px;
-    width: 98%;
-    right: 0;
-    position: absolute;
-    overflow-y: scroll;  
+  margin-top: 33px;
+  /* border: 1px solid rgb(212, 106, 24); */
+  height: 50px;
+  width: 98%;
+  right: 0;
+  position: absolute;
+  overflow-y: scroll;
 }
 
 .r-prevCaption::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 .r-prevCaption::-webkit-scrollbar-thumb {
-    background-color: #FF7B54;
-    border-radius: 12px;
+  background-color: #ff7b54;
+  border-radius: 12px;
 }
 
 .r-prevDate {
-    /* border: 1px solid rgb(135, 190, 222); */
-    height: 18px;
-    width: 40%;  
-    position: absolute;
-    bottom: 0;
-    left: 20%;
+  /* border: 1px solid rgb(135, 190, 222); */
+  height: 18px;
+  width: 40%;
+  position: absolute;
+  bottom: 0;
+  left: 20%;
 }
 
 .r-prevDuration {
-    /* border: 1px solid rgb(158, 135, 222); */
-    height: 18px;
-    width: 30%;  
-    position: absolute;
-    bottom: 0;
-    right: 0;
+  /* border: 1px solid rgb(158, 135, 222); */
+  height: 18px;
+  width: 30%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .r-faCalendar {
-    width: 20px;
-    height: 20px;
-    color: #7c7c7c;
-    position: absolute;
-    bottom: -3px;
-    left: 13%;
+  width: 20px;
+  height: 20px;
+  color: #7c7c7c;
+  position: absolute;
+  bottom: -3px;
+  left: 13%;
 }
 
 .r-title-text {
-    color: #525252;
-    font-size: 22px;
-    position: absolute;
-    top: -3px;
-    text-align: center;
-    width: 100%;
-    font-weight: 450;
-    letter-spacing: -2px;
+  color: #525252;
+  font-size: 22px;
+  position: absolute;
+  top: -3px;
+  text-align: center;
+  width: 100%;
+  font-weight: 450;
+  letter-spacing: -2px;
 }
 
 .r-caption-text {
-    color: #525252;
-    position: absolute;
-    width: 100%;
-    text-align: end;
-    font-weight: 500;
+  color: #525252;
+  position: absolute;
+  width: 100%;
+  text-align: end;
+  font-weight: 500;
 }
 
 .r-date-text {
-    color: #7c7c7c;
-    position: relative;
-    width: 100%;
-    bottom: 0px;
-    text-align: start;
-    font-size: 17px;
-    font-weight: 400;
+  color: #7c7c7c;
+  position: relative;
+  width: 100%;
+  bottom: 0px;
+  text-align: start;
+  font-size: 17px;
+  font-weight: 400;
 }
 
 .r-duration-text {
-    color: #7c7c7c;
-    position: relative;
-    width: 100%;
-    bottom: 0px;
-    text-align: end;
-    font-size: 17px;
-    font-weight: 400;
-    letter-spacing: -1px;
+  color: #7c7c7c;
+  position: relative;
+  width: 100%;
+  bottom: 0px;
+  text-align: end;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -1px;
 }
 
 .r-activity {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    bottom: -7px;
-    left: 5px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: -7px;
+  left: 5px;
+}
+
+.r-icon-img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: -7px;
+  left: 5px;
+}
+
+.r-icon-img-swimming {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  bottom: -9px;
+  left: 0px;
 }
 
 .r-icon-upload {
-    position: absolute;
-    left: 38%;
-    top: 30%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
+  position: absolute;
+  left: 38%;
+  top: 30%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 }
 
 .r-prevImg {
-    background-color: #FF7B54;
-    width: 200px;
-    height: 109px;
-    border-radius: 15px;
-    position: absolute;
-    left: 13px;
-    top: 13px;
+  background-color: #ff7b54;
+  width: 200px;
+  height: 109px;
+  border-radius: 15px;
+  position: absolute;
+  left: 13px;
+  top: 13px;
 }
 
 .r-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
 }
-
