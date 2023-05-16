@@ -15,13 +15,14 @@
     overflow: hidden;
 }
 
-.profile-picture img {
+.dashboard-profile img {
     width: 100%;
     height: auto;
+    border-radius: 50%;
 }
 
 .dashboard-profile h3 {
-    font-size: 200%;
+    font-size: 150%;
     font-weight: bold;
     margin-left: 25px;
     color: black;
