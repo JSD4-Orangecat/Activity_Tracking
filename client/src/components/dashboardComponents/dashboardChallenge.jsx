@@ -36,11 +36,11 @@ const friendsMockData = [
     },
     {
         profileImg: '/mockProfiles/mockProfile6.jpg',
-        username: 'jenna-tolls'
+        username: 'jenna_tolls'
     },
     {
         profileImg: '/mockProfiles/mockProfile7.jpg',
-        username: 'gabe-itch'
+        username: 'gabe_itch'
     },
     {
         profileImg: '/mockProfiles/mockProfile8.jpg',
