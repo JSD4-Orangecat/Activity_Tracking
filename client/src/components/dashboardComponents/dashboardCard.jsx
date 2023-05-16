@@ -38,16 +38,16 @@ const cardMockData = [
         image: 'https://images.unsplash.com/photo-1621244246296-c6be56267cc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1222&q=80',
         activity: { running }
     },
-    // {
-    //     id: 3,
-    //     title: 'No time to sleep sleep sleep sleep sleep sleep sleep sleep sleeps',
-    //     caption: 'I eat, sleep, and run',
-    //     duration: ' 30 m',
-    //     date: '2023-03-16',
-    //     task: '',
-    //     image: 'https://plus.unsplash.com/premium_photo-1680981143179-8a6cd94d2901?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
-    //     activity: { swimming }
-    // },
+    {
+        id: 3,
+        title: 'No time to sleep sleep sleep sleep sleep sleep sleep sleep sleeps',
+        caption: 'I eat, sleep, and run',
+        duration: ' 30 m',
+        date: '2023-03-16',
+        task: '',
+        image: 'https://plus.unsplash.com/premium_photo-1680981143179-8a6cd94d2901?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
+        activity: { swimming }
+    },
     // {
     //     id: 4,
     //     title: 'no title to display',
