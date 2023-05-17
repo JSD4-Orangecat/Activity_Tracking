@@ -6,6 +6,8 @@
     --green: #939B62;
 } */
 
+
+
 .fullpage {
   display: flex;
   align-items: center;
@@ -122,9 +124,15 @@
   box-sizing: border-box;
 }
 .btn {
+  border:transparent solid;
   background-color: #939b62;
   margin-top: 40px;
-  width: 30%;
+  width: 40%;
+  height:30px;
+  border-radius: 10px;
+  font-family: "Sono", sans-serif;
+  font-size: large;
+  font-weight: 500;
 }
 .allInform {
   /* display: inline; */
