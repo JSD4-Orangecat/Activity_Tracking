@@ -33,6 +33,7 @@ function CreateCard() {
     userID: currentUser._id,
   });
 
+  //calculate duration
   function calcDuration() {
     let tStart = inputs.timeStart;
     let tEnd = inputs.timeEnd;
@@ -91,6 +92,7 @@ function CreateCard() {
     setInputs({ ...inputs, duration: calculateDuration });
   }
 
+  //chage the card's  task status color
   let changeColor = (e) => {
     const color = ["#96d674", "#fff476", "#fd8888"];
     const { value } = e.target;
@@ -108,16 +110,31 @@ function CreateCard() {
     }
   };
 
+  //get value for preparing to send to db
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     //console.log({...inputs})
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
+  console.log(inputs);
 
+  //get img value
+  function handleFileChange(e) {
+    const { files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setFilename(file.name);
+      setImage(URL.createObjectURL(file));
+      //set the handleChangeInput to store this img's value with others
+      handleChangeInput({ target: { name: "img", value: file } });
+    }
+  }
+
+  //click for submit and send to db
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m" ) {
+    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
       setDurationAlert(true);
       return;
     }
@@ -129,23 +146,12 @@ function CreateCard() {
       );
       console.log(response);
 
+      //if creat card completed, it will link to read-card page
       navigate("/readcard");
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(inputs);
-
-  function handleFileChange(e) {
-    const { files } = e.target;
-    if (files && files[0]) {
-      const file = files[0];
-      setFilename(file.name);
-      setImage(URL.createObjectURL(file));
-      handleChangeInput({ target: { name: "img", value: file } });
-    }
-  }
 
   return (
     <Layout>

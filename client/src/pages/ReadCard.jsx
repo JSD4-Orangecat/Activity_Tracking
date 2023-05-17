@@ -56,25 +56,27 @@ function ReadCard() {
     }
   }
 
-  const handleButton = () => {
-    navigate("/createcard");
-  };
-
+  //for get method : activity data
   useEffect(() => {
-    const fetchActivity = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:4000/activities");
-        setGetActivity(response.data.data);
-        // console.log(response.data.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
     fetchActivity();
   }, []);
 
+  //for get method : activtiy data, use this inside useEffect
+  const fetchActivity = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:4000/activities");
+      setGetActivity(response.data.data);
+      console.log(response.data.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   console.log(getactivity);
+
+  //link to create card page
+  const handleButton = () => {
+    navigate("/createcard");
+  };
 
   return (
     <Layout>
@@ -97,7 +99,7 @@ function ReadCard() {
 
         <div className="r-card">
           {getactivity.map((ele) => (
-            <Card key={ele._id} data={ele} />
+            <Card key={ele._id} data={ele} fetchActivity={fetchActivity} />
           ))}
         </div>
 

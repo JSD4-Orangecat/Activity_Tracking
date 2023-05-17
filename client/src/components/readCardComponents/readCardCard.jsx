@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import "../../assets/styles/readCardCSS/readCardCard.css";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -12,7 +13,7 @@ import swimming from "/swimming.png";
 import cardio from "/cardio.png";
 import walking from "/walking.png";
 
-function Card({ data }) {
+function Card({ data, fetchActivity }) {
   let backgroundColor = "";
 
   if (data.task === "complete") {
@@ -22,6 +23,32 @@ function Card({ data }) {
   } else if (data.task === "fail") {
     backgroundColor = "#fd8888";
   }
+
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this activity?"
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      const response = await axios.delete(
+        "http://127.0.0.1:4000/activities/deleteActivity",
+        {
+          data: { _id: data._id },
+        }
+      );
+
+      console.log(`delete: ${response.data}`);
+
+      //reload the webpage after click delete
+      fetchActivity();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -38,7 +65,11 @@ function Card({ data }) {
           </div>
           {/* edit and delete icon */}
           <FontAwesomeIcon icon={faPenToSquare} className="r-faPenToSquare" />
-          <FontAwesomeIcon icon={faTrashCan} className="r-faTrashCan" />
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className="r-faTrashCan"
+            onClick={handleDelete}
+          />
 
           {/* preview caption */}
           <div className="r-prevCaption">

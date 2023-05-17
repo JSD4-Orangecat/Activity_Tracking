@@ -45,10 +45,9 @@ export const getActivity = async (req, res) => {
 export const deleteActivity = async (req, res) => {
 
   try {
-      const { activityID } = req.params;
-
-      const deleteActivity = await Activity.findOneAndDelete({ activityID });
-
+    const { _id } = req.body;
+    const deleteActivity = await Activity.findByIdAndRemove( _id);
+    
       if(!deleteActivity) {
           return res.status(404).send('Activity not found');
       }
