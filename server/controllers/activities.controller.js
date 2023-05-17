@@ -43,20 +43,20 @@ export const getActivity = async (req, res) => {
 };
 
 export const deleteActivity = async (req, res) => {
-
   try {
-    const { _id } = req.body;
-    const deleteActivity = await Activity.findByIdAndRemove( _id);
-    
-      if(!deleteActivity) {
-          return res.status(404).send('Activity not found');
-      }
+    const { id } = req.params;
+    //const id = req.params.id; อันบน destructuring ที่มีค่าเท่ากับอันนี้
+    //console.log(`id in delete : ${ id }`);
 
-      res.status(200).send('Activity deleted successfully');
+    const deleteActivity = await Activity.findByIdAndRemove(id);
 
+    if (!deleteActivity) {
+      return res.status(404).send("Activity not found");
+    }
+
+    res.status(200).send("Activity deleted successfully");
   } catch (err) {
-      console.log(err);
-      res.status(500).send('Deleting activity failed');
+    console.log(err);
+    res.status(500).send("Deleting activity failed");
   }
-
 };

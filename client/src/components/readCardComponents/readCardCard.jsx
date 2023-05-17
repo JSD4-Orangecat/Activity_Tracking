@@ -35,13 +35,11 @@ function Card({ data, fetchActivity }) {
 
     try {
       const response = await axios.delete(
-        "http://127.0.0.1:4000/activities/deleteActivity",
-        {
-          data: { _id: data._id },
-        }
+        `http://127.0.0.1:4000/activities/${data._id}`
       );
 
-      console.log(`delete: ${response.data}`);
+      console.log(`res: ${response.data}`);
+      //console.log(`data: ${data._id}`)
 
       //reload the webpage after click delete
       fetchActivity();

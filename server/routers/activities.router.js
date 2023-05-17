@@ -6,7 +6,7 @@ const activitiesRouter = Router();
 
 activitiesRouter.post("/createActivityCard", postActivities);
 activitiesRouter.get("/", protect, getActivity);
-activitiesRouter.delete("/deleteActivity", deleteActivity);
+activitiesRouter.delete("/:id", deleteActivity);
 
 
 
