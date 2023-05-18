@@ -40,10 +40,15 @@ const ActivitySchema = new Schema(
       type: "string",
       required: false,
     },
+    userID: {
+      type: "string",
+      required: true,
+    },
   },
   {
     timestamps: true,
-  }
+  },
+  { collection: "activities" }
 );
 
 export default mongoose.model("Activity", ActivitySchema);

@@ -23,10 +23,22 @@ import jwt from "jsonwebtoken";
 // };
 
 export const register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     // console.log(req.body)
     const { email, password } = req.body;
+    // console.log(req.body)
+    const { email, password } = req.body;
 
+    // Check that email must be unique
+    const isUniqueEmail = await User.findOne({ email });
+    if (isUniqueEmail) {
+      return res.status(400).send({ message: "This email already registered" });
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     // Check that email must be unique
     const isUniqueEmail = await User.findOne({ email });
     if (isUniqueEmail) {
@@ -46,7 +58,17 @@ export const register = async (req, res) => {
     res.status(201).send({ message: "Create user succesfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
+    const user = new User({
+      ...req.body,
+      password: hashedPassword,
+    });
+    console.log({ user });
+    await user.save();
+    res.status(201).send({ message: "Create user succesfully" });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
   }
+};
 };
 
 export const login = async (req, res) => {

@@ -49,7 +49,7 @@ export default function HomePage() {
                 <HomeFeatures />
                 <Homebmi onClick={calcBmi} onChange={handlerBmiInput} bmiInput={bmiInput}/>
                 <Homehow />
-                <Footer />
+                {/* <Footer /> */}
         </Layout>
     )
 }
