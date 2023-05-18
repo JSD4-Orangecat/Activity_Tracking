@@ -4,24 +4,14 @@
     align-items: center;
 }
 
-.profile-picture {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 5%;
-    background-color: #c0c0c0;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.profile-picture img {
+.dashboard-profile img {
     width: 100%;
     height: auto;
+    border-radius: 50%;
 }
 
 .dashboard-profile h3 {
-    font-size: 200%;
+    font-size: 120%;
     font-weight: bold;
     margin-left: 25px;
     color: black;
@@ -33,8 +23,12 @@
 
 
 @media screen and (max-width: 1200px) {
-    .profile-picture {
-        width: 20%;
+    .dashboard-profile img {
+        width: 50%;
         margin-right: 5%;
+    }
+
+    .dashboard-profile h3 {
+        font-size: 150%;
     }
 }

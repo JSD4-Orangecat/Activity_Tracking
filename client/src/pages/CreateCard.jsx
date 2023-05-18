@@ -1,31 +1,42 @@
 import "../assets/styles/createCard.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import PrevCard from "../components/createPrevCard";
 import Form from "../components/createForm";
 import SideContainer from "../components/sideContainer";
+import { useAuth } from "../contexts/authentication";
+import axios from "axios";
 
 function CreateCard() {
+  const navigate = useNavigate();
+
+  const { currentUser } = useAuth();
+  // console.log(currentUser);
+
   const [task, setTask] = useState("");
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState("no selected file");
+  const [durationAlert, setDurationAlert] = useState(false);
+
   const [inputs, setInputs] = useState({
     title: "This is title",
     caption:
       "I wish I was a cat, no school, no work, no exercise, just meow meow meow meow meow",
-    time_start: "",
-    time_end: "",
-    duration: "1 h 30 m",
+    timeStart: "",
+    timeEnd: "",
+    duration: "0 h 0 m",
     date: "2023-03-18",
     task: "",
     type: "",
     img: "",
+    userID: currentUser._id,
   });
 
+  //calculate duration
   function calcDuration() {
-    let tStart = inputs.time_start;
-    let tEnd = inputs.time_end;
-    // console.log(tStart, tEnd);
+    let tStart = inputs.timeStart;
+    let tEnd = inputs.timeEnd;
 
     //convert timeStart and timeEnd to milliseconds
     let milliseconds1 =
@@ -81,6 +92,7 @@ function CreateCard() {
     setInputs({ ...inputs, duration: calculateDuration });
   }
 
+  //chage the card's  task status color
   let changeColor = (e) => {
     const color = ["#96d674", "#fff476", "#fd8888"];
     const { value } = e.target;
@@ -98,23 +110,48 @@ function CreateCard() {
     }
   };
 
+  //get value for preparing to send to db
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     //console.log({...inputs})
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
+  // console.log(inputs);
 
-  console.log(inputs);
-
+  //get img value
   function handleFileChange(e) {
     const { files } = e.target;
     if (files && files[0]) {
       const file = files[0];
       setFilename(file.name);
       setImage(URL.createObjectURL(file));
+      //set the handleChangeInput to store this img's value with others
       handleChangeInput({ target: { name: "img", value: file } });
     }
   }
+
+  //click for submit and send to db
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
+      setDurationAlert(true);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:4000/activities/createActivityCard",
+        inputs
+      );
+      console.log(response);
+
+      //if creat card completed, it will link to read-card page
+      navigate("/readcard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout>
@@ -138,6 +175,8 @@ function CreateCard() {
               handleChangeInput={handleChangeInput}
               calcDuration={calcDuration}
               changeColor={changeColor}
+              handleFormSubmit={handleFormSubmit}
+              durationAlert={durationAlert}
             />
           </div>
         </div>

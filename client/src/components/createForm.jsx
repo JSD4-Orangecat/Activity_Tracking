@@ -6,9 +6,9 @@ import swimming from '/swimming.png';
 import cardio from '/cardio.png';
 import walking from '/walking.png';
 
-function Form( {handleChangeInput, calcDuration, changeColor}) {
+function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert }) {
     return (
-        <form>
+        <form onSubmit={handleFormSubmit}>
             <div className='title-date'>
 
                 {/* Add data: Title  */}
@@ -65,19 +65,20 @@ function Form( {handleChangeInput, calcDuration, changeColor}) {
             {/* Add data: Duration */}
             <div className='time_duration'>
                 <label htmlFor='time_start'>Time-Start:</label>
-                <input type='time' className='time' name='time_start' onChange={handleChangeInput} required></input>
+                <input type='time' className='time' name='timeStart' onChange={handleChangeInput} required></input>
                 <label htmlFor='time-end'className='time2'>Time-End:</label>
-                <input type='time' className='time' name='time_end' onChange={handleChangeInput} required></input>
+                <input type='time' className='time' name='timeEnd' onChange={handleChangeInput} required></input>
                 <button type='button' onClick={calcDuration}>Duration</button>
+                {durationAlert && (<p className='alert-duration'>*check your duration</p>)}
             </div>
 
             {/* Add data: Task status */}
             <div className='taskStatus'>
                 <p>Task Status:</p>
                 <div className='wrapper'>
-                    <input type='radio' value='complete' name='task' id='complete' onClick={(e)=>changeColor(e)} onChange={handleChangeInput} required></input>
-                    <input type='radio' value='inProgress' name='task' id='inProgress' onClick={(e)=>changeColor(e)} onChange={handleChangeInput}></input>
-                    <input type='radio' value='fail' name='task' id='fail' onClick={(e)=>changeColor(e)} onChange={handleChangeInput}></input>
+                    <input type='radio' value='complete' name='task' id='complete' onClick={changeColor} onChange={handleChangeInput} required></input>
+                    <input type='radio' value='inProgress' name='task' id='inProgress' onClick={changeColor} onChange={handleChangeInput}></input>
+                    <input type='radio' value='fail' name='task' id='fail' onClick={changeColor} onChange={handleChangeInput}></input>
                     <label htmlFor='complete' className='option option-1'>
                         <div className='dot dot-1'></div>
                         <span>Missison Complete</span>
