@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import "../assets/styles/Register.css";
+
 // import { useNavigate } from "react-router";
 function FormRegister() {
   //useStates and variables
   //const [userData, setUserData] = useState({});
-  const [srcImg, setSrcImg] = useState(null);
+
   // const navigate = useNavigate();
   //set initial values
   const initialValues = {
@@ -23,9 +24,10 @@ function FormRegister() {
   };
   // all useState
   const [formValues, setFormValues] = useState(initialValues);
-
+  const [srcImg, setSrcImg] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isClick, setIsClick] = useState(false);
 
   //function to handle change in input
   const handleChange = (e) => {
@@ -45,8 +47,11 @@ function FormRegister() {
   const saveInput = async (e) => {
     e.preventDefault();
     // setIsSubmit(true);
+    // setIsClick(true);
+    setFormErrors({});
     setFormErrors(validate(formValues));
 
+    console.log(formErrors);
     //check errors before making the axios request
     if (Object.keys(formErrors).length === 0) {
       const { name, value } = e.target;
@@ -137,6 +142,14 @@ function FormRegister() {
 
     return errors;
   };
+  //set error start = 1
+  useEffect(() => {
+    setFormErrors({ start: "1" });
+    // console.log({ formErrors });
+    // if (Object.keys(formErrors).length === 0 && isClick) {
+    //   setFormErrors({});
+    // }
+  }, []);
 
   useEffect(() => {
     if (isSubmit) {
@@ -167,7 +180,7 @@ function FormRegister() {
               <br />
             </div>
             <div className="allInform">
-              <label className="labelInput">Name* :</label>
+              <label className="labelInput">First Name* :</label>
               <br />
               <input
                 onChange={handleChange}
