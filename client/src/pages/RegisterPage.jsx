@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-
+import axios from "axios";
 import "../assets/styles/Register.css";
-
+// import { useNavigate } from "react-router";
 function FormRegister() {
   //useStates and variables
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState({});
   const [srcImg, setSrcImg] = useState(null);
-
+  // const navigate = useNavigate();
   //set initial values
   const initialValues = {
-    photo: "",
-    name: "",
-    birthdate: "",
-    lastname: "",
-    weight: null,
-    height: null,
     email: "",
     password: "",
     confirmpassword: "",
+    picture: "",
+    firstName: "",
+    lastName: "",
+    birthDate: "",
     gender: "",
+    weight: null,
+    height: null,
   };
   // all useState
   const [formValues, setFormValues] = useState(initialValues);
@@ -29,51 +29,77 @@ function FormRegister() {
 
   //function to handle change in input
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    if (e.target.files.length > 0) {
-      const src = URL.createObjectURL(e.target.files[0]);
+
+    if (name === "picture" && files.length > 0) {
+      const src = URL.createObjectURL(files[0]);
       const preview = document.getElementById("profilePhoto");
       preview.src = src;
       setSrcImg(src);
     }
   };
   console.log(formValues);
-  // fuction to handle save inputs
-  const saveInput = (event) => {
-    event.preventDefault();
+  // function to handle save inputs
+
+  const saveInput = async (e) => {
+    e.preventDefault();
+    // setIsSubmit(true);
     setFormErrors(validate(formValues));
-    console.log(formErrors);
-    setIsSubmit(true);
-  };
-  // console.log(userData)
 
-  // useEffect for watching errors in this form
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+    //check errors before making the axios request
+    if (Object.keys(formErrors).length === 0) {
+      const { name, value } = e.target;
+      const { confirmpassword, ...userData } = formValues;
+      setFormValues({ ...userData, [name]: value });
+      // console.log({ formValues });
+      // console.log({ userData });
 
-      setUserData(formValues);
+      // setFormValues({ confirmpassword, ...formValues, [name]: value });
+      try {
+        const response = await axios.post(
+          "http://localhost:4000/auth/register",
+          formValues
+        );
+        console.log(response.data);
+
+        // // // Reset the form values
+
+        // setFormValues(initialValues);
+
+        // Set the submission status to true
+        setIsSubmit(true);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [formErrors]);
+  };
 
-  console.log(userData);
+  // console.log(userData);
   //function for validate user data
   const validate = (values) => {
     const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-    if (!values.name) {
-      errors.name = "Name is required!";
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+    const regexEmail =
+      /^(?=.*[a-z])[a-z0-9._%+-]+@(?:gmail|hotmail|yahoo)\.[a-z]{2,}$/i;
+    const currentDate = new Date();
+    console.log({ currentDate });
+    const BirthDate = new Date(values.birthDate);
+    console.log({ BirthDate });
+    console.log(values.birthDate);
+    // Calculate age
+    const age = currentDate.getFullYear() - BirthDate.getFullYear();
+    console.log({ age });
+    if (!values.firstName) {
+      errors.firstName = "First Name is required!";
     }
-    if (!values.lastname) {
-      errors.lastname = "Lastname is required!";
+    if (!values.lastName) {
+      errors.lastName = "Last name is required!";
     }
     if (!values.email) {
       errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
+    } else if (!regexEmail.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
     if (!values.password) {
@@ -88,26 +114,36 @@ function FormRegister() {
       errors.confirmpassword =
         "Confirm password should be the same as the password";
     }
-
-    if (!values.birthdate) {
-      errors.birthdate = "Birthdate is required";
+    if (!values.birthDate) {
+      errors.birthDate = "Birthdate is required";
+    } else if (BirthDate > currentDate) {
+      errors.birthDate = "Birthdate cannot refer to a future date";
+    } else if (age < 7) {
+      errors.birthDate = "Age must be more than 7 years";
     }
     if (!values.gender) {
       errors.gender = "Gender is required";
     }
     if (!values.height) {
       errors.height = "Height is required";
-    } else if (values.height < 0) {
+    } else if (values.height <= 0) {
       errors.height = "Height must be a  positive number";
     }
     if (!values.weight) {
       errors.weight = "Weight is required";
-    } else if (values.weight < 0) {
+    } else if (values.weight <= 0) {
       errors.weight = "Weight must be a  positive number";
     }
 
     return errors;
   };
+
+  useEffect(() => {
+    if (isSubmit) {
+      setFormValues(initialValues); // Reset the form values
+      setIsSubmit(false); // Reset the submission status
+    }
+  }, [isSubmit, initialValues]);
 
   return (
     <Layout>
@@ -118,8 +154,8 @@ function FormRegister() {
             <div className="wrap">
               <input
                 onChange={handleChange}
-                value={formValues.photo}
-                name="photo"
+                value={formValues.picture}
+                name="picture"
                 className="photo"
                 type="file"
               />
@@ -131,69 +167,64 @@ function FormRegister() {
               <br />
             </div>
             <div className="allInform">
-              <label>Name* :</label>
+              <label className="labelInput">Name* :</label>
+              <br />
               <input
                 onChange={handleChange}
-                name="name"
-                value={formValues.name}
+                name="firstName"
+                value={formValues.firstName}
                 type="text"
                 className="input"
               />
-
-              <span className="texterr"> {formErrors.name}</span>
+              <span className="texterr"> {formErrors.firstName}</span>
               <br />
-              <label>Last Name* :</label>
+              <label className="labelInput">Last Name* :</label> <br />
               <input
                 onChange={handleChange}
-                name="lastname"
-                value={formValues.lastname}
+                name="lastName"
+                value={formValues.lastName}
                 type="text"
                 className="input"
               />
-
-              <span className="texterr"> {formErrors.lastname}</span>
+              <span className="texterr"> {formErrors.lastName}</span>
               <br />
-              <label>
-                Date Of Birth* :
-                <input
-                  onChange={handleChange}
-                  value={formValues.birthdate}
-                  name="birthdate"
-                  type="date"
-                  className="input"
-                />
-              </label>
-
-              <span className="texterr"> {formErrors.birthdate}</span>
+              <label className="labelInput">Date Of Birth* :</label>
               <br />
-              <label>
-                Weight* :
-                <input
-                  onChange={handleChange}
-                  value={formValues.weight}
-                  name="weight"
-                  type="number"
-                  className="input"
-                />
-                kg
-              </label>
+              <input
+                onChange={handleChange}
+                value={formValues.birthDate}
+                name="birthDate"
+                type="date"
+                className="input"
+              />
+              <span className="texterr"> {formErrors.birthDate}</span>
+              <br />
+              <label className="labelInput">Weight* :</label>
+              <br />
+              <input
+                onChange={handleChange}
+                value={formValues.weight}
+                name="weight"
+                type="number"
+                className="input"
+                placeholder=" kg"
+              />
               <span className="texterr"> {formErrors.weight}</span>
               <br />
-
-              <label>
-                Height* :
-                <input
-                  onChange={handleChange}
-                  value={formValues.height}
-                  name="height"
-                  type="number"
-                  className="input"
-                />
-                cm
-              </label>
+              <label className="labelInput">Height* : </label>
+              <br />
+              <input
+                onChange={handleChange}
+                value={formValues.height}
+                name="height"
+                type="number"
+                className="input"
+                placeholder=" cm"
+              />
               <span className="texterr"> {formErrors.height}</span>
               <br />
-              <label>Email* :</label>
+              <label className="labelInput">Email* :</label>
+              <br />
               <input
                 onChange={handleChange}
                 value={formValues.email}
@@ -203,7 +234,8 @@ function FormRegister() {
               />
               <span className="texterr"> {formErrors.email}</span>
               <br />
-              <label>Password* :</label>
+              <label className="labelInput">Password* :</label>
+              <br />
               <input
                 onChange={handleChange}
                 value={formValues.password}
@@ -213,7 +245,8 @@ function FormRegister() {
               />
               <span className="texterr"> {formErrors.password}</span>
               <br />
-              <label>Confirm Password* :</label>
+              <label className="labelInput">Confirm Password* :</label>
+              <br />
               <input
                 onChange={handleChange}
                 value={formValues.confirmpassword}
@@ -234,7 +267,7 @@ function FormRegister() {
                 checked={formValues.gender === "male"}
                 className="selctor"
               />
-              <label for="1">Male</label>
+              <label>Male</label>
               <input
                 onChange={handleChange}
                 type="radio"
@@ -244,7 +277,7 @@ function FormRegister() {
                 checked={formValues.gender === "female"}
                 className="selctor"
               />
-              <label for="2">Female</label>
+              <label>Female</label>
             </div>
             <span className="texterr"> {formErrors.gender}</span>
             <br />

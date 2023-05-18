@@ -21,12 +21,14 @@
     "bootstrap": "^5.2.3",
     "emoji-mart": "^5.5.2",
     "jwt-decode": "^3.1.2",
+    "navigate": "^0.3.6",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "use-history": "^1.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
