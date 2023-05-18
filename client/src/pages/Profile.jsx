@@ -6,24 +6,35 @@ import "../assets/styles/Register.css";
 
 function Profile() {
   //all useState and variables
-  const user = {
-    photo: "",
-    firstName: "P",
-    birthDate: "22,April,2000",
-    lastName: "P",
-    weight: 40,
-    height: 140,
-    email: "a@gmail.com",
-    password: "Aa111111",
-    confirmpassword: "",
-    gender: "female",
-  };
+  // const user = {
+  //   photo: "",
+  //   firstName: "P",
+  //   birthDate: "22,April,2000",
+  //   lastName: "P",
+  //   weight: 40,
+  //   height: 140,
+  //   email: "a@gmail.com",
+  //   password: "Aa111111",
+  //   confirmpassword: "",
+  //   gender: "female",
+  // };
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  //function fetch data
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:4000/auth/user/${data._id}`
+      );
+      setUserData({ ...response.data });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   //function show user
   const show = () => {
-    setUserData({ ...user });
+    setUserData({ ...userData });
   };
   useEffect(show, []);
 
