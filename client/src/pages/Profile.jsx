@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
+import axios from "axios";
 
 import "../assets/styles/Register.css";
 
@@ -34,7 +35,7 @@ function Profile() {
   };
   //function save update of profile
 
-  const handleUpdateProfile = (e) => {
+  const handleUpdateProfile = async (e) => {
     e.preventDefault();
     setFormErrors(validate(userData));
     //check errors before making the axios request
@@ -44,6 +45,15 @@ function Profile() {
       setUserData({ ...Data, [name]: value });
       console.log(userData);
       console.log("no errors");
+      try {
+        const response = await axios.put(
+          `http://localhost:4000/auth/edit/${data._id}`,
+          userData
+        );
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   //function delete profile
@@ -56,7 +66,7 @@ function Profile() {
     }
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:4000/users/${data._id}`
+        `http://127.0.0.1:4000/auth/delete/${data._id}`
       );
 
       console.log(`res: ${response.data}`);
