@@ -13,6 +13,8 @@ import {
   faCircleRight,
 } from "@fortawesome/free-regular-svg-icons";
 
+const pageLimit = 4
+
 function ReadCard() {
   const navigate = useNavigate();
 
@@ -27,6 +29,9 @@ function ReadCard() {
     emoji: "",
     cover: "",
   });
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(pageLimit)
+  const [totalPages,setTotalPages] = useState(1)
 
   const showPicker = () => {
     setPickerVisible(!pickerVisible);
@@ -59,14 +64,23 @@ function ReadCard() {
   //for get method : activity data
   useEffect(() => {
     fetchActivity();
-  }, []);
+  }, [page,limit]);
 
   //for get method : activtiy data, use this inside useEffect
   const fetchActivity = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:4000/activities");
+      const response = await axios.get("http://127.0.0.1:4000/activities", {
+        params: {
+          page,
+          limit,
+        }
+      });
       setGetActivity(response.data.data);
-      console.log(response.data.data);
+      //Get total of document in database and calculate total pages.
+      const {totalDocs} = response.data
+      const totalPages = Math.ceil(totalDocs / limit)
+      setTotalPages(totalPages)
+
     } catch (err) {
       console.error(err);
     }
@@ -77,6 +91,19 @@ function ReadCard() {
   const handleButton = () => {
     navigate("/createcard");
   };
+
+  //Handler page change function
+  const handlerPrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  }
+
+  const handlerNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1)
+    }
+  }
 
   return (
     <Layout>
@@ -113,9 +140,9 @@ function ReadCard() {
 
         {/* page */}
         <div className="r-page">
-          <FontAwesomeIcon icon={faCircleLeft} className="faCircle" />
-          <span>2</span>
-          <FontAwesomeIcon icon={faCircleRight} className="faCircle" />
+          <FontAwesomeIcon onClick={handlerPrevPage} icon={faCircleLeft} className="faCircle" />
+          <span>{page}</span>
+          <FontAwesomeIcon onClick={handlerNextPage} icon={faCircleRight} className="faCircle" />
         </div>
       </main>
     </Layout>

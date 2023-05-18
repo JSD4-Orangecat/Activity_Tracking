@@ -25,17 +25,25 @@ export const postActivities = async (req, res) => {
 };
 
 export const getActivity = async (req, res) => {
+  const { page, limit } = req.query;
   // console.log(req.user.info._id);
   try {
     const user_ID = req.user.info._id;
-    const activities = await Activity.find({ userID: user_ID });
-    // console.log(activities);
+    const activities = await Activity.find({ userID: user_ID })
+    .limit(parseInt(limit))
+    .skip((parseInt(page) - 1) * parseInt(limit))
+    .exec()
+
+    // find total document of activity
+    const totalDocs = await Activity.find({ userID:user_ID }).countDocuments();
+
+    console.log(activities);
 
     if (!activities) {
       return res.status(404).send("Activity not found");
     }
 
-    return res.json({ data: activities });
+    return res.json({ data: activities,totalDocs: totalDocs });
   } catch (err) {
     console.log(err);
     res.status(500).send("Failed to get activity");

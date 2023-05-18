@@ -11,7 +11,7 @@ export default function MainNav() {
   const [isDropdown, setIsDropdown] = useState(false);
   const auth = useAuth();
   const { logout } = useAuth();
-
+  // console.log(auth.currentUser)
   const loginContainer = (
     <div className="nav-login-container">
       <Link to="/login"> Login </Link>
@@ -19,22 +19,25 @@ export default function MainNav() {
     </div>
   );
 
-  const profile = (
-    <div className="profile-container">
-      <div className="profile-image">
-        <img src={navLogoImage} alt="Orange-cat's logo" />
-      </div>
-      <span
-        onClick={() => setIsDropdown(!isDropdown)}
-        className="profile-username"
-      >
-        <a>USERNAME01</a>
-      </span>
-    </div>
-  );
+
+  let profile
 
   let dropdown;
   if (auth.isAuthenticated) {
+    profile = (
+      <div className="profile-container">
+        <div className="profile-image">
+          <img src={navLogoImage} alt="Orange-cat's logo" />
+        </div>
+        <span
+          onClick={() => setIsDropdown(!isDropdown)}
+          className="profile-username"
+        >
+          <a>{auth.currentUser.firstName}</a>
+        </span>
+      </div>
+    );
+
     dropdown = (
       <ul className="dropdown-menu">
         <li>

@@ -12,7 +12,7 @@ function CreateCard() {
   const navigate = useNavigate();
 
   const { currentUser } = useAuth();
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const [task, setTask] = useState("");
   const [image, setImage] = useState(null);
@@ -116,7 +116,7 @@ function CreateCard() {
     //console.log({...inputs})
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
-  console.log(inputs);
+  // console.log(inputs);
 
   //get img value
   function handleFileChange(e) {
