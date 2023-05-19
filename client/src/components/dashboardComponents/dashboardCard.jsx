@@ -4,10 +4,9 @@ import Card from "../readCardComponents/readCardCard";
 import '../../assets/styles/dashboardCSS/dashboardCard.css';
 
 export default function DashboardCards() {
-    const pageLimit = 3;
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit, setLimit] = useState(pageLimit);
+    const [limit, setLimit] = useState(3);
     const [getActivity, setGetActivity] = useState([]);
 
     const fetchActivity = async () => {
