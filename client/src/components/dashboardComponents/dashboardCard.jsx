@@ -4,46 +4,32 @@ import Card from "../readCardComponents/readCardCard";
 import '../../assets/styles/dashboardCSS/dashboardCard.css';
 
 export default function DashboardCards() {
-
-    const pageLimit = 4;
-
+    const pageLimit = 3;
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [limit, setLimit] = useState(pageLimit);
-    const [getactivity, setGetActivity] = useState([]);
-
-
+    const [getActivity, setGetActivity] = useState([]);
 
     const fetchActivity = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:4000/activities", {
-                params: {
-                    page,
-                    limit,
-                }
+                params: { page, limit },
             });
-            setGetActivity(response.data.data);
-            //Get total of document in database and calculate total pages.
-            const { totalDocs } = response.data
-            const totalPages = Math.ceil(totalDocs / limit)
-            setTotalPages(totalPages)
-
+            const { data, totalDocs } = response.data;
+            setGetActivity(data);
+            setTotalPages(Math.ceil(totalDocs / limit));
         } catch (err) {
             console.error(err);
         }
     };
 
-
-
     useEffect(() => {
         fetchActivity();
     }, [page, limit]);
 
-
-
     return (
         <div className="cards-container">
-            {getactivity.map((ele) => (
+            {getActivity.map((ele) => (
                 <Card key={ele._id} data={ele} fetchActivity={fetchActivity} />
             ))}
         </div>
