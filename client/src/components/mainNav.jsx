@@ -41,7 +41,7 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a href="#">Profile</a>
+          <a href="/profile">Profile</a>
         </li>
         <li>
           <a href="#">Dashboard</a>
