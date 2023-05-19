@@ -34,7 +34,7 @@ export default function DashboardCards() {
     }, []);
 
     // Ensure exactly three activities are rendered
-    const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity.length).fill({}));
+    const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity?.length).fill({}));
 
     return (
         <div className="cards-container">
