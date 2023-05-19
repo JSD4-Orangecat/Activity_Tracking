@@ -25,8 +25,6 @@ export default function DashboardCards() {
     const handleActivityClick = (ele) => {
         if (Object.keys(ele).length === 0) {
             navigate("/createcard");
-        } else {
-            navigate("/readcard");
         }
     };
 
@@ -39,17 +37,20 @@ export default function DashboardCards() {
     const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity.length).fill({}));
 
     return (
-        <div>
-            <div className="cards-container">
-                {renderActivity.map((ele) => (
-                    <div key={ele._id} onClick={() => handleActivityClick(ele)}>
-                        {Object.keys(ele).length === 0 ? (
-                            <BlankCard data={ele} />
-                        ) : (
-                            <Card data={ele} fetchActivity={fetchActivity} />
-                        )}
-                    </div>
-                ))}
+        <div className="cards-container">
+            {renderActivity.map((ele) => (
+                <div key={ele._id} onClick={() => handleActivityClick(ele)}>
+                    {Object.keys(ele).length === 0 ? (
+                        <BlankCard data={ele} />
+                    ) : (
+                        <Card data={ele} fetchActivity={fetchActivity} />
+                    )}
+                </div>
+            ))}
+            <div className="button-container">
+                <button className="read-card-button" onClick={() => navigate("/readcard")}>
+                    View More
+                </button>
             </div>
         </div>
     );
