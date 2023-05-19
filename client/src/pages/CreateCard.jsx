@@ -47,6 +47,12 @@ function CreateCard() {
       Number(tEnd.split(":")[1]) * 60 * 1000;
     // console.log(milliseconds1, milliseconds2);
 
+
+
+    // To-do – RANK SYSTEM
+
+
+
     //find differences in milliseconds
     let difference = Math.abs(milliseconds2 - milliseconds1);
     if (milliseconds2 < milliseconds1) {
