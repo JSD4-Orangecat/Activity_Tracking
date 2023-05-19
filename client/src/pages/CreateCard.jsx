@@ -116,7 +116,7 @@ function CreateCard() {
     //console.log({...inputs})
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
-  // console.log(inputs);
+  console.log(inputs);
 
   //get img value
   function handleFileChange(e) {
@@ -126,7 +126,7 @@ function CreateCard() {
       setFilename(file.name);
       setImage(URL.createObjectURL(file));
       //set the handleChangeInput to store this img's value with others
-      handleChangeInput({ target: { name: "img", value: file } });
+      setInputs((prevInputs) => ({ ...prevInputs, img: file }));
     }
   }
 
@@ -139,10 +139,19 @@ function CreateCard() {
       return;
     }
 
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(inputs)) {
+      formData.append(key, value);
+    }
+    console.log(...formData);
+
     try {
       const response = await axios.post(
         "http://127.0.0.1:4000/activities/createActivityCard",
-        inputs
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
       console.log(response);
 
