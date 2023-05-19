@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../readCardComponents/readCardCard";
+import BlankCard from "./BlankCard";
 import '../../assets/styles/dashboardCSS/dashboardCard.css';
 
 export default function DashboardCards() {
-
     const navigate = useNavigate();
     const [getActivity, setActivity] = useState([]);
 
@@ -43,7 +43,11 @@ export default function DashboardCards() {
             <div className="cards-container">
                 {renderActivity.map((ele) => (
                     <div key={ele._id} onClick={() => handleActivityClick(ele)}>
-                        <Card data={ele} fetchActivity={fetchActivity} />
+                        {Object.keys(ele).length === 0 ? (
+                            <BlankCard data={ele} />
+                        ) : (
+                            <Card data={ele} fetchActivity={fetchActivity} />
+                        )}
                     </div>
                 ))}
             </div>
