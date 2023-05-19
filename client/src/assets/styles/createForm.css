@@ -70,6 +70,11 @@ form {
     /* border: 1px solid rgba(216, 216, 216, 0.275); */
 }
 
+.tile:hover {
+    border: 3px solid rgba(216, 216, 216, 0.275);
+    border-radius: 5px;
+}
+
 .tile input[type="radio"] {
     -webkit-appearance: none;
     position: relative;

@@ -49,15 +49,20 @@ export default function MainNav() {
         <li>
           <a href="#">Dashboard</a>
         </li>
-        <li>
-          <a href="#">Features</a>
-        </li>
-        <li>
-          <a href="#">BMI</a>
-        </li>
-        <li>
-          <a href="#">How it Work</a>
-        </li>
+        {window.location.pathname === '/' && (
+          <>
+            <li>
+              <a href="#">Features</a>
+            </li>
+            <li>
+              <a href="#">BMI</a>
+            </li>
+            <li>
+              <a href="#">How it Work</a>
+            </li>
+          </>
+        )}
+
         <li>
           <a
             onClick={() => {
