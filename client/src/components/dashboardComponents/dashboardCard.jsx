@@ -4,22 +4,27 @@ import Card from "../readCardComponents/readCardCard";
 import '../../assets/styles/dashboardCSS/dashboardCard.css';
 
 export default function DashboardCards() {
-    const [getActivity, setGetActivity] = useState([]);
+    // Define a state variable to store activity data
+    const [getActivity, setActivity] = useState([]);
 
+    // Function to fetch activity data from the server
     const fetchActivity = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:4000/activities");
             const { data } = response.data;
-            setGetActivity(data);
+            // Update the state variable with fetched activity data
+            setActivity(data);
         } catch (err) {
             console.error(err);
         }
     };
 
+    // Fetch activity data when the component mounts
     useEffect(() => {
         fetchActivity();
     }, []);
 
+    // Variable that sliced the activity data to only the first 3 items
     const renderActivity = getActivity.slice(0, 3);
 
     return (
