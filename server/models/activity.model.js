@@ -44,6 +44,10 @@ const ActivitySchema = new Schema(
       type: "string",
       required: true,
     },
+    exp: {
+      type: "Number",
+      required: true
+    }
   },
   {
     timestamps: true,

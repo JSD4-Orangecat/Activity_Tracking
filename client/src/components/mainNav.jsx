@@ -103,6 +103,7 @@ export default function MainNav() {
         </span>
       </div>
 
+      {window.location.pathname === '/' && (
       <ul className="nav">
         <li>
           <a href="#features">Features</a>
@@ -114,6 +115,7 @@ export default function MainNav() {
           <a href="#how">How it Work</a>
         </li>
       </ul>
+      )}
 
       {/* <div className="login-container">
                 <a href="#">Login</a>

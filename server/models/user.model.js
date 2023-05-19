@@ -51,8 +51,17 @@ const userSchema = new Schema({
     "emoji": {
         "type": String,
         "required": false
+    },
+    "rank": {
+        "type": Number,
+        "required": false
     }
-}, {collection: 'user'})
+},{
+    timestamps: true,
+  },
+  {
+    collection: 'user'
+})
 
 
 export default mongoose.model("User", userSchema);
