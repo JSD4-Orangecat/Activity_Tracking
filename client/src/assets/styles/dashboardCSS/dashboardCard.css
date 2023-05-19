@@ -13,11 +13,13 @@
 .cards-container .r-caption-text,
 .cards-container .r-date-text,
 .cards-container .r-duration-text,
-.cards-container .r-prevcard {
+.cards-container .r-prevcard,
+.cards-container .blankCard {
     margin-top: 0;
 }
 
-.cards-container .r-prevcard {
+.cards-container .r-prevcard,
+.cards-container .blankCard {
     margin: 1%;
 }
 
@@ -49,13 +51,17 @@
 
 
 @media screen and (max-width: 1200px) {
-    .cards-container .r-prevcard {
+
+    .cards-container .r-prevcard,
+    .cards-container .blankCard {
         width: 600px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .cards-container .r-prevcard {
+
+    .cards-container .r-prevcard,
+    .cards-container .blankCard {
         width: 275px;
     }
 
@@ -63,7 +69,8 @@
         display: none;
     }
 
-    .cards-container .r-prevcard {
+    .cards-container .r-prevcard,
+    .cards-container .blankCard {
         display: flex;
         justify-content: center;
     }
