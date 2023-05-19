@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../readCardComponents/readCardCard";
 import '../../assets/styles/dashboardCSS/dashboardCard.css';
 
 export default function DashboardCards() {
-    // Define a state variable to store activity data
+
+    const navigate = useNavigate();
     const [getActivity, setActivity] = useState([]);
 
     // Function to fetch activity data from the server
@@ -19,19 +21,32 @@ export default function DashboardCards() {
         }
     };
 
+    // Function to handle click on an activity
+    const handleActivityClick = (ele) => {
+        if (Object.keys(ele).length === 0) {
+            navigate("/createcard");
+        } else {
+            navigate("/readcard");
+        }
+    };
+
     // Fetch activity data when the component mounts
     useEffect(() => {
         fetchActivity();
     }, []);
 
-    // Variable that sliced the activity data to only the first 3 items
-    const renderActivity = getActivity.slice(0, 3);
+    // Ensure exactly three activities are rendered
+    const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity.length).fill({}));
 
     return (
-        <div className="cards-container">
-            {renderActivity.map((ele) => (
-                <Card key={ele._id} data={ele} fetchActivity={fetchActivity} />
-            ))}
+        <div>
+            <div className="cards-container">
+                {renderActivity.map((ele) => (
+                    <div key={ele._id} onClick={() => handleActivityClick(ele)}>
+                        <Card data={ele} fetchActivity={fetchActivity} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
