@@ -19,6 +19,10 @@ export default function DashboardChallenge() {
 
 const friendsMockData = [
     {
+        profileImg: '/mockProfiles/mockProfile1.jpg',
+        username: 'mike_hunt'
+    },
+    {
         profileImg: '/mockProfiles/mockProfile2.jpg',
         username: 'ben_dover'
     },
