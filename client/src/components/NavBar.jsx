@@ -70,13 +70,13 @@ const NavBar = () => {
           <div id="nav-menu" style={{ display: "none" }}>
             <ul className="nav-links">
               <li className="nav-item">
-                <a href="#">Profile</a>
+                <a href="/profile">Profile</a>
               </li>
               <li className="nav-item">
-                <a href="#">Profile</a>
+                <a href="/profile">Profile</a>
               </li>
               <li className="nav-item">
-                <a href="#">Profile</a>
+                <a href="/profile">Profile</a>
               </li>
             </ul>
           </div>

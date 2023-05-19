@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-
+import { useAuth } from "../contexts/authentication";
 import "../assets/styles/Register.css";
+import { useNavigate } from "react-router";
 
 function Profile() {
   //all useState and variables
@@ -18,6 +19,8 @@ function Profile() {
   //   confirmpassword: "",
   //   gender: "female",
   // };
+  const { currentUser } = useAuth;
+  console.log(currentUser);
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   //function fetch data
@@ -26,15 +29,16 @@ function Profile() {
       const response = await axios.get(
         // `http://localhost:4000/auth/profile/${data._id}`
         // `http://127.0.0.1:4000/auth/profile/${data._id}`
-        `http://localhost:4000/auth/profile`
+        `http://127.0.0.1:4000/auth/profile/${currentUser._id}`
       );
-      setUserData({ ...response.data });
+      // setUserData({ ...response.data });
+      setUserData({ ...response.data.data });
     } catch (err) {
       console.log(err);
     }
   };
 
-  // useEffect(fetchData, []);
+  useEffect(fetchData, []);
   //function show user
   // const show = () => {
   //   setUserData({ ...userData });
@@ -61,7 +65,7 @@ function Profile() {
       console.log("no errors");
       try {
         const response = await axios.put(
-          `http://localhost:4000/auth/${userData._id}`,
+          `http://localhost:4000/auth/${currentUser._id}`,
           userData
         );
         console.log(response.data);
@@ -80,7 +84,7 @@ function Profile() {
     }
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:4000/auth/delete/${userData._id}`
+        `http://127.0.0.1:4000/auth/delete/${currentUser._id}`
       );
 
       console.log(`res: ${response.data}`);
