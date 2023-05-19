@@ -21,22 +21,25 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   //function fetch data
-  async function fetchData() {
+  const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:4000/auth/user/${data._id}`
+        // `http://localhost:4000/auth/profile/${data._id}`
+        // `http://127.0.0.1:4000/auth/profile/${data._id}`
+        `http://localhost:4000/auth/profile`
       );
       setUserData({ ...response.data });
     } catch (err) {
       console.log(err);
     }
-  }
-
-  //function show user
-  const show = () => {
-    setUserData({ ...userData });
   };
-  useEffect(show, []);
+
+  // useEffect(fetchData, []);
+  //function show user
+  // const show = () => {
+  //   setUserData({ ...userData });
+  // };
+  // useEffect(show, []);
 
   //function to handle change in input
   const handleChange = (e) => {
@@ -58,7 +61,7 @@ function Profile() {
       console.log("no errors");
       try {
         const response = await axios.put(
-          `http://localhost:4000/auth/edit/${data._id}`,
+          `http://localhost:4000/auth/${userData._id}`,
           userData
         );
         console.log(response.data);
@@ -77,7 +80,7 @@ function Profile() {
     }
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:4000/auth/delete/${data._id}`
+        `http://127.0.0.1:4000/auth/delete/${userData._id}`
       );
 
       console.log(`res: ${response.data}`);
@@ -147,6 +150,9 @@ function Profile() {
 
     return errors;
   };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <Layout>

@@ -10,9 +10,9 @@ import {
 const authRouter = Router();
 
 authRouter.post("/register", register);
-authRouter.get("/user/:id", getUser);
-authRouter.delete("/delete/:id", deleteUserAccount);
-authRouter.put("/edit/:id", editProfile);
+authRouter.get("/profile/:id", getUser);
+authRouter.delete("/profile/:id", deleteUserAccount);
+authRouter.put("/profile/:id", editProfile);
 authRouter.post("/login", login);
 
 export default authRouter;
