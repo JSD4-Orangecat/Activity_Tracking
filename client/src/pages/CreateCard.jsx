@@ -139,20 +139,18 @@ function CreateCard() {
       return;
     }
 
-
-
     const formData = new FormData();
-    for (const [ key, value ] of Object.entries(inputs)) {
-
-      formData.append(key, value )
+    for (const [key, value] of Object.entries(inputs)) {
+      formData.append(key, value);
     }
     console.log(...formData);
 
     try {
       const response = await axios.post(
         "http://127.0.0.1:4000/activities/createActivityCard",
-        formData, {
-          headers: { "Content-Type": "multipart/form-data"}
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
         }
       );
       console.log(response);
@@ -162,8 +160,6 @@ function CreateCard() {
     } catch (error) {
       console.log(error);
     }
-
-
   };
 
   return (
