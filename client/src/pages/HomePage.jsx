@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Layout from "../components/Layout"
-import Footer from "../components/footer"
+// import Footer from "../components/footer"
 import "../assets/styles/homePage.css"
 // import image
 // for hero-section
@@ -68,7 +69,7 @@ export function HomeHero({bmiInput}) {
                   and earn achievements all while having fun and staying
                   motivated.
                 </p>
-                <button className="hero-btn">Get Started!</button>
+                <button className="hero-btn"><Link to="/dashboard">Get Started!</Link></button>
             </div>
             <div className="hero-image-container">
             {bmiInput.shape === 'strong' && <img src={homeImageStrong} alt='strong orange-cat' />}

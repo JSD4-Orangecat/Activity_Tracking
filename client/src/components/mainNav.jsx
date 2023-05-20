@@ -14,8 +14,8 @@ export default function MainNav() {
   // console.log(auth.currentUser)
   const loginContainer = (
     <div className="nav-login-container">
-      <Link to="/login"> Login </Link>
-      <Link to="/register">Sign-up</Link>
+      <Link className="navbar-link" to="/login"> Login </Link>
+      <Link className="navbar-link" to="/register">Sign-up</Link>
     </div>
   );
 
@@ -33,7 +33,7 @@ export default function MainNav() {
           onClick={() => setIsDropdown(!isDropdown)}
           className="profile-username"
         >
-          <a>{auth.currentUser.firstName}</a>
+          <a className="navbar-link" >{auth.currentUser.firstName}</a>
         </span>
       </div>
     );
@@ -44,25 +44,31 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a href="#">Profile</a>
+          <a className="navbar-link" href="#">Profile</a>
         </li>
         <li>
-          <a href="#">Dashboard</a>
+          <Link className="navbar-link" to="/dashboard">Dashboard</Link>
         </li>
-        <li>
-          <a href="#">Features</a>
-        </li>
-        <li>
-          <a href="#">BMI</a>
-        </li>
-        <li>
-          <a href="#">How it Work</a>
-        </li>
+        {window.location.pathname === '/' && (
+          <>
+            <li>
+              <a className="navbar-link" href="#">Features</a>
+            </li>
+            <li>
+              <a className="navbar-link" href="#">BMI</a>
+            </li>
+            <li>
+              <a className="navbar-link" href="#">How it Work</a>
+            </li>
+          </>
+        )}
+
         <li>
           <a
             onClick={() => {
               logout();
             }}
+            className="navbar-link"
           >
             Logout
           </a>
@@ -76,19 +82,19 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a href="#">Features</a>
+          <a className="navbar-link" href="#">Features</a>
         </li>
         <li>
-          <a href="#">BMI</a>
+          <a className="navbar-link" href="#">BMI</a>
         </li>
         <li>
-          <a href="#">How it Work</a>
+          <a className="navbar-link" href="#">How it Work</a>
         </li>
         <li>
-          <a>Login</a>
+          <Link className="navbar-link" to="/login">Login</Link>
         </li>
         <li>
-          <a href="#">Sign-up</a>
+          <Link className="navbar-link" to="/login">Sign-up</Link>
         </li>
       </ul>
     );
@@ -96,24 +102,28 @@ export default function MainNav() {
 
   return (
     <nav className="homeNav">
-      <div className="logo-container">
-        <img src={navLogoImage} alt="Orange-cat's logo" />
-        <span>
-          <a href="#">Orange Cat</a>
-        </span>
-      </div>
+      <Link to="/">
+        <div className="logo-container">
+          <img src={navLogoImage} alt="Orange-cat's logo" />
+          <span>
+            <a className="navbar-link" href="#">Orange Cat</a>
+          </span>
+        </div>
+      </Link>
 
+      {window.location.pathname === '/' && (
       <ul className="nav">
         <li>
-          <a href="#features">Features</a>
+          <a className="navbar-link" href="#features">Features</a>
         </li>
         <li>
-          <a href="#bmi">BMI</a>
+          <a className="navbar-link" href="#bmi">BMI</a>
         </li>
         <li>
-          <a href="#how">How it Work</a>
+          <a className="navbar-link" href="#how">How it Work</a>
         </li>
       </ul>
+      )}
 
       {/* <div className="login-container">
                 <a href="#">Login</a>
