@@ -34,7 +34,14 @@ export default function DashboardCards() {
     }, []);
 
     // Ensure exactly three activities are rendered
-    const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity?.length).fill({}));
+    // const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity?.length).fill({}));
+
+    const renderActivity = getActivity.slice(0, 3);
+
+    if (getActivity?.length < 3) {
+    const emptyItems = Array(3 - (getActivity?.length || 0)).fill({});
+    renderActivity.push(...emptyItems);
+    }
 
     return (
         <div className="cards-container">
