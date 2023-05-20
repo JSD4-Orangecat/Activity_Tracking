@@ -84,11 +84,14 @@ export const login = async (req, res) => {
 // delete user account
 export const deleteUserAccount = async (req, res) => {
   try {
-    // assign req.params.id to variable id
-    const { id } = req.params;
+    const { email, password } = req.body;
+    // assign req.user to variable userid
+    const userid = req.user.info._id;
+    // Find the user by ID and delete
+    const deleteAccount = await User.findByIdAndRemove({ _id: userid });
 
-    // Check account for deleting
-    const deleteAccount = await User.findByIdAndRemove(id);
+    // // Check account for deleting
+
     if (!deleteAccount) {
       return res.status(404).send({ message: "There is no this account" });
     }
@@ -100,18 +103,18 @@ export const deleteUserAccount = async (req, res) => {
   }
 };
 
-export const getUser = async (req, res) => {
+export const getUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    // assign req.params.id to variable id
-    const { id } = req.params;
+    // assign req.user to variable userid
+    const userid = req.user.info._id;
     // Find the user by ID
-    const user = await User.findById(id);
+    const account = await User.findById({ _id: userid });
+
     // Check account exists
-    if (!user) {
+    if (!account) {
       return res.status(404).send({ message: "User not found" });
     }
-    return res.json({ data: user });
+    return res.json({ data: account });
   } catch (err) {
     res
       .status(500)
@@ -123,17 +126,18 @@ export const getUser = async (req, res) => {
 export const editProfile = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    // assign req.params.id to variable id
-    const { id } = req.params;
+    // assign req.user to variable userid
+    const userid = req.user.info._id;
     // Find the user by ID
-    const user = await User.findById(id);
+    const account = await User.findById({ _id: userid });
+
     // Check if the user exists
-    if (!user) {
+    if (!account) {
       return res.status(404).send({ message: "User not found" });
     }
 
     // Check if the email is already registered by another user
-    if (email !== user.email) {
+    if (email !== account.email) {
       //find user email in database
       const isUniqueEmail = await User.findOne({ email });
       //if find email in database and found response
@@ -147,19 +151,19 @@ export const editProfile = async (req, res, next) => {
     if (password) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-      user.password = hashedPassword;
+      account.password = hashedPassword;
     }
     // Update other profile fields
-    user.email = email || user.email;
-    user.firstName = req.body.firstName || user.firstName;
-    user.lastName = req.body.lastName || user.lastName;
-    user.birthDate = req.body.birthDate || user.birthDate;
-    user.gender = req.body.gender || user.gender;
-    user.picture = req.body.picture || user.picture;
-    user.weight = req.body.weight || user.weight;
-    user.height = req.body.height || user.height;
+    account.email = email || account.email;
+    account.firstName = req.body.firstName || account.firstName;
+    account.lastName = req.body.lastName || account.lastName;
+    account.birthDate = req.body.birthDate || account.birthDate;
+    account.gender = req.body.gender || account.gender;
+    account.picture = req.body.picture || account.picture;
+    account.weight = req.body.weight || account.weight;
+    account.height = req.body.height || account.height;
 
-    await user.save();
+    await account.save();
 
     res.status(200).send({ message: "Profile updated successfully" });
   } catch (err) {

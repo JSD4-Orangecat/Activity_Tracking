@@ -9,6 +9,7 @@ import { useAuth } from "../contexts/authentication";
 export default function MainNav() {
   //if dropdown === true, dropdown-menu will appear
   const [isDropdown, setIsDropdown] = useState(false);
+  // const { currentUser } = useAuth();
   const auth = useAuth();
   const { logout } = useAuth();
 
@@ -41,6 +42,7 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
+          {/* <a href={`/profile/${currentUser._id}`}>Profile</a> */}
           <a href="/profile">Profile</a>
         </li>
         <li>

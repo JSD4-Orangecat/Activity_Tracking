@@ -1,74 +1,53 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-import { useAuth } from "../contexts/authentication";
+
 import "../assets/styles/Register.css";
 import { useNavigate } from "react-router";
 
 function Profile() {
-  //all useState and variables
-  // const user = {
-  //   photo: "",
-  //   firstName: "P",
-  //   birthDate: "22,April,2000",
-  //   lastName: "P",
-  //   weight: 40,
-  //   height: 140,
-  //   email: "a@gmail.com",
-  //   password: "Aa111111",
-  //   confirmpassword: "",
-  //   gender: "female",
-  // };
-  const { currentUser } = useAuth;
-  console.log(currentUser);
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
   //function fetch data
+
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        // `http://localhost:4000/auth/profile/${data._id}`
-        // `http://127.0.0.1:4000/auth/profile/${data._id}`
-        `http://127.0.0.1:4000/auth/profile/${currentUser._id}`
-      );
-      // setUserData({ ...response.data });
-      setUserData({ ...response.data.data });
+      const response = await axios.get("http://127.0.0.1:4000/auth/profile");
+      setUserData(response.data.data);
     } catch (err) {
       console.log(err);
     }
   };
-
-  useEffect(fetchData, []);
-  //function show user
-  // const show = () => {
-  //   setUserData({ ...userData });
-  // };
-  // useEffect(show, []);
-
-  //function to handle change in input
+  // fetchData();
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-    console.log({ userData });
+    setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
   //function save update of profile
-
+  console.log(userData);
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
+
     setFormErrors(validate(userData));
     //check errors before making the axios request
     if (Object.keys(formErrors).length === 0) {
       const { name, value } = e.target;
-      const { confirmpassword, ...Data } = formValues;
-      setUserData({ ...Data, [name]: value });
+      // const { confirmpassword, ...Data } = formValues;
+      setUserData({ ...userData, [name]: value });
       console.log(userData);
       console.log("no errors");
       try {
         const response = await axios.put(
-          `http://localhost:4000/auth/${currentUser._id}`,
+          "http://127.0.0.1:4000/auth/profile",
           userData
         );
+
         console.log(response.data);
+        navigate("/dashboard"); // navigate to the dashboard
       } catch (err) {
         console.log(err);
       }
@@ -76,18 +55,15 @@ function Profile() {
   };
   //function delete profile
   const handleDeleteProfile = async () => {
-    const deleteAccount = window.prompt(
-      "Are you sure you want to delete this account?"
-    );
-    if (!deleteAccount) {
+    const deleteUser = confirm("Are you sure you want to delete this account?");
+    if (!deleteUser) {
       return;
     }
     try {
-      const response = await axios.delete(
-        `http://127.0.0.1:4000/auth/delete/${currentUser._id}`
-      );
+      const response = await axios.delete("http://127.0.0.1:4000/auth/profile");
 
       console.log(`res: ${response.data}`);
+      navigate("/"); // navigate to home page
     } catch (error) {
       console.log(error);
     }
@@ -97,7 +73,6 @@ function Profile() {
   const validate = (values) => {
     const errors = {};
 
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
     const regexEmail =
       /^(?=.*[a-z])[a-z0-9._%+-]+@(?:gmail|hotmail|yahoo)\.[a-z]{2,}$/i;
     const currentDate = new Date();
@@ -119,18 +94,7 @@ function Profile() {
     } else if (!regexEmail.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (!regexPassword.test(values.password)) {
-      errors.password =
-        "Password must contain at least one uppercase letter, one lowercase letter, and six number";
-    }
-    if (!values.confirmpassword) {
-      errors.confirmpassword = "Confirm Password is required";
-    } else if (values.password !== values.confirmpassword) {
-      errors.confirmpassword =
-        "Confirm password should be the same as the password";
-    }
+
     if (!values.birthDate) {
       errors.birthDate = "Birthdate is required";
     } else if (BirthDate > currentDate) {
@@ -180,12 +144,12 @@ function Profile() {
               <br />
             </div>
             <div className="allInform">
-              <label className="labelInput">Name* :</label>
+              <label className="labelInput">First Name* :</label>
               <br />
               <input
                 type="text"
                 id="firstname"
-                value={userData.firstname}
+                value={userData.firstName}
                 onChange={handleChange}
                 name="firstName"
                 className="input"
@@ -248,7 +212,9 @@ function Profile() {
               />
               <span className="texterr"> {formErrors.email}</span>
               <br />
-              <label className="labelInput">Password* :</label>
+              {/* <label className="labelInput" display="none">
+                Password* :
+              </label>
               <br />
               <input
                 onChange={handleChange}
@@ -269,7 +235,7 @@ function Profile() {
                 className="input"
               />
               <span className="texterr"> {formErrors.confirmpassword}</span>
-              <br />
+              <br /> */}
             </div>
             <div className="radio">
               <input

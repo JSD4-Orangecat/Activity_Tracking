@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { protect } from "../middlewares/protect.js";
 import {
   login,
   register,
@@ -10,9 +11,10 @@ import {
 const authRouter = Router();
 
 authRouter.post("/register", register);
-authRouter.get("/profile/:id", getUser);
-authRouter.delete("/profile/:id", deleteUserAccount);
-authRouter.put("/profile/:id", editProfile);
+// authRouter.get("/profile/:id", protect, getUser);
+authRouter.get("/profile", protect, getUser);
+authRouter.delete("/profile", protect, deleteUserAccount);
+authRouter.put("/profile", protect, editProfile);
 authRouter.post("/login", login);
 
 export default authRouter;
