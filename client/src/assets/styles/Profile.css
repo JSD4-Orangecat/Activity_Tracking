@@ -1,0 +1,19 @@
+.wrap {
+    height: 200px;
+    width: 200px;
+    position: relative;
+  
+    border-radius: 50%;
+    background: url("/public/Login_logo.png");
+    background-size: 100% 100%;
+    margin: auto;
+    /* z-index: -1; */
+  }
+  #profilePhoto {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    border: 100% double transparent;
+    margin: auto;
+    z-index: 1;
+  }

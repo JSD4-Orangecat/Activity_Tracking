@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 
-import "../assets/styles/Register.css";
+import "../assets/styles/Profile.css";
 import { useNavigate } from "react-router";
 
 function Profile() {
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
+  const [srcImg, setSrcImg] = useState(null);
   //function fetch data
 
   const fetchData = async () => {
@@ -24,7 +25,14 @@ function Profile() {
     fetchData();
   }, []);
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+
+    if (name === "picture" && files.length > 0) {
+      const src = URL.createObjectURL(files[0]);
+      const preview = document.getElementById("profilePhoto");
+      preview.src = src;
+      setSrcImg(src);
+    }
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
   //function save update of profile
@@ -136,11 +144,11 @@ function Profile() {
                 className="photo"
                 type="file"
               />
-              {/* <img
+              <img
                 id="profilePhoto"
                 src={srcImg}
                 style={{ display: "inline" }}
-              /> */}
+              />
               <br />
             </div>
             <div className="allInform">
@@ -271,7 +279,6 @@ function Profile() {
             </div>
           </form>
         </section>
-        <section className="contact"></section>
       </div>
     </Layout>
   );
