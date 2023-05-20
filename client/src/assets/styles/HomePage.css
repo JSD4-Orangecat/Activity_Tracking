@@ -42,6 +42,11 @@ html {
     background-color: #FF7B54;
 }
 
+.hero-btn a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .hero-btn:hover, 
 .hero-btn:active {
     background-color: #ff5522;
