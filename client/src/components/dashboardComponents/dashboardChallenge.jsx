@@ -20,7 +20,7 @@ export default function DashboardChallenge() {
 const friendsMockData = [
     {
         profileImg: '/mockProfiles/mockProfile1.jpg',
-        username: 'Paige_Turner'
+        username: 'Jack_Pott'
     },
     {
         profileImg: '/mockProfiles/mockProfile2.jpg',
@@ -32,7 +32,7 @@ const friendsMockData = [
     },
     {
         profileImg: '/mockProfiles/mockProfile4.jpg',
-        username: 'Jack_Pott'
+        username: 'Anna_Conda'
     },
     {
         profileImg: '/mockProfiles/mockProfile5.jpg',
@@ -44,7 +44,7 @@ const friendsMockData = [
     },
     {
         profileImg: '/mockProfiles/mockProfile7.jpg',
-        username: 'Chris_Cross'
+        username: 'Paige_Turner'
     },
     {
         profileImg: '/mockProfiles/mockProfile8.jpg',
