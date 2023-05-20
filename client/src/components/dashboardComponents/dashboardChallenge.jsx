@@ -20,38 +20,38 @@ export default function DashboardChallenge() {
 const friendsMockData = [
     {
         profileImg: '/mockProfiles/mockProfile1.jpg',
-        username: 'mike_hunt'
+        username: 'Jack_Pott'
     },
     {
         profileImg: '/mockProfiles/mockProfile2.jpg',
-        username: 'ben_dover'
+        username: 'Lee_King'
     },
     {
         profileImg: '/mockProfiles/mockProfile3.jpg',
-        username: 'kimmy_hed'
+        username: 'Tim_Burr'
     },
     {
         profileImg: '/mockProfiles/mockProfile4.jpg',
-        username: 'dixie_normus'
+        username: 'Anna_Conda'
     },
     {
         profileImg: '/mockProfiles/mockProfile5.jpg',
-        username: 'hugh_jass'
+        username: 'Manny_Kinn'
     },
     {
         profileImg: '/mockProfiles/mockProfile6.jpg',
-        username: 'jenna_tolls'
+        username: 'Dee_Zaster'
     },
     {
         profileImg: '/mockProfiles/mockProfile7.jpg',
-        username: 'gabe_itch'
+        username: 'Paige_Turner'
     },
     {
         profileImg: '/mockProfiles/mockProfile8.jpg',
-        username: 'rae_piste'
+        username: 'Will_Wynn'
     },
     {
         profileImg: '/mockProfiles/mockProfile9.jpg',
-        username: 'moe_lester'
+        username: 'Robin_Banks'
     },
 ];
