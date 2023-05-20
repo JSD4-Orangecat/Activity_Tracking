@@ -116,10 +116,11 @@ Main : #FF7B54
     top: 60px;
     font-size: 0.8rem;
     color: black;
-    background-color: #e4e4e4;
+    background-color: #FFA860;
     padding: 0.8rem;
     padding-top: 0;
     border-radius: 8px;
+    z-index: 9999;
 }
 
 .dropdown-menu a {
@@ -134,7 +135,7 @@ Main : #FF7B54
     right: 6px;
     border-left: 9px solid transparent;
     border-right: 9px solid transparent;
-    border-bottom: 9px solid #e4e4e4;
+    border-bottom: 9px solid #FFA860;
   }
   
 
