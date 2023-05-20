@@ -132,95 +132,90 @@ function Profile() {
 
   return (
     <Layout>
-      <div className="allProfile">
-        <section className="informationUser">
-          <form className="form">
-            <h1>Profile</h1>
-            <div className="wrap">
-              <input
-                onChange={handleChange}
-                value={userData.picture}
-                name="picture"
-                className="photo"
-                type="file"
-              />
-              <img
-                id="profilePhoto"
-                src={srcImg}
-                style={{ display: "inline" }}
-              />
-              <br />
-            </div>
-            <div className="allInform">
-              <label className="labelInput">First Name* :</label>
-              <br />
-              <input
-                type="text"
-                id="firstname"
-                value={userData.firstName}
-                onChange={handleChange}
-                name="firstName"
-                className="input"
-              />
-              <span className="texterr"> {formErrors.firstName}</span>
-              <br />
-              <label className="labelInput">Last Name* :</label> <br />
-              <input
-                onChange={handleChange}
-                name="lastName"
-                value={userData.lastName}
-                type="text"
-                className="input"
-              />
-              <span className="texterr"> {formErrors.lastName}</span>
-              <br />
-              <label className="labelInput">Date Of Birth* :</label>
-              <br />
-              <input
-                onChange={handleChange}
-                value={userData.birthDate}
-                name="birthDate"
-                type="date"
-                className="input"
-              />
-              <span className="texterr"> {formErrors.birthDate}</span>
-              <br />
-              <label className="labelInput">Weight* :</label>
-              <br />
-              <input
-                onChange={handleChange}
-                value={userData.weight}
-                name="weight"
-                type="number"
-                className="input"
-                placeholder=" kg"
-              />
-              <span className="texterr"> {formErrors.weight}</span>
-              <br />
-              <label className="labelInput">Height* : </label>
-              <br />
-              <input
-                onChange={handleChange}
-                value={userData.height}
-                name="height"
-                type="number"
-                className="input"
-                placeholder=" cm"
-              />
-              <span className="texterr"> {formErrors.height}</span>
-              <br />
-              <label className="labelInput">Email* :</label>
-              <br />
-              <input
-                onChange={handleChange}
-                value={userData.email}
-                name="email"
-                type="email"
-                className="input"
-              />
-              <span className="texterr"> {formErrors.email}</span>
-              <br />
-              {/* <label className="labelInput" display="none">
+      <div>
+        <form className="editform">
+          <h1>Profile</h1>
+          <div className="wrapimg">
+            <input
+              onChange={handleChange}
+              value={userData.picture}
+              name="picture"
+              className="photo"
+              type="file"
+            />
+            <img id="profileimg" src={srcImg} style={{ display: "inline" }} />
+            <br />
+          </div>
+          <div className="allInformation">
+            <label className="labelInputEdit">First Name* :</label>
+            <br />
+            <input
+              type="text"
+              id="firstname"
+              value={userData.firstName}
+              onChange={handleChange}
+              name="firstName"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.firstName}</span>
+            <br />
+            <label className="labelInputEdit">Last Name* :</label> <br />
+            <input
+              onChange={handleChange}
+              name="lastName"
+              value={userData.lastName}
+              type="text"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.lastName}</span>
+            <br />
+            <label className="labelInputEdit">Date Of Birth* :</label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.birthDate}
+              name="birthDate"
+              type="date"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.birthDate}</span>
+            <br />
+            <label className="labelInputEdit">Weight* :</label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.weight}
+              name="weight"
+              type="number"
+              className="input"
+              placeholder=" kg"
+            />
+            <span className="texterr"> {formErrors.weight}</span>
+            <br />
+            <label className="labelInputEdit">Height* : </label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.height}
+              name="height"
+              type="number"
+              className="input"
+              placeholder=" cm"
+            />
+            <span className="texterr"> {formErrors.height}</span>
+            <br />
+            <label className="labelInputEdit">Email* :</label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.email}
+              name="email"
+              type="email"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.email}</span>
+            <br />
+            {/* <label className="labelInput" display="none">
                 Password* :
               </label>
               <br />
@@ -244,41 +239,40 @@ function Profile() {
               />
               <span className="texterr"> {formErrors.confirmpassword}</span>
               <br /> */}
-            </div>
-            <div className="radio">
-              <input
-                onChange={handleChange}
-                value="male"
-                name="gender"
-                id="1"
-                type="radio"
-                checked={userData.gender === "male"}
-                className="selctor"
-              />
-              <label>Male</label>
-              <input
-                onChange={handleChange}
-                type="radio"
-                name="gender"
-                id="2"
-                value="female"
-                checked={userData.gender === "female"}
-                className="selctor"
-              />
-              <label>Female</label>
-            </div>
-            <span className="texterr"> {formErrors.gender}</span>
-            <br />
-            <div className="allBtn">
-              <button onClick={handleUpdateProfile} className="btn">
-                Update
-              </button>
-              <button onClick={handleDeleteProfile} className="btn">
-                Delete
-              </button>
-            </div>
-          </form>
-        </section>
+          </div>
+          <div className="radio">
+            <input
+              onChange={handleChange}
+              value="male"
+              name="gender"
+              id="1"
+              type="radio"
+              checked={userData.gender === "male"}
+              className="selctorGender"
+            />
+            <label>Male</label>
+            <input
+              onChange={handleChange}
+              type="radio"
+              name="gender"
+              id="2"
+              value="female"
+              checked={userData.gender === "female"}
+              className="selctorGender"
+            />
+            <label>Female</label>
+          </div>
+          <span className="texterr"> {formErrors.gender}</span>
+          <br />
+          <div className="allBtnProfile">
+            <button onClick={handleUpdateProfile} className="btn">
+              Update
+            </button>
+            <button onClick={handleDeleteProfile} className="btn">
+              Delete
+            </button>
+          </div>
+        </form>
       </div>
     </Layout>
   );
