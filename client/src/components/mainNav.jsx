@@ -42,7 +42,6 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          {/* <a href={`/profile/${currentUser._id}`}>Profile</a> */}
           <a href="/profile">Profile</a>
         </li>
         <li>
