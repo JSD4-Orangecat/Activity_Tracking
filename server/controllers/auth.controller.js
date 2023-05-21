@@ -1,29 +1,13 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-// export const register = async (req, res) => {
-//   // เข้ารหัส password ด้วย bcrypt
-//   const salt = await bcrypt.genSalt(10);
-//   const userPassword = await bcrypt.hash(req.body.password, salt);
-//   try {
-//     const newUser = new User({
-//       ...req.body,
-//       password: userPassword,
-//     });
-
-//     await newUser.save();
-//     return res.status(200).json({
-//       message: "User has been created successfully",
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).send("Something went wrong!");
-//   }
-// };
+import { cloudinaryUploadProfile } from "../utils/upload.js";
 
 export const register = async (req, res) => {
+  const height = Number(req.body.height);
+  const weight = Number(req.body.weight);
   try {
+    const uploadedImage = await cloudinaryUploadProfile(req.file);
     // console.log(req.body)
     const { email, password } = req.body;
 
@@ -40,6 +24,9 @@ export const register = async (req, res) => {
     const user = new User({
       ...req.body,
       password: hashedPassword,
+      weight: weight,
+      height: height,
+      picture: uploadedImage,
     });
     console.log({ user });
     await user.save();
@@ -54,7 +41,9 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(404).send("User not found");
+      return res.status(404).json({
+        message: "Wrong password or email meow!",
+      });
     }
     // if(req.body.password === user.password)
     const isValidPassword = await bcrypt.compare(
@@ -64,7 +53,7 @@ export const login = async (req, res) => {
 
     if (!isValidPassword) {
       return res.status(400).json({
-        message: "Wrong password or username!",
+        message: "Wrong password or email meow!",
       });
     }
 

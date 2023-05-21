@@ -13,7 +13,7 @@ import {
   faCircleRight,
 } from "@fortawesome/free-regular-svg-icons";
 
-const pageLimit = 4
+const pageLimit = 4;
 
 function ReadCard() {
   const navigate = useNavigate();
@@ -30,8 +30,8 @@ function ReadCard() {
     cover: "",
   });
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(pageLimit)
-  const [totalPages,setTotalPages] = useState(1)
+  const [limit, setLimit] = useState(pageLimit);
+  const [totalPages, setTotalPages] = useState(1);
 
   const showPicker = () => {
     setPickerVisible(!pickerVisible);
@@ -49,7 +49,6 @@ function ReadCard() {
     setRcInputs((prevRcInputs) => ({ ...prevRcInputs, [name]: value }));
     //console.log({...callOut})
   };
-  console.log(rcInputs);
 
   function handleFileChange(e) {
     const { files } = e.target;
@@ -64,7 +63,7 @@ function ReadCard() {
   //for get method : activity data
   useEffect(() => {
     fetchActivity();
-  }, [page,limit]);
+  }, [page, limit]);
 
   //for get method : activtiy data, use this inside useEffect
   const fetchActivity = async () => {
@@ -73,14 +72,13 @@ function ReadCard() {
         params: {
           page,
           limit,
-        }
+        },
       });
       setGetActivity(response.data.data);
       //Get total of document in database and calculate total pages.
-      const {totalDocs} = response.data
-      const totalPages = Math.ceil(totalDocs / limit)
-      setTotalPages(totalPages)
-
+      const { totalDocs } = response.data;
+      const totalPages = Math.ceil(totalDocs / limit);
+      setTotalPages(totalPages);
     } catch (err) {
       console.error(err);
     }
@@ -97,13 +95,13 @@ function ReadCard() {
     if (page > 1) {
       setPage(page - 1);
     }
-  }
+  };
 
   const handlerNextPage = () => {
     if (page < totalPages) {
-      setPage(page + 1)
+      setPage(page + 1);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -140,9 +138,17 @@ function ReadCard() {
 
         {/* page */}
         <div className="r-page">
-          <FontAwesomeIcon onClick={handlerPrevPage} icon={faCircleLeft} className="faCircle" />
+          <FontAwesomeIcon
+            onClick={handlerPrevPage}
+            icon={faCircleLeft}
+            className="faCircle"
+          />
           <span>{page}</span>
-          <FontAwesomeIcon onClick={handlerNextPage} icon={faCircleRight} className="faCircle" />
+          <FontAwesomeIcon
+            onClick={handlerNextPage}
+            icon={faCircleRight}
+            className="faCircle"
+          />
         </div>
       </main>
     </Layout>

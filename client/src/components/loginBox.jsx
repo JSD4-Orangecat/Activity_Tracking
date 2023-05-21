@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/authentication";
-import { FaGoogle, FaGithub, FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaGoogle,
+  FaGithub,
+  FaFacebook,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
 import "../assets/styles/loginBox.css";
+import { Link } from "react-router-dom";
 
 export default function LoginBox() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, state } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,9 +26,7 @@ export default function LoginBox() {
 
   return (
     <div className="login-container">
-
       <form onSubmit={handleSubmit} className="login-fields">
-
         <h1 className="login-title">Login</h1>
         <div className="username-container">
           <p>Email</p>
@@ -47,6 +52,7 @@ export default function LoginBox() {
               }}
               value={password}
             />
+            {state.error && <p className="error-message">{state.error}</p>}
           </div>
 
           <p className="password-forget">
@@ -56,16 +62,12 @@ export default function LoginBox() {
         <button className="login-button">Sign In</button>
       </form>
 
-
-
       {/* <button
         className="password-toggle"
         onClick={() => setShowPassword(!showPassword)}
       >
         {showPassword ? <FaEyeSlash /> : <FaEye />}
       </button> */}
-
-
 
       <div className="login-social-container">
         <p>or continue with</p>
@@ -82,14 +84,12 @@ export default function LoginBox() {
         </div>
       </div>
 
-
-
       <div className="login-footer">
         <p>
-          Don't have an account yet? <a href="#">Register for free.</a>
+          Don't have an account yet?{" "}
+          <Link to="/register">Register for free.</Link>
         </p>
       </div>
-
     </div>
   );
 }

@@ -10,30 +10,34 @@ export default function MainNav() {
   //if dropdown === true, dropdown-menu will appear
   const [isDropdown, setIsDropdown] = useState(false);
   const auth = useAuth();
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   // console.log(auth.currentUser)
   const loginContainer = (
     <div className="nav-login-container">
-      <Link className="navbar-link" to="/login"> Login </Link>
-      <Link className="navbar-link" to="/register">Sign-up</Link>
+      <Link className="navbar-link" to="/login">
+        {" "}
+        Login{" "}
+      </Link>
+      <Link className="navbar-link" to="/register">
+        Sign-up
+      </Link>
     </div>
   );
 
-
-  let profile
+  let profile;
 
   let dropdown;
   if (auth.isAuthenticated) {
     profile = (
       <div className="profile-container">
         <div className="profile-image">
-          <img src={navLogoImage} alt="Orange-cat's logo" />
+          <img src={currentUser.picture} alt="Orange-cat's logo" />
         </div>
         <span
           onClick={() => setIsDropdown(!isDropdown)}
           className="profile-username"
         >
-          <a className="navbar-link" >{auth.currentUser.firstName}</a>
+          <a className="navbar-link">{auth.currentUser.firstName}</a>
         </span>
       </div>
     );
@@ -44,21 +48,31 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a className="navbar-link" href="#">Profile</a>
+          <a className="navbar-link" href="#">
+            Profile
+          </a>
         </li>
         <li>
-          <Link className="navbar-link" to="/dashboard">Dashboard</Link>
+          <Link className="navbar-link" to="/dashboard">
+            Dashboard
+          </Link>
         </li>
-        {window.location.pathname === '/' && (
+        {window.location.pathname === "/" && (
           <>
             <li>
-              <a className="navbar-link" href="#">Features</a>
+              <a className="navbar-link" href="#">
+                Features
+              </a>
             </li>
             <li>
-              <a className="navbar-link" href="#">BMI</a>
+              <a className="navbar-link" href="#">
+                BMI
+              </a>
             </li>
             <li>
-              <a className="navbar-link" href="#">How it Work</a>
+              <a className="navbar-link" href="#">
+                How it Work
+              </a>
             </li>
           </>
         )}
@@ -82,19 +96,29 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a className="navbar-link" href="#">Features</a>
+          <a className="navbar-link" href="#">
+            Features
+          </a>
         </li>
         <li>
-          <a className="navbar-link" href="#">BMI</a>
+          <a className="navbar-link" href="#">
+            BMI
+          </a>
         </li>
         <li>
-          <a className="navbar-link" href="#">How it Work</a>
+          <a className="navbar-link" href="#">
+            How it Work
+          </a>
         </li>
         <li>
-          <Link className="navbar-link" to="/login">Login</Link>
+          <Link className="navbar-link" to="/login">
+            Login
+          </Link>
         </li>
         <li>
-          <Link className="navbar-link" to="/login">Sign-up</Link>
+          <Link className="navbar-link" to="/login">
+            Sign-up
+          </Link>
         </li>
       </ul>
     );
@@ -106,21 +130,29 @@ export default function MainNav() {
         <div className="logo-container">
           <img src={navLogoImage} alt="Orange-cat's logo" />
           <span>
-            <a className="navbar-link" href="#">Orange Cat</a>
+            <a className="navbar-link" href="#">
+              Orange Cat
+            </a>
           </span>
         </div>
       </Link>
 
-      {window.location.pathname === '/' && (
+      {window.location.pathname === "/" && (
         <ul className="nav">
           <li>
-            <a className="navbar-link" href="#features">Features</a>
+            <a className="navbar-link" href="#features">
+              Features
+            </a>
           </li>
           <li>
-            <a className="navbar-link" href="#bmi">BMI</a>
+            <a className="navbar-link" href="#bmi">
+              BMI
+            </a>
           </li>
           <li>
-            <a className="navbar-link" href="#how">How it Work</a>
+            <a className="navbar-link" href="#how">
+              How it Work
+            </a>
           </li>
         </ul>
       )}
