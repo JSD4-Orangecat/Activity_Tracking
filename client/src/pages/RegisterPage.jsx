@@ -9,8 +9,8 @@ import "../assets/styles/authenticateCSS/RegisterPage.css";
 function FormRegister() {
   // useStates and variables
   const navigate = useNavigate();
-  const [srcImg, setSrcImg] = useState(null);
   const [formErrors, setFormErrors] = useState({});
+  const [srcImg, setSrcImg] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const [formValues, setFormValues] = useState({
@@ -43,6 +43,8 @@ function FormRegister() {
     }
   }
 
+
+
   // Function to handle save inputs
   const saveInput = async (e) => {
     e.preventDefault();
@@ -52,9 +54,11 @@ function FormRegister() {
     if (Object.keys(error).length === 0) {
       const { confirmpassword, ...userData } = formValues;
       const formData = new FormData();
+
       for (const [key, value] of Object.entries(userData)) {
         formData.append(key, value);
       }
+
       try {
         const response = await axios.post(
           "http://localhost:4000/auth/register",
@@ -63,8 +67,10 @@ function FormRegister() {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
+
         setIsSubmit(true);
         navigate("/login");
+
       } catch (error) {
         console.log(error);
       }
