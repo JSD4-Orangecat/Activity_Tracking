@@ -18,7 +18,7 @@ const NavBar = () => {
       {/* before login navbar */}
       <div className="nav">
         <a className="site-title">
-          <img id="nav-img" src="/head-logo.png" />
+          <img id="nav-img" src="/cat/head-logo.png" />
           Orange Cat
         </a>
         <ul className="nav-middle">
@@ -45,7 +45,7 @@ const NavBar = () => {
       {/* After login navbar */}
       <div className="navAfter" style={{ display: "none" }}>
         <a className="site-title">
-          <img id="nav-img" src="/head-logo.png" />
+          <img id="nav-img" src="/cat/head-logo.png" />
           Orange Cat
         </a>
         <ul className="nav-middle">
@@ -61,7 +61,7 @@ const NavBar = () => {
         </ul>
         <div className="allNavRight">
           <div className="nav-right">
-            <img id="profilepic" src="/Login_logo.png" />
+            <img id="profilepic" src="/generic/Login_logo.png" />
             <button onClick={toggle} id="nav-toggle">
               Username
             </button>

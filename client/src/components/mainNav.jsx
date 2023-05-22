@@ -1,4 +1,4 @@
-import navLogoImage from "/navbar-logo.png";
+import navLogoImage from "/cat/navbar-logo.png";
 import "../assets/styles/mainNav.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faBars } from "@fortawesome/free-solid-svg-icons"
@@ -112,17 +112,17 @@ export default function MainNav() {
       </Link>
 
       {window.location.pathname === '/' && (
-      <ul className="nav">
-        <li>
-          <a className="navbar-link" href="#features">Features</a>
-        </li>
-        <li>
-          <a className="navbar-link" href="#bmi">BMI</a>
-        </li>
-        <li>
-          <a className="navbar-link" href="#how">How it Work</a>
-        </li>
-      </ul>
+        <ul className="nav">
+          <li>
+            <a className="navbar-link" href="#features">Features</a>
+          </li>
+          <li>
+            <a className="navbar-link" href="#bmi">BMI</a>
+          </li>
+          <li>
+            <a className="navbar-link" href="#how">How it Work</a>
+          </li>
+        </ul>
       )}
 
       {/* <div className="login-container">
