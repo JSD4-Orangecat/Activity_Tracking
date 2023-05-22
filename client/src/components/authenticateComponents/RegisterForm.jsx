@@ -1,4 +1,5 @@
 import React from "react";
+import "../../assets/styles/authenticateCSS/RegisterForm.css";
 
 const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, formErrors, saveInput }) => {
     return (

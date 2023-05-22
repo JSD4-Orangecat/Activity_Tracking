@@ -4,7 +4,7 @@ import { validate } from "../components/authenticateComponents/validate";
 import RegisterForm from "../components/authenticateComponents/RegisterForm";
 import Layout from "../components/Layout";
 import axios from "axios";
-import "../assets/styles/Register.css";
+import "../assets/styles/authenticateCSS/RegisterPage.css";
 
 function FormRegister() {
   // useStates and variables

@@ -1,0 +1,25 @@
+.fullpage {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  background-image: linear-gradient(var(--oryellow), var(--green));
+}
+
+.left-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  color: black;
+  line-height: 50px;
+}
+
+.right {
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  width: 50%;
+}
