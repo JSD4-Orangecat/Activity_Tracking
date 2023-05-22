@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import '../assets/styles/createForm.css'
-import biking from '/biking.png';
-import running from '/running.png';
-import swimming from '/swimming.png';
-import cardio from '/cardio.png';
-import walking from '/walking.png';
+import biking from '/exercises/biking.png';
+import running from '/exercises/running.png';
+import swimming from '/exercises/swimming.png';
+import cardio from '/exercises/cardio.png';
+import walking from '/exercises/walking.png';
 
-function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert }) {
+function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert }) {
     return (
         <form onSubmit={handleFormSubmit}>
             <div className='title-date'>
@@ -24,38 +24,38 @@ function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit,
             <div className='activity-container'>
                 <p>Activity:</p>
                 <div className='activity-list'>
-                    <div className="tile"> 
+                    <div className="tile">
                         <input type="radio" value="biking" name="type" id='biking' required onChange={handleChangeInput}></input>
                         <label htmlFor="biking" className='activity-label'>
-                            <img src={biking} alt='biking' className='activity-image'/>
+                            <img src={biking} alt='biking' className='activity-image' />
                             <h6>Biking</h6>
                         </label>
                     </div>
-                    <div className="tile"> 
+                    <div className="tile">
                         <input type="radio" value="running" name="type" id='running' onChange={handleChangeInput}></input>
                         <label htmlFor="running" className='activity-label'>
-                            <img src={running} alt='running' className='activity-image'/>
+                            <img src={running} alt='running' className='activity-image' />
                             <h6>running</h6>
                         </label>
                     </div>
-                    <div className="tile"> 
+                    <div className="tile">
                         <input type="radio" value="swimming" name="type" id='swimming' onChange={handleChangeInput}></input>
                         <label htmlFor="swimming" className='activity-label'>
-                            <img src={swimming} alt='swimming' className='activity-image'/>
+                            <img src={swimming} alt='swimming' className='activity-image' />
                             <h6>swimming</h6>
                         </label>
                     </div>
-                    <div className="tile"> 
+                    <div className="tile">
                         <input type="radio" value="cardio" name="type" id='cardio' onChange={handleChangeInput}></input>
                         <label htmlFor="cardio" className='activity-label'>
-                            <img src={cardio} alt='cardio' className='activity-image'/>
+                            <img src={cardio} alt='cardio' className='activity-image' />
                             <h6>cardio</h6>
                         </label>
                     </div>
-                    <div className="tile"> 
+                    <div className="tile">
                         <input type="radio" value="walking" name="type" id='walking' onChange={handleChangeInput}></input>
                         <label htmlFor="walking" className='activity-label'>
-                        <img src={walking} alt='walking' className='activity-image'/>
+                            <img src={walking} alt='walking' className='activity-image' />
                             <h6>walking</h6>
                         </label>
                     </div>
@@ -66,7 +66,7 @@ function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit,
             <div className='time_duration'>
                 <label htmlFor='time_start'>Time-Start:</label>
                 <input type='time' className='time' name='timeStart' onChange={handleChangeInput} required></input>
-                <label htmlFor='time-end'className='time2'>Time-End:</label>
+                <label htmlFor='time-end' className='time2'>Time-End:</label>
                 <input type='time' className='time' name='timeEnd' onChange={handleChangeInput} required></input>
                 <button type='button' onClick={calcDuration}>Duration</button>
                 {durationAlert && (<p className='alert-duration'>*check your duration</p>)}
@@ -92,7 +92,7 @@ function Form( { handleChangeInput, calcDuration, changeColor, handleFormSubmit,
                         <span>Missison Failed</span>
                     </label>
                 </div>
-            </div> 
+            </div>
 
             {/* Add data: Caption */}
             <textarea id='textbox' placeholder='Add caption:' name='caption' onChange={handleChangeInput} required></textarea>
