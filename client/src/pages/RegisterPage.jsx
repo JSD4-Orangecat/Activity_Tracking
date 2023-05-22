@@ -57,6 +57,7 @@ function FormRegister() {
       for (const [key, value] of Object.entries(userData)) {
         formData.append(key, value);
       }
+      console.log(...formData);
       try {
         const response = await axios.post(
           "http://localhost:4000/auth/register",
