@@ -1,25 +1,28 @@
 .fullpage {
   display: flex;
+  justify-content: center;
   align-items: center;
-  width: 100vw;
-  background-image: linear-gradient(var(--oryellow), var(--green));
+  padding: 4rem;
 }
 
 .left-form {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  width: 50%;
-  color: black;
-  line-height: 50px;
+  margin-right: 20px;
 }
 
 .right {
-  box-sizing: border-box;
-  align-items: center;
-  display: flex;
-  justify-items: center;
-  justify-content: center;
-  width: 50%;
+  margin-left: 20px;
+  width: 40%;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .fullpage {
+    flex-flow: column-reverse;
+    padding: 2rem;
+  }
+
+  .right {
+    width: 50%;
+    margin: 20px;
+  }
 }

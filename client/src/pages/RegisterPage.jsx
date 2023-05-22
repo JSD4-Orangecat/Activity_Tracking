@@ -88,19 +88,16 @@ function FormRegister() {
   return (
     <Layout>
       <section className="fullpage">
-        <div className="left-form">
-          <RegisterForm
-            srcImg={srcImg}
-            handleChange={handleChange}
-            handleFileChange={handleFileChange}
-            formValues={formValues}
-            formErrors={formErrors}
-            saveInput={saveInput}
-          />
-        </div>
-        <div className="right">
-          <img src="/cat/mascot.png" alt="Mascot" />
-        </div>
+        <RegisterForm
+          className="left-form"
+          srcImg={srcImg}
+          handleChange={handleChange}
+          handleFileChange={handleFileChange}
+          formValues={formValues}
+          formErrors={formErrors}
+          saveInput={saveInput}
+        />
+        <img src="/cat/mascot.png" alt="Mascot" className="right" />
       </section>
     </Layout>
   );

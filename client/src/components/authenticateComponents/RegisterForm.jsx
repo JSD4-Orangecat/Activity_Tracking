@@ -4,7 +4,7 @@ import "../../assets/styles/authenticateCSS/RegisterForm.css";
 const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, formErrors, saveInput }) => {
     return (
         <form onSubmit={saveInput} className="form">
-            <h1>Register</h1>
+            <h1 className="register-title">Register</h1>
 
             {/* Profile Picture */}
             <div className="wrap">
@@ -16,122 +16,120 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                     accept="image/*"
                 />
                 <img id="profilePhoto" src={srcImg} style={{ display: "inline" }} />
-                <br />
             </div>
 
             <div className="allInform">
 
                 {/* First Name */}
-                <label className="labelInput">Name* :</label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    name="firstName"
-                    value={formValues.firstName}
-                    type="text"
-                    className="input"
-                />
-                <span className="texterr"> {formErrors.firstName}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">First Name*</label>
+                    <input
+                        onChange={handleChange}
+                        name="firstName"
+                        value={formValues.firstName}
+                        type="text"
+                        placeholder="First Name"
+                    />
+                    <span className="texterr"> {formErrors.firstName}</span>
+                </div>
 
                 {/* Last Name */}
-                <label className="labelInput">Last Name* :</label> <br />
-                <input
-                    onChange={handleChange}
-                    name="lastName"
-                    value={formValues.lastName}
-                    type="text"
-                    className="input"
-                />
-                <span className="texterr"> {formErrors.lastName}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Last Name*</label>
+                    <input
+                        onChange={handleChange}
+                        name="lastName"
+                        value={formValues.lastName}
+                        type="text"
+                        placeholder="Last Name"
+                    />
+                    <span className="texterr"> {formErrors.lastName}</span>
+                </div>
 
                 {/* Date of Birth */}
-                <label className="labelInput">Date Of Birth* :</label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    value={formValues.birthDate}
-                    name="birthDate"
-                    type="date"
-                    className="input"
-                    max={new Date(
-                        new Date().getFullYear() - 7,
-                        new Date().getMonth(),
-                        new Date().getDate()
-                    )
-                        .toISOString()
-                        .slice(0, 10)}
-                />
-                <span className="texterr"> {formErrors.birthDate}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Date of Birth*</label>
+                    <input
+                        onChange={handleChange}
+                        value={formValues.birthDate}
+                        name="birthDate"
+                        type="date"
+                        placeholder="Date of Birth"
+                        max={new Date(
+                            new Date().getFullYear() - 7,
+                            new Date().getMonth(),
+                            new Date().getDate()
+                        )
+                            .toISOString()
+                            .slice(0, 10)}
+                    />
+                    <span className="texterr"> {formErrors.birthDate}</span>
+                </div>
 
                 {/* Weight */}
-                <label className="labelInput">Weight* :</label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    value={formValues.weight}
-                    name="weight"
-                    type="text"
-                    className="input"
-                    placeholder=" kg"
-                />
-                <span className="texterr"> {formErrors.weight}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Weight*</label>
+                    <input
+                        onChange={handleChange}
+                        value={formValues.weight}
+                        name="weight"
+                        type="text"
+                        placeholder="Weight (in kg.)"
+                    />
+                    <span className="texterr"> {formErrors.weight}</span>
+                </div>
 
                 {/* Height */}
-                <label className="labelInput">Height* : </label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    value={formValues.height}
-                    name="height"
-                    type="text"
-                    className="input"
-                    placeholder=" cm"
-                />
-                <span className="texterr"> {formErrors.height}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Height* </label>
+                    <input
+                        onChange={handleChange}
+                        value={formValues.height}
+                        name="height"
+                        type="text"
+                        placeholder="Height (in cm.)"
+                    />
+                    <span className="texterr"> {formErrors.height}</span>
+                </div>
 
                 {/* Email */}
-                <label className="labelInput">Email* :</label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    value={formValues.email}
-                    name="email"
-                    type="email"
-                    className="input"
-                />
-                <span className="texterr"> {formErrors.email}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Email*</label>
+                    <input
+                        onChange={handleChange}
+                        value={formValues.email}
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                    />
+                    <span className="texterr"> {formErrors.email}</span>
+                </div>
 
                 {/* Password */}
-                <label className="labelInput">Password* :</label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    value={formValues.password}
-                    name="password"
-                    type="password"
-                    className="input"
-                />
-                <span className="texterr"> {formErrors.password}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Password*</label>
+                    <input
+                        onChange={handleChange}
+                        value={formValues.password}
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <span className="texterr"> {formErrors.password}</span>
+                </div>
 
                 {/* Confirm Password */}
-                <label className="labelInput">Confirm Password* :</label>
-                <br />
-                <input
-                    onChange={handleChange}
-                    value={formValues.confirmpassword}
-                    name="confirmpassword"
-                    type="password"
-                    className="input"
-                />
-                <span className="texterr"> {formErrors.confirmpassword}</span>
-                <br />
+                <div className="register-field-container">
+                    <label className="labelInput">Confirm Password*</label>
+                    <input
+                        onChange={handleChange}
+                        value={formValues.confirmpassword}
+                        name="confirmpassword"
+                        type="password"
+                        placeholder="Confirm Password"
+                    />
+                    <span className="texterr"> {formErrors.confirmpassword}</span>
+                </div>
             </div>
 
             {/* Gender */}
@@ -158,7 +156,6 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 <label>Female</label>
             </div>
             <span className="texterr"> {formErrors.gender}</span>
-            <br />
 
             {/* Submit Button */}
             <button type="submit" className="btn">
