@@ -10,16 +10,16 @@ import homeImageStrong from "/hero/hero-img.png"
 import homeImageUnder from "/hero/hero-img-pom.png"
 import homeImageOver from "/hero/hero-big.png"
 // for features-section
-import activity from "/home-tracker.jpg"
-import rank from "/home-rank.jpg"
-import challenge from "/home-challengeFriendSmall.jpg"
-import achievement from "/home-achievement.jpg"
-import statistic from "/home-statistic.jpg"
-import leaderboard from "/home-leaderboard.jpg"
+import activity from "/home/home-tracker.jpg"
+import rank from "/home/home-rank.jpg"
+import challenge from "/home/home-challengeFriendSmall.jpg"
+import achievement from "/home/home-achievement.jpg"
+import statistic from "/home/home-statistic.jpg"
+import leaderboard from "/home/home-leaderboard.jpg"
 // for how-it-work-section
-import startImage from "/home-register.png";
-import workoutImage from "/home-workout.png";
-import connectImage from "/home-ranking.png";
+import startImage from "/home/home-register.png";
+import workoutImage from "/home/home-workout.png";
+import connectImage from "/home/home-ranking.png";
 
 export default function HomePage() {
     const [bmiInput, setBmiInput] = useState({
