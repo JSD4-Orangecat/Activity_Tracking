@@ -25,6 +25,10 @@ Main : #FF7B54
     align-items: center;
 }
 
+.logo-link {
+    text-decoration: none;
+}
+
 .homeNav ul {
     list-style: none;
     display: flex;

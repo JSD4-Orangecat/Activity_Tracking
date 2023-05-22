@@ -205,19 +205,23 @@ function ReadCard() {
         ></input>
 
         {/* page */}
+        {totalPages > 1 &&
         <div className="r-page">
-          <FontAwesomeIcon
+            <FontAwesomeIcon
             onClick={handlerPrevPage}
             icon={faCircleLeft}
             className="faCircle"
+            style={{color: page !== 1 ? 'ff7b54' : 'ababab'}}
           />
           <span>{page}</span>
-          <FontAwesomeIcon
+            <FontAwesomeIcon
             onClick={handlerNextPage}
             icon={faCircleRight}
             className="faCircle"
+            style={{color: page !== totalPages ? 'ff7b54' : 'ababab'}}
           />
         </div>
+        }
       </main>
     </Layout>
   );

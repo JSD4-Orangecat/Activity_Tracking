@@ -43,7 +43,7 @@ export default function MainNav() {
     );
 
     dropdown = (
-      <ul className="dropdown-menu">
+      <ul onClick={() => setIsDropdown(!isDropdown)} className="dropdown-menu">
         <li>
           <div className="arrow-up"></div>
         </li>
@@ -60,17 +60,17 @@ export default function MainNav() {
         {window.location.pathname === "/" && (
           <>
             <li>
-              <a className="navbar-link" href="#">
+              <a className="navbar-link" href="#features">
                 Features
               </a>
             </li>
             <li>
-              <a className="navbar-link" href="#">
+              <a className="navbar-link" href="#bmi">
                 BMI
               </a>
             </li>
             <li>
-              <a className="navbar-link" href="#">
+              <a className="navbar-link" href="#how">
                 How it Work
               </a>
             </li>
@@ -91,22 +91,22 @@ export default function MainNav() {
     );
   } else {
     dropdown = (
-      <ul className="dropdown-menu">
+      <ul onClick={() => setIsDropdown(!isDropdown)} className="dropdown-menu">
         <li>
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a className="navbar-link" href="#">
+          <a className="navbar-link" href="#features">
             Features
           </a>
         </li>
         <li>
-          <a className="navbar-link" href="#">
+          <a className="navbar-link" href="#bmi">
             BMI
           </a>
         </li>
         <li>
-          <a className="navbar-link" href="#">
+          <a className="navbar-link" href="#how">
             How it Work
           </a>
         </li>
@@ -126,14 +126,10 @@ export default function MainNav() {
 
   return (
     <nav className="homeNav">
-      <Link to="/">
-        <div className="logo-container">
+      <Link className="logo-link" to="/">
+        <div onClick={() => window.scrollTo(0,0)} className="logo-container">
           <img src={navLogoImage} alt="Orange-cat's logo" />
-          <span>
-            <a className="navbar-link" href="#">
-              Orange Cat
-            </a>
-          </span>
+          <span className="navbar-link">Orange Cat</span>
         </div>
       </Link>
 
