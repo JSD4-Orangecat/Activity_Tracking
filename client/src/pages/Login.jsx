@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import LoginBox from "../components/loginBox";
+import LoginBox from "../components/authenticateComponents/loginBox";
 import Layout from "../components/Layout";
 import Cat from "/hero/hero-img.png";
 import "../assets/styles/authenticateCSS/login.css";

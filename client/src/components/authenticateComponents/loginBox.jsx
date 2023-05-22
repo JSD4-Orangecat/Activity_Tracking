@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../contexts/authentication";
-import "../assets/styles/authenticateCSS/loginBox.css";
+import { useAuth } from "../../contexts/authentication";
 import { Link } from "react-router-dom";
+import "../../assets/styles/authenticateCSS/loginBox.css";
 
 export default function LoginBox() {
   const [email, setEmail] = useState("");
