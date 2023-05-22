@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import LoginBox from "../components/loginBox";
 import Layout from "../components/Layout";
-import Cat from "/hero-img.png";
+import Cat from "/hero/hero-img.png";
 import "../assets/styles/login.css";
 
 export default function Login() {
