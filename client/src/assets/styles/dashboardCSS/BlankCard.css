@@ -7,6 +7,8 @@
     margin-top: 25px;
     margin-bottom: 30px;
     position: relative;
+    transition: transform 0.2s;
+    cursor: pointer;
 }
 
 .blankCard-color {
@@ -26,4 +28,9 @@
     font-size: 100px;
     color: rgb(138, 138, 138);
     font-weight: bold;
+}
+
+.blankCard.hovered {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
