@@ -1,0 +1,36 @@
+
+.wrapimg {
+    height: 200px;
+    width: 200px;
+    position: relative;
+  
+    border-radius: 50%;
+    background: url("/public/generic/Login_logo.png");
+    background-size: 100% 100%;
+    margin: auto;
+    /* z-index: -1; */
+  }
+  #profileimg {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    border: 100% double transparent;
+    margin: auto;
+    z-index: 1;
+  }
+  .editform{
+   
+    box-sizing: border-box;
+    width: 60%;
+  border: solid none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 0;
+  margin-bottom: 15%;
+  height: 800px;
+  text-align: center;
+  /* margin-bottom: 15%; */
+  }
+  .labelInputEdit{
+    color: brown;
+  }
