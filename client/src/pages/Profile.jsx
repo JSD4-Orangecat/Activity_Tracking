@@ -61,7 +61,7 @@ function Profile() {
       console.log("no errors");
       try {
         const response = await axios.put(
-          "http://127.0.0.1:4000/auth/profile",
+          `http://localhost:4000/auth/edit/${data._id}`,
           userData
         );
 
