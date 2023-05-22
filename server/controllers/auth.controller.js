@@ -57,7 +57,9 @@ export const login = async (req, res) => {
       });
     }
 
-    const { password, ...info } = user._doc;
+    const { password, birthDate, gender, ...info } = user._doc;
+
+    console.log(info);
 
     const token = jwt.sign({ info }, process.env.SECRET_KEY, {
       expiresIn: "3600000",

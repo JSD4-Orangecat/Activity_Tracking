@@ -11,6 +11,10 @@ function CallOut({
   pickEmoji,
   pickerVisible,
   currentEmoji,
+  quote,
+  // handleKeyDown,
+  handleOnBlur,
+  handleEmoji,
 }) {
   return (
     <main className="emojiContainer">
@@ -21,9 +25,11 @@ function CallOut({
           <textarea
             className="textarea"
             name="quote"
-            onBlur={handleChangeInput}
+            onChange={handleChangeInput}
+            onBlur={handleOnBlur}
             placeholder="Got a quote that inspires you to keep pushing? tell us here!"
-          ></textarea>
+            defaultValue={quote}
+          />
         </div>
         <FontAwesomeIcon
           icon={faFaceSmile}

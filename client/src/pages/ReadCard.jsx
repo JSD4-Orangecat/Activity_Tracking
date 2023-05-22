@@ -19,6 +19,7 @@ function ReadCard() {
   const navigate = useNavigate();
 
   const [cover, setCover] = useState(null);
+  const [quote, setQuote] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [filename, setFilename] = useState("no selected file");
   const [pickerVisible, setPickerVisible] = useState(false);
@@ -37,10 +38,19 @@ function ReadCard() {
     setPickerVisible(!pickerVisible);
   };
 
-  const pickEmoji = (e) => {
+  const pickEmoji = async (e) => {
     setCurrentEmoji(e.native);
     setPickerVisible(!pickerVisible);
     setRcInputs((prevRcInputs) => ({ ...prevRcInputs, emoji: e.native }));
+    const data = { quote: rcInputs.quote, emoji: e.native };
+    try {
+      const response = await axios.put(
+        "http://localhost:4000/quote/update",
+        data
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleChangeInput = (e) => {
@@ -50,15 +60,33 @@ function ReadCard() {
     //console.log({...callOut})
   };
 
-  function handleFileChange(e) {
+  const handleFileChange = async (e) => {
     const { files } = e.target;
     if (files && files[0]) {
       const file = files[0];
       setFilename(file.name);
       setCover(URL.createObjectURL(file));
       handleChangeInput({ target: { name: "cover", value: file } });
+
+      // update cover to database
+      const data = { quote: rcInputs.quote, emoji: currentEmoji, cover: file };
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+      }
+      try {
+        const response = await axios.put(
+          "http://localhost:4000/quote/update",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+      } catch (err) {
+        console.error(err);
+      }
     }
-  }
+  };
 
   //for get method : activity data
   useEffect(() => {
@@ -83,7 +111,6 @@ function ReadCard() {
       console.error(err);
     }
   };
-  console.log(getactivity);
 
   //link to create card page
   const handleButton = () => {
@@ -103,6 +130,44 @@ function ReadCard() {
     }
   };
 
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     // 👇 Get input value
+  //     setQuote(rcInputs.quote);
+  //   }
+  // };
+
+  const fetchQuote = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/quote");
+      if (response.data.data) {
+        setCover(response.data.data.cover);
+        setCurrentEmoji(response.data.data.emoji);
+        setQuote(response.data.data.quote);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleOnBlur = async (event) => {
+    console.log("handle blur");
+    const { cover, emoji, ...data } = rcInputs;
+    data.emoji = currentEmoji;
+    try {
+      const response = await axios.put(
+        "http://localhost:4000/quote/update",
+        data
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
+
   return (
     <Layout>
       <main className="bg-readcard">
@@ -116,6 +181,9 @@ function ReadCard() {
             pickEmoji={pickEmoji}
             pickerVisible={pickerVisible}
             currentEmoji={currentEmoji}
+            quote={quote}
+            // handleKeyDown={handleKeyDown}
+            handleOnBlur={handleOnBlur}
           />
         </div>
         <div className="r-socialmedia">

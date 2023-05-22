@@ -11,10 +11,11 @@ const activitiesRouter = Router();
 
 activitiesRouter.post(
   "/createActivityCard",
+  protect,
   upload.single("img"),
   postActivities
 );
 activitiesRouter.get("/", protect, getActivity);
-activitiesRouter.delete("/:id", deleteActivity);
+activitiesRouter.delete("/:id", protect, deleteActivity);
 
 export default activitiesRouter;

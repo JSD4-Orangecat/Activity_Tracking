@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import cloudinary from "cloudinary";
 import authRouter from "./routers/auth.router.js";
 import activitiesRouter from "./routers/activities.router.js";
-
+import quoteRouter from "./routers/quotes.router.js";
 
 async function init() {
   dotenv.config();
@@ -34,6 +34,7 @@ async function init() {
   app.use(express.urlencoded({ extended: true }));
   app.use("/auth", authRouter);
   app.use("/activities", activitiesRouter);
+  app.use("/quote", quoteRouter);
 
   app.get("/", (req, res) => {
     res.send("Hello World!");

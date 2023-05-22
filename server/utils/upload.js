@@ -33,4 +33,24 @@ const cloudinaryUploadProfile = async (file) => {
   return fileURl;
 };
 
-export { cloudinaryUploadCard, cloudinaryUploadProfile };
+const cloudinaryUploadQuote = async (file) => {
+  if (!file) {
+    throw new Error("No file provided!!!");
+  }
+
+  const result = await cloudinary.uploader.upload(file.path, {
+    folder: "orangecat/quote",
+    type: "private",
+  });
+
+  console.log(result);
+  const fileURl = {
+    url: result.secure_url,
+    publicId: result.public_id,
+  };
+  await fs.unlink(file.path);
+
+  return fileURl;
+};
+
+export { cloudinaryUploadCard, cloudinaryUploadProfile, cloudinaryUploadQuote };

@@ -8,7 +8,6 @@ export const postActivities = async (req, res) => {
   if (req.file) {
     try {
       const uploadedImage = await cloudinaryUploadCard(req.file);
-      console.log(uploadedImage);
 
       const newActivity = new Activity({
         title: req.body.title,
@@ -67,8 +66,6 @@ export const getActivity = async (req, res) => {
 
     // find total document of activity
     const totalDocs = await Activity.find({ userID: user_ID }).countDocuments();
-
-    console.log(activities);
 
     if (!activities) {
       return res.status(404).send("Activity not found");
