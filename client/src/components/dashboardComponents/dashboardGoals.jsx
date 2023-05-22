@@ -1,7 +1,7 @@
 import '../../assets/styles/dashboardCSS/dashboardGoals.css';
 
 export default function DashboardGoals() {
-    
+
     return (
         <div>
             <h2 className="goals-text">Your Goals</h2>
@@ -18,9 +18,9 @@ export default function DashboardGoals() {
 
 const goalsMockData = [
     {
-        goalImg: '/head-logo.png',
+        goalImg: '/cat/head-logo.png',
     },
     {
-        goalImg: '/head-logo.png',
+        goalImg: '/cat/head-logo.png',
     },
 ];

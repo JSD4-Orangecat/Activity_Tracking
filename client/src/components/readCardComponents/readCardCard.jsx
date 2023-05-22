@@ -7,11 +7,11 @@ import {
   faPenToSquare,
   faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
-import biking from "/biking.png";
-import running from "/running.png";
-import swimming from "/swimming.png";
-import cardio from "/cardio.png";
-import walking from "/walking.png";
+import biking from "/exercises/biking.png";
+import running from "/exercises/running.png";
+import swimming from "/exercises/swimming.png";
+import cardio from "/exercises/cardio.png";
+import walking from "/exercises/walking.png";
 
 function Card({ data, fetchActivity }) {
   let backgroundColor = "";

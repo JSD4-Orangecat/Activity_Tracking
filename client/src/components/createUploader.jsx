@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import "../assets/styles/createUploader.css";
-import uploadIcon from "/uploadIcon.png";
+import uploadIcon from "/generic/uploadIcon.png";
 
 function Uploader({ image, handleFileChange }) {
   // console.log({image})

@@ -1,7 +1,7 @@
 import '../assets/styles/sideContainer.css';
-import catBiceps from "/catBiceps.png"
+import catBiceps from "/cat/catBiceps.png"
 
-function SideContainer () {
+function SideContainer() {
 
 
     return (

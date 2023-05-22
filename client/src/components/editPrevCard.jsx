@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
-import biking from '/biking.png';
-import running from '/running.png';
-import swimming from '/swimming.png';
-import cardio from '/cardio.png';
-import walking from '/walking.png';
+import biking from '/exercises/biking.png';
+import running from '/exercises/running.png';
+import swimming from '/exercises/swimming.png';
+import cardio from '/exercises/cardio.png';
+import walking from '/exercises/walking.png';
 import Uploader from './createUploader'
 
 
-function EditPrevCard( {inputs, task, image, handleFileChange} ) {
+function EditPrevCard({ inputs, task, image, handleFileChange }) {
 
     return (
         <>
@@ -18,7 +18,7 @@ function EditPrevCard( {inputs, task, image, handleFileChange} ) {
                 <div className='prevImg'>
                     <Uploader image={image} handleFileChange={handleFileChange} />
                 </div>
-                
+
 
                 {/* preview title */}
                 <div className='container-text'>
@@ -43,20 +43,20 @@ function EditPrevCard( {inputs, task, image, handleFileChange} ) {
 
                     {/* preview duration */}
                     <div className='prevDuration'>
-                        {inputs.type === 'biking' && <img src={biking} className='icon-img'  />} 
-                        {inputs.type === 'running' && <img src={running} className='icon-img'  />}
-                        {inputs.type === 'swimming' && <img src={swimming} className='icon-img-swimming'  />}    
-                        {inputs.type === 'cardio' && <img src={cardio} className='icon-img'  />}
-                        {inputs.type === 'walking' && <img src={walking} className='icon-img'  />}
+                        {inputs.type === 'biking' && <img src={biking} className='icon-img' />}
+                        {inputs.type === 'running' && <img src={running} className='icon-img' />}
+                        {inputs.type === 'swimming' && <img src={swimming} className='icon-img-swimming' />}
+                        {inputs.type === 'cardio' && <img src={cardio} className='icon-img' />}
+                        {inputs.type === 'walking' && <img src={walking} className='icon-img' />}
                         <p className='duration-text'>{inputs.duration}</p>
                     </div>
                 </div>
 
                 {/* preview task status */}
-                <div className='previewStatus' style={{backgroundColor:task}}></div>
+                <div className='previewStatus' style={{ backgroundColor: task }}></div>
             </div>
 
-            
+
         </>
     )
 }
