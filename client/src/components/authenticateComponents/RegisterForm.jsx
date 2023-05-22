@@ -4,6 +4,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
     return (
         <form onSubmit={saveInput} className="form">
             <h1>Register</h1>
+
+            {/* Profile Picture */}
             <div className="wrap">
                 <input
                     onChange={handleFileChange}
@@ -15,7 +17,10 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 <img id="profilePhoto" src={srcImg} style={{ display: "inline" }} />
                 <br />
             </div>
+
             <div className="allInform">
+
+                {/* First Name */}
                 <label className="labelInput">Name* :</label>
                 <br />
                 <input
@@ -27,6 +32,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.firstName}</span>
                 <br />
+
+                {/* Last Name */}
                 <label className="labelInput">Last Name* :</label> <br />
                 <input
                     onChange={handleChange}
@@ -37,6 +44,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.lastName}</span>
                 <br />
+
+                {/* Date of Birth */}
                 <label className="labelInput">Date Of Birth* :</label>
                 <br />
                 <input
@@ -55,6 +64,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.birthDate}</span>
                 <br />
+
+                {/* Weight */}
                 <label className="labelInput">Weight* :</label>
                 <br />
                 <input
@@ -67,6 +78,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.weight}</span>
                 <br />
+
+                {/* Height */}
                 <label className="labelInput">Height* : </label>
                 <br />
                 <input
@@ -79,6 +92,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.height}</span>
                 <br />
+
+                {/* Email */}
                 <label className="labelInput">Email* :</label>
                 <br />
                 <input
@@ -90,6 +105,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.email}</span>
                 <br />
+
+                {/* Password */}
                 <label className="labelInput">Password* :</label>
                 <br />
                 <input
@@ -101,6 +118,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 />
                 <span className="texterr"> {formErrors.password}</span>
                 <br />
+
+                {/* Confirm Password */}
                 <label className="labelInput">Confirm Password* :</label>
                 <br />
                 <input
@@ -113,6 +132,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 <span className="texterr"> {formErrors.confirmpassword}</span>
                 <br />
             </div>
+
+            {/* Gender */}
             <div className="radio">
                 <input
                     onChange={handleChange}
@@ -137,6 +158,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
             </div>
             <span className="texterr"> {formErrors.gender}</span>
             <br />
+
+            {/* Submit Button */}
             <button type="submit" className="btn">
                 SAVE
             </button>
