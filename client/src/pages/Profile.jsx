@@ -24,6 +24,7 @@ function Profile() {
   useEffect(() => {
     fetchData();
   }, []);
+  //function to handle change
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -35,6 +36,16 @@ function Profile() {
     }
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
+  // function handleFileChange(e) {
+  //   const { files } = e.target;
+  //   if (files && files[0]) {
+  //     const file = files[0];
+  //     setSrcImg(URL.createObjectURL(file));
+  //     //set the handleChangeInput to store this img's value with others
+  //     setFormValues((prevInputs) => ({ ...prevInputs, picture: file }));
+  //   }
+  // }
+
   //function save update of profile
   console.log(userData);
   const handleUpdateProfile = async (e) => {
