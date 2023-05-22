@@ -18,17 +18,26 @@ export default function DashboardBox() {
     return (
         <div className="dashboard-container">
             <div className="dashboard-column" id="column-1">
-                <div className="dashboard-card">
+                <div className="dashboard-card" id="dashboard-card-responsive-big">
                     <DashboardProfile />
                 </div>
-                <div className="dashboard-card">
+                <div className="dashboard-card" id="dashboard-card-responsive-big">
                     <DashboardProgress />
                 </div>
-                <div className="dashboard-card">
+                <div className="dashboard-card" id="dashboard-card-responsive-big">
                     <DashboardChallenge />
                 </div>
             </div>
             <div className="dashboard-column" id="column-2">
+                <div className="dashboard-card" id="dashboard-card-responsive-small">
+                    <DashboardProfile />
+                </div>
+                <div className="dashboard-card" id="dashboard-card-responsive-small">
+                    <DashboardProgress />
+                </div>
+                <div className="dashboard-card" id="dashboard-card-responsive-small">
+                    <DashboardChallenge />
+                </div>
                 <div className="dashboard-card">
                     <DashboardAchievements />
                 </div>
