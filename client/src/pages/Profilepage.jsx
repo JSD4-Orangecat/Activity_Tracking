@@ -9,14 +9,14 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
-  const [srcImg, setSrcImg] = useState("");
+  const [srcImg, setSrcImg] = useState(null);
   //function fetch data
 
   const fetchData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:4000/auth/profile");
       setUserData(response.data.data);
-      setSrcImg(response.data.data.picture);
+      // setSrcImg((response.data.data.picture));
       console.log(response.data);
       console.log(response.data.data.picture);
     } catch (err) {
@@ -27,22 +27,26 @@ function Profile() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  //function to handle picture change
-  const handleChangePic = (e) => {
-    const { files } = e.target;
-    if (files && files[0]) {
-      const file = files[0];
-      setSrcImg(URL.createObjectURL(file));
-      setUserData({ ...userData, picture: file });
-    }
-  };
-
   //function to handle change
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+    e.preventDefault();
+    const { name, value, files } = e.target;
+    // if (files && files[0]) {
+    const file = files[0];
+    setSrcImg(URL.createObjectURL(file));
+    //set the handleChangeInput to store this img's value with others
+    setUserData((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+      picture: file,
+    }));
+    // } else {
+    //setUserData({ ...userData, [name]: value });
+    // }
   };
+  console.log(userData);
+
+  console.log(userData);
 
   //function save update of profile
 
@@ -56,17 +60,28 @@ function Profile() {
     console.log(userData);
     //check errors before making the axios request
     if (Object.keys(error).length === 0) {
-      const { ...allData } = userData;
+      // const { name, value, files } = e.target;
+      // // const file = files[0];
+      // setUserData((prevInputs) => ({
+      //   ...prevInputs,
+      //   [name]: value,
+      //   picture: files,
+      // }));
+      const { confirmpassword, ...allData } = userData;
       console.log("inside data");
       console.log(allData);
+      //   setUserData({ ...userData, [name]: value });
       console.log(userData);
       console.log("no errors");
-
       //convert to form data
       const formData = new FormData();
+      // formData.append("picture", userData.pic);
       for (const [key, value] of Object.entries(allData)) {
         formData.append(key, value);
       }
+      // if (file) {
+      formData.append("picture", file);
+      // }
 
       console.log(...formData);
       try {
@@ -95,9 +110,7 @@ function Profile() {
       const response = await axios.delete("http://127.0.0.1:4000/auth/profile");
 
       console.log(`res: ${response.data}`);
-      localStorage.removeItem("currentUser");
-      localStorage.removeItem("token");
-      navigate("/register"); // navigate to register
+      navigate("/"); // navigate to home page
     } catch (error) {
       console.log(error);
     }
@@ -160,145 +173,144 @@ function Profile() {
     <Layout>
       <div>
         <form className="editform">
-          <div className="TitleAndExit">
-            <div className="headerProfile">
-              <div className="addjustHeader">
-                <h1>Profile</h1>
-              </div>
-            </div>
-            <div className="exitEditProfile">
-              <a href="/dashboard" className="cross">
-                <img src="/generic/cross.jpg" className="crossPic" />
-              </a>
-            </div>
+          <h1>Profile</h1>
+          <div className="wrapimg">
+            <input
+              onChange={handleChange}
+              value={userData.picture}
+              name="picture"
+              className="photo"
+              type="file"
+              accept="image/*"
+            />
+            <img id="profileimg" src={srcImg} style={{ display: "inline" }} />
+            <br />
           </div>
-          <div className="boxforflex">
-            <div className="setprofile">
-              <div className="wrapImgProfile">
-                <label className="btnforinputphoto">
-                  <input
-                    onChange={handleChangePic}
-                    // value={userData.picture}
-                    name="picture"
-                    id="inputPhotoProfile"
-                    className="photos"
-                    type="file"
-                    accept="image/*"
-                  />
-                </label>
-                <img
-                  id="profileImg"
-                  src={srcImg}
-                  style={{ display: "inline" }}
-                />
-                <br />
-              </div>
-              <div className="allBtnProfile">
-                <button onClick={handleUpdateProfile} className="btnProfile">
-                  Update
-                </button>
-                <button onClick={handleDeleteProfile} className="btnProfile">
-                  Delete
-                </button>
-              </div>
-            </div>
-
-            <div className="allInformations">
-              <div className="boxRightForForm">
-                <label className="labelInputEdit">First Name* :</label>
-                <br />
-                <input
-                  type="text"
-                  id="firstname"
-                  value={userData.firstName}
-                  onChange={handleChange}
-                  name="firstName"
-                  className="inputProfile"
-                />
-                <span className="texterr"> {formErrors.firstName}</span>
-                <br />
-                <label className="labelInputEdit">Last Name* :</label> <br />
-                <input
-                  onChange={handleChange}
-                  name="lastName"
-                  value={userData.lastName}
-                  type="text"
-                  className="inputProfile"
-                />
-                <span className="texterr"> {formErrors.lastName}</span>
-                <br />
-                <label className="labelInputEdit">Date Of Birth* :</label>
-                <br />
-                <input
-                  onChange={handleChange}
-                  value={userData.birthDate}
-                  name="birthDate"
-                  type="date"
-                  className="inputProfile"
-                />
-                <span className="texterr"> {formErrors.birthDate}</span>
-                <br />
-                <label className="labelInputEdit">Weight* :</label>
-                <br />
-                <input
-                  onChange={handleChange}
-                  value={userData.weight}
-                  name="weight"
-                  type="number"
-                  className="inputProfile"
-                  placeholder=" kg"
-                />
-                <span className="texterr"> {formErrors.weight}</span>
-                <br />
-                <label className="labelInputEdit">Height* : </label>
-                <br />
-                <input
-                  onChange={handleChange}
-                  value={userData.height}
-                  name="height"
-                  type="number"
-                  className="inputProfile"
-                  placeholder=" cm"
-                />
-                <span className="texterr"> {formErrors.height}</span>
-                <br />
-                <label className="labelInputEdit">Email* :</label>
-                <br />
-                <input
-                  onChange={handleChange}
-                  value={userData.email}
-                  name="email"
-                  type="email"
-                  className="inputProfile"
-                />
-                <span className="texterr"> {formErrors.email}</span>
-                <br />
-                <div className="radio" id="genderForProfile">
-                  <input
-                    onChange={handleChange}
-                    value="male"
-                    name="gender"
-                    id="1"
-                    type="radio"
-                    checked={userData.gender === "male"}
-                    className="selctorGender"
-                  />
-                  <label>Male</label>
-                  <input
-                    onChange={handleChange}
-                    type="radio"
-                    name="gender"
-                    id="2"
-                    value="female"
-                    checked={userData.gender === "female"}
-                    className="selctorGender"
-                  />
-                  <label>Female</label>
-                </div>
-                <span className="texterr"> {formErrors.gender}</span>
-                <br />
-              </div>
-            </div>
+          <div className="allInformation">
+            <label className="labelInputEdit">First Name* :</label>
+            <br />
+            <input
+              type="text"
+              id="firstname"
+              value={userData.firstName}
+              onChange={handleChange}
+              name="firstName"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.firstName}</span>
+            <br />
+            <label className="labelInputEdit">Last Name* :</label> <br />
+            <input
+              onChange={handleChange}
+              name="lastName"
+              value={userData.lastName}
+              type="text"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.lastName}</span>
+            <br />
+            <label className="labelInputEdit">Date Of Birth* :</label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.birthDate}
+              name="birthDate"
+              type="date"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.birthDate}</span>
+            <br />
+            <label className="labelInputEdit">Weight* :</label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.weight}
+              name="weight"
+              type="number"
+              className="input"
+              placeholder=" kg"
+            />
+            <span className="texterr"> {formErrors.weight}</span>
+            <br />
+            <label className="labelInputEdit">Height* : </label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.height}
+              name="height"
+              type="number"
+              className="input"
+              placeholder=" cm"
+            />
+            <span className="texterr"> {formErrors.height}</span>
+            <br />
+            <label className="labelInputEdit">Email* :</label>
+            <br />
+            <input
+              onChange={handleChange}
+              value={userData.email}
+              name="email"
+              type="email"
+              className="input"
+            />
+            <span className="texterr"> {formErrors.email}</span>
+            <br />
+            {/* <label className="labelInput" display="none">
+                Password* :
+              </label>
+              <br />
+              <input
+                onChange={handleChange}
+                value={userData.password}
+                name="password"
+                type="password"
+                className="input"
+              />
+              <span className="texterr"> {formErrors.password}</span>
+              <br />
+              <label className="labelInput">Confirm Password* :</label>
+              <br />
+              <input
+                onChange={handleChange}
+                value={userData.confirmpassword}
+                name="confirmpassword"
+                type="password"
+                className="input"
+              />
+              <span className="texterr"> {formErrors.confirmpassword}</span>
+              <br /> */}
+          </div>
+          <div className="radio">
+            <input
+              onChange={handleChange}
+              value="male"
+              name="gender"
+              id="1"
+              type="radio"
+              checked={userData.gender === "male"}
+              className="selctorGender"
+            />
+            <label>Male</label>
+            <input
+              onChange={handleChange}
+              type="radio"
+              name="gender"
+              id="2"
+              value="female"
+              checked={userData.gender === "female"}
+              className="selctorGender"
+            />
+            <label>Female</label>
+          </div>
+          <span className="texterr"> {formErrors.gender}</span>
+          <br />
+          <div className="allBtnProfile">
+            <button onClick={handleUpdateProfile} className="btn">
+              Update
+            </button>
+            <button onClick={handleDeleteProfile} className="btn">
+              Delete
+            </button>
           </div>
         </form>
       </div>
