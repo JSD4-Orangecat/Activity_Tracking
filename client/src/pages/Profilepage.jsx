@@ -16,7 +16,7 @@ function Profile() {
     try {
       const response = await axios.get("http://127.0.0.1:4000/auth/profile");
       setUserData(response.data.data);
-      // setSrcImg((response.data.data.picture));
+      setSrcImg(response.data.data.picture);
       console.log(response.data);
       console.log(response.data.data.picture);
     } catch (err) {
