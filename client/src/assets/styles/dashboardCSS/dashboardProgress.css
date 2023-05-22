@@ -48,7 +48,7 @@
 
 #progress-text-next {
     margin-top: 5%;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -80,10 +80,6 @@ progress {
         flex-direction: row;
     }
 
-    #progress-next-left {
-        margin-right: 10%;
-    }
-
     #progress-text-next {
         margin-bottom: 5%;
     }
@@ -92,21 +88,12 @@ progress {
         align-items: flex-end;
     }
 
-    #progress-next-container {
-        justify-content: flex-end;
-    }
-
     .progress-img {
-        max-width: 50%;
+        display: none;
     }
 
     #progress-text-title {
         display: none
-    }
-
-    #progress-text-title-2 {
-        display: initial;
-        font-size: 200%;
     }
 
     .progress-medal {
