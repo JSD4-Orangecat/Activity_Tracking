@@ -126,14 +126,10 @@ export default function MainNav() {
 
   return (
     <nav className="homeNav">
-      <Link to="/">
-        <div className="logo-container">
+      <Link className="logo-link" to="/">
+        <div onClick={() => window.scrollTo(0,0)} className="logo-container">
           <img src={navLogoImage} alt="Orange-cat's logo" />
-          <span>
-            <a className="navbar-link" href="#">
-              Orange Cat
-            </a>
-          </span>
+          <span className="navbar-link">Orange Cat</span>
         </div>
       </Link>
 

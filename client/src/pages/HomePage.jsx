@@ -21,14 +21,20 @@ import startImage from "/home/home-register.png";
 import workoutImage from "/home/home-workout.png";
 import connectImage from "/home/home-ranking.png";
 // for meet-team-section
-import orangeCat from '/home/home-ceo.jpg'
+import som from '/home/home-ceo.jpg'
 import yhumyhum from '/home/home-frontend.jpg'
+import teng from '/home/home-backend.jpg'
+import mena from '/home/home-scrum.jpg'
+import tung from '/home/home-product.jpg'
+import mafia from '/home/home-uxui.jpg'
+
 // Import swiper
 import { Swiper, SwiperSlide } from 'swiper/react'
 import "swiper/css";
+// import "swiper/css/lazy"
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Navigation,Scrollbar } from "swiper";
+import { Navigation,Scrollbar, Autoplay } from "swiper";
 
 export default function HomePage() {
   const [bmiInput, setBmiInput] = useState({
@@ -194,11 +200,16 @@ export function HomeMeetTeam() {
             <h2 className='home-section-header'>Meet our Team!</h2>
             <div className='home-meet-card-container'>
                 <Swiper
-                  navigation={true}
-                  modules={[Navigation,Scrollbar]}
-                  scrollbar={{
+                  navigation = {true}
+                  modules={[Navigation,Scrollbar,Autoplay]}
+                  scrollbar = {{
                     hide:true
                   }}
+                  autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                  loop={true}
                 >
                 {meetTeamSectionContent.map((employee) => {
                   return (
@@ -281,16 +292,44 @@ const howSectionContent = [
 const meetTeamSectionContent = [
   {
     id: 1,
-    img: orangeCat,
+    img: som,
     name: 'Som',
     position: 'CEO',
     author: 'Praew, Haluethaichanok'
   },
   {
     id: 2,
+    img: tung,
+    name: 'Tungngun',
+    position: 'Product Manager',
+    author: 'Arm, Siwat'
+  },
+  {
+    id: 3,
+    img: mena,
+    name: 'Mena',
+    position: 'Scrum Master',
+    author: 'Kitti, Kittipol'
+  },
+  {
+    id: 4,
     img: yhumyhum,
     name: 'Yhumyhum',
     position: 'Frontend Developer',
     author: 'Kim, Joakim'
   },
+  {
+    id: 5,
+    img: teng,
+    name: 'Teng',
+    position: 'Backend Developer',
+    author: 'Seed, Peeranat'
+  },
+  {
+    id: 6,
+    img: mafia,
+    name: 'Mafia',
+    position: 'UX/UI Designer',
+    author: 'Folk, Nonlaphan'
+  }
 ]
