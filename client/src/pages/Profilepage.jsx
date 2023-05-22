@@ -9,7 +9,7 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
-  const [srcImg, setSrcImg] = useState(null);
+  const [srcImg, setSrcImg] = useState("");
   //function fetch data
 
   const fetchData = async () => {
@@ -27,22 +27,38 @@ function Profile() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  //function to pic
+  const handleChangePic = (e) => {
+    const { name, value, files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setSrcImg(URL.createObjectURL(file));
+      // setUserData((prevInputs) => ({
+      //   ...prevInputs,
+      //   picture: file,
+      // }));
+      setUserData({ ...userData, picture: file });
+    }
+  };
+  //};
   //function to handle change
   const handleChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const { name, value, files } = e.target;
+
     // if (files && files[0]) {
-    const file = files[0];
-    setSrcImg(URL.createObjectURL(file));
+    // const file = files[0];
+    // setSrcImg(URL.createObjectURL(file));
     //set the handleChangeInput to store this img's value with others
-    setUserData((prevInputs) => ({
-      ...prevInputs,
-      [name]: value,
-      picture: file,
-    }));
+    // setUserData((prevInputs) => ({
+    //   ...prevInputs,
+    //   [name]: value,
+    //   // picture: file,
+    // }));
     // } else {
-    //setUserData({ ...userData, [name]: value });
-    // }
+    setUserData({ ...userData, [name]: value });
+    //}
   };
   console.log(userData);
 
@@ -80,7 +96,7 @@ function Profile() {
         formData.append(key, value);
       }
       // if (file) {
-      formData.append("picture", file);
+      // formData.append("picture", file);
       // }
 
       console.log(...formData);
@@ -176,8 +192,8 @@ function Profile() {
           <h1>Profile</h1>
           <div className="wrapimg">
             <input
-              onChange={handleChange}
-              value={userData.picture}
+              onChange={handleChangePic}
+              // value={userData.picture}
               name="picture"
               className="photo"
               type="file"
