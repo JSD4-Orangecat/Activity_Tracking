@@ -95,8 +95,13 @@
 
   .login-title,
   .username-container,
-  .password-container,
-  .password-forget {
+  .password-container {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .login-container {
+    padding: 5%;
   }
 }

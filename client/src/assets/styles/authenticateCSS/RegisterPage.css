@@ -10,19 +10,31 @@
 }
 
 .right {
-  margin-left: 20px;
-  width: 40%;
+  width: 100%;
   height: auto;
+  margin-bottom: 30%;
+}
+
+.register-cats {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
 }
 
 @media screen and (max-width: 768px) {
   .fullpage {
-    flex-flow: column-reverse;
+    flex-flow: column;
     padding: 2rem;
   }
 
   .right {
     width: 50%;
-    margin: 20px;
+    margin: 10px;
+  }
+
+  .register-cats {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0;
   }
 }

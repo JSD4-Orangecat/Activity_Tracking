@@ -4,6 +4,7 @@ import { validate } from "../components/authenticateComponents/validate";
 import RegisterForm from "../components/authenticateComponents/RegisterForm";
 import Layout from "../components/Layout";
 import axios from "axios";
+import Cat from "/hero/hero-img.png";
 import "../assets/styles/authenticateCSS/RegisterPage.css";
 
 function FormRegister() {
@@ -97,7 +98,11 @@ function FormRegister() {
           formErrors={formErrors}
           saveInput={saveInput}
         />
-        <img src="/cat/mascot.png" alt="Mascot" className="right" />
+        <div className="register-cats">
+          <img src={Cat} alt="Muscular Orange Cat" className="right" />
+          <img src={Cat} alt="Muscular Orange Cat" className="right" />
+          <img src={Cat} alt="Muscular Orange Cat" className="right" />
+        </div>
       </section>
     </Layout>
   );
