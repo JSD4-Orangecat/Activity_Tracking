@@ -2,15 +2,9 @@ import { useEffect } from "react";
 import LoginBox from "../components/loginBox";
 import Layout from "../components/Layout";
 import Cat from "/hero/hero-img.png";
-import "../assets/styles/login.css";
+import "../assets/styles/authenticateCSS/login.css";
 
 export default function Login() {
-  useEffect(() => {
-    document.body.classList.add("login-body");
-    return () => {
-      document.body.classList.remove("login-body");
-    };
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

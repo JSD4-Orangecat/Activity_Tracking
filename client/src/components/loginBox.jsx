@@ -1,27 +1,20 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/authentication";
-import {
-  FaGoogle,
-  FaGithub,
-  FaFacebook,
-  FaEye,
-  FaEyeSlash,
-} from "react-icons/fa";
-import "../assets/styles/loginBox.css";
+import "../assets/styles/authenticateCSS/loginBox.css";
 import { Link } from "react-router-dom";
 
 export default function LoginBox() {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, state } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login({
-      email,
-      password,
-    });
+    login({ email, password });
+  };
+
+  const handleInputChange = (event, setter) => {
+    setter(event.target.value);
   };
 
   return (
@@ -34,9 +27,7 @@ export default function LoginBox() {
             className="username-input-container"
             type="text"
             placeholder="Email"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
+            onChange={(event) => handleInputChange(event, setEmail)}
             value={email}
           />
         </div>
@@ -45,48 +36,20 @@ export default function LoginBox() {
           <p>Password</p>
           <div className="password-input-container">
             <input
-              type={showPassword ? "text" : "password"}
+              type="password"
               placeholder="Password"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
+              onChange={(event) => handleInputChange(event, setPassword)}
               value={password}
             />
             {state.error && <p className="error-message">{state.error}</p>}
           </div>
-
-          <p className="password-forget">
-            <a href="#">Forgot Password?</a>
-          </p>
         </div>
         <button className="login-button">Sign In</button>
       </form>
 
-      {/* <button
-        className="password-toggle"
-        onClick={() => setShowPassword(!showPassword)}
-      >
-        {showPassword ? <FaEyeSlash /> : <FaEye />}
-      </button> */}
-
-      <div className="login-social-container">
-        <p>or continue with</p>
-        <div className="login-social">
-          <button className="login-social-button">
-            <FaGoogle />
-          </button>
-          <button className="login-social-button">
-            <FaGithub />
-          </button>
-          <button className="login-social-button">
-            <FaFacebook />
-          </button>
-        </div>
-      </div>
-
       <div className="login-footer">
+        <p>Don't have an account yet?</p>
         <p>
-          Don't have an account yet?{" "}
           <Link to="/register">Register for free.</Link>
         </p>
       </div>
