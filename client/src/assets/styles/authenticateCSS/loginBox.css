@@ -35,68 +35,18 @@
   margin-bottom: 10px;
 }
 
-.username-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-}
-
-.username-input-container {
-  width: 100%;
-  font-family: "Sono", sans-serif;
-  margin-top: 10px;
-}
-
+.username-container,
 .password-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
 }
 
+.username-input-container,
 .password-input-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-top: 10px;
-}
-
-.password-input-container input {
-  flex: 1;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  margin-bottom: 10px;
   width: 100%;
   font-family: "Sono", sans-serif;
-}
-
-.password-toggle {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.password-toggle:focus {
-  outline: none;
-}
-
-.password-toggle:hover svg {
-  color: #007aff;
-}
-
-.password-toggle svg {
-  font-size: 20px;
-  color: #333;
-  display: block;
-  margin: auto;
-}
-
-.password-forget {
   margin-top: 10px;
-  margin-bottom: 30px;
 }
 
 .login-button {
@@ -113,53 +63,6 @@
 
 .login-button:hover {
   background-color: #0058b5;
-}
-
-.login-social-container {
-  margin-bottom: 50px;
-}
-
-.login-social {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25px;
-}
-
-.login-social-button {
-  background-color: white;
-  border-radius: 50px;
-  border: none;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  color: #333;
-  cursor: pointer;
-  margin: 0 5px;
-  padding: 10px 50px;
-  text-align: center;
-}
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-  .login-social {
-    flex-direction: column;
-  }
-
-  .login-social-button {
-    margin: 10px 0;
-  }
-}
-
-.login-social-button svg {
-  font-size: 20px;
-}
-
-.login-social-button:hover {
-  background-color: #f2f2f2;
 }
 
 .login-footer {
@@ -179,6 +82,11 @@
 .error-message {
   color: red;
 }
+
+
+
+
+
 
 @media screen and (max-width: 768px) {
   .login-container {

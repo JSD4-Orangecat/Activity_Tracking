@@ -34,8 +34,9 @@ export default function LoginBox() {
 
         <div className="password-container">
           <p>Password</p>
-          <div className="password-input-container">
+          <div>
             <input
+              className="password-input-container"
               type="password"
               placeholder="Password"
               onChange={(event) => handleInputChange(event, setPassword)}
