@@ -36,6 +36,7 @@ function AuthProvider(props) {
     localStorage.removeItem("currentUser");
     localStorage.removeItem("token");
     setState({ ...state, user: null });
+    navigate("/");
   };
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));

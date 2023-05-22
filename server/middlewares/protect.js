@@ -18,12 +18,7 @@ export const protect = async (req, res, next) => {
       });
     }
 
-    console.log(payload);
-
     req.user = payload;
     next();
   });
 };
-
-//use with only user which has token can booking
-//booking router

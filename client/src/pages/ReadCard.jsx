@@ -13,12 +13,13 @@ import {
   faCircleRight,
 } from "@fortawesome/free-regular-svg-icons";
 
-const pageLimit = 4
+const pageLimit = 4;
 
 function ReadCard() {
   const navigate = useNavigate();
 
   const [cover, setCover] = useState(null);
+  const [quote, setQuote] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [filename, setFilename] = useState("no selected file");
   const [pickerVisible, setPickerVisible] = useState(false);
@@ -30,17 +31,26 @@ function ReadCard() {
     cover: "",
   });
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(pageLimit)
-  const [totalPages,setTotalPages] = useState(1)
+  const [limit, setLimit] = useState(pageLimit);
+  const [totalPages, setTotalPages] = useState(1);
 
   const showPicker = () => {
     setPickerVisible(!pickerVisible);
   };
 
-  const pickEmoji = (e) => {
+  const pickEmoji = async (e) => {
     setCurrentEmoji(e.native);
     setPickerVisible(!pickerVisible);
     setRcInputs((prevRcInputs) => ({ ...prevRcInputs, emoji: e.native }));
+    const data = { quote: rcInputs.quote, emoji: e.native };
+    try {
+      const response = await axios.put(
+        "http://localhost:4000/quote/update",
+        data
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleChangeInput = (e) => {
@@ -49,22 +59,39 @@ function ReadCard() {
     setRcInputs((prevRcInputs) => ({ ...prevRcInputs, [name]: value }));
     //console.log({...callOut})
   };
-  console.log(rcInputs);
 
-  function handleFileChange(e) {
+  const handleFileChange = async (e) => {
     const { files } = e.target;
     if (files && files[0]) {
       const file = files[0];
       setFilename(file.name);
       setCover(URL.createObjectURL(file));
       handleChangeInput({ target: { name: "cover", value: file } });
+
+      // update cover to database
+      const data = { quote: rcInputs.quote, emoji: currentEmoji, cover: file };
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+      }
+      try {
+        const response = await axios.put(
+          "http://localhost:4000/quote/update",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+      } catch (err) {
+        console.error(err);
+      }
     }
-  }
+  };
 
   //for get method : activity data
   useEffect(() => {
     fetchActivity();
-  }, [page,limit]);
+  }, [page, limit]);
 
   //for get method : activtiy data, use this inside useEffect
   const fetchActivity = async () => {
@@ -73,19 +100,17 @@ function ReadCard() {
         params: {
           page,
           limit,
-        }
+        },
       });
       setGetActivity(response.data.data);
       //Get total of document in database and calculate total pages.
-      const {totalDocs} = response.data
-      const totalPages = Math.ceil(totalDocs / limit)
-      setTotalPages(totalPages)
-
+      const { totalDocs } = response.data;
+      const totalPages = Math.ceil(totalDocs / limit);
+      setTotalPages(totalPages);
     } catch (err) {
       console.error(err);
     }
   };
-  console.log(getactivity);
 
   //link to create card page
   const handleButton = () => {
@@ -97,13 +122,51 @@ function ReadCard() {
     if (page > 1) {
       setPage(page - 1);
     }
-  }
+  };
 
   const handlerNextPage = () => {
     if (page < totalPages) {
-      setPage(page + 1)
+      setPage(page + 1);
     }
-  }
+  };
+
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     // 👇 Get input value
+  //     setQuote(rcInputs.quote);
+  //   }
+  // };
+
+  const fetchQuote = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/quote");
+      if (response.data.data) {
+        setCover(response.data.data.cover);
+        setCurrentEmoji(response.data.data.emoji);
+        setQuote(response.data.data.quote);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleOnBlur = async (event) => {
+    console.log("handle blur");
+    const { cover, emoji, ...data } = rcInputs;
+    data.emoji = currentEmoji;
+    try {
+      const response = await axios.put(
+        "http://localhost:4000/quote/update",
+        data
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
 
   return (
     <Layout>
@@ -118,6 +181,9 @@ function ReadCard() {
             pickEmoji={pickEmoji}
             pickerVisible={pickerVisible}
             currentEmoji={currentEmoji}
+            quote={quote}
+            // handleKeyDown={handleKeyDown}
+            handleOnBlur={handleOnBlur}
           />
         </div>
         <div className="r-socialmedia">
@@ -140,9 +206,17 @@ function ReadCard() {
 
         {/* page */}
         <div className="r-page">
-          <FontAwesomeIcon onClick={handlerPrevPage} icon={faCircleLeft} className="faCircle" />
+          <FontAwesomeIcon
+            onClick={handlerPrevPage}
+            icon={faCircleLeft}
+            className="faCircle"
+          />
           <span>{page}</span>
-          <FontAwesomeIcon onClick={handlerNextPage} icon={faCircleRight} className="faCircle" />
+          <FontAwesomeIcon
+            onClick={handlerNextPage}
+            icon={faCircleRight}
+            className="faCircle"
+          />
         </div>
       </main>
     </Layout>

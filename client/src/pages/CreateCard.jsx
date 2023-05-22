@@ -33,6 +33,8 @@ function CreateCard() {
     userID: currentUser._id,
   });
 
+  const [isProcessing, setIsProcessing] = useState(false);
+
   //calculate duration
   function calcDuration() {
     let tStart = inputs.timeStart;
@@ -47,11 +49,7 @@ function CreateCard() {
       Number(tEnd.split(":")[1]) * 60 * 1000;
     // console.log(milliseconds1, milliseconds2);
 
-
-
     // To-do – RANK SYSTEM
-
-
 
     //find differences in milliseconds
     let difference = Math.abs(milliseconds2 - milliseconds1);
@@ -139,6 +137,7 @@ function CreateCard() {
   //click for submit and send to db
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsProcessing(!isProcessing);
 
     if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
       setDurationAlert(true);
@@ -149,7 +148,6 @@ function CreateCard() {
     for (const [key, value] of Object.entries(inputs)) {
       formData.append(key, value);
     }
-    console.log(...formData);
 
     try {
       const response = await axios.post(
@@ -192,6 +190,7 @@ function CreateCard() {
               changeColor={changeColor}
               handleFormSubmit={handleFormSubmit}
               durationAlert={durationAlert}
+              isProcessing={isProcessing}
             />
           </div>
         </div>

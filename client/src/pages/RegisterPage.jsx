@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import "../assets/styles/Register.css";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 function FormRegister() {
   //useStates and variables
-  //const [userData, setUserData] = useState({});
   const [srcImg, setSrcImg] = useState(null);
-  // const navigate = useNavigate();
-  //set initial values
-  const initialValues = {
+  const navigate = useNavigate();
+
+  // all useState
+  const [formValues, setFormValues] = useState({
     email: "",
     password: "",
     confirmpassword: "",
@@ -18,11 +18,9 @@ function FormRegister() {
     lastName: "",
     birthDate: "",
     gender: "",
-    weight: null,
-    height: null,
-  };
-  // all useState
-  const [formValues, setFormValues] = useState(initialValues);
+    weight: "",
+    height: "",
+  });
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -31,37 +29,42 @@ function FormRegister() {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormValues({ ...formValues, [name]: value });
-
-    if (name === "picture" && files.length > 0) {
-      const src = URL.createObjectURL(files[0]);
-      const preview = document.getElementById("profilePhoto");
-      preview.src = src;
-      setSrcImg(src);
-    }
   };
-  console.log(formValues);
+
+  function handleFileChange(e) {
+    const { files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setSrcImg(URL.createObjectURL(file));
+      //set the handleChangeInput to store this img's value with others
+      setFormValues((prevInputs) => ({ ...prevInputs, picture: file }));
+    }
+  }
   // function to handle save inputs
 
   const saveInput = async (e) => {
     e.preventDefault();
     // setIsSubmit(true);
-    setFormErrors(validate(formValues));
+    const error = validate(formValues);
+
+    setFormErrors(error);
 
     //check errors before making the axios request
-    if (Object.keys(formErrors).length === 0) {
-      const { name, value } = e.target;
+    if (Object.keys(error).length === 0) {
       const { confirmpassword, ...userData } = formValues;
-      setFormValues({ ...userData, [name]: value });
-      // console.log({ formValues });
-      // console.log({ userData });
 
-      // setFormValues({ confirmpassword, ...formValues, [name]: value });
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(userData)) {
+        formData.append(key, value);
+      }
       try {
         const response = await axios.post(
           "http://localhost:4000/auth/register",
-          formValues
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
         );
-        console.log(response.data);
 
         // // // Reset the form values
 
@@ -69,6 +72,7 @@ function FormRegister() {
 
         // Set the submission status to true
         setIsSubmit(true);
+        navigate("/login");
       } catch (error) {
         console.log(error);
       }
@@ -137,27 +141,23 @@ function FormRegister() {
 
     return errors;
   };
-
   useEffect(() => {
-    if (isSubmit) {
-      setFormValues(initialValues); // Reset the form values
-      setIsSubmit(false); // Reset the submission status
-    }
-  }, [isSubmit, initialValues]);
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Layout>
       <section className="fullpage">
         <div className="left-form">
-          <form className="form">
+          <form onSubmit={saveInput} className="form">
             <h1>Register</h1>
             <div className="wrap">
               <input
-                onChange={handleChange}
-                value={formValues.picture}
+                onChange={handleFileChange}
                 name="picture"
                 className="photo"
                 type="file"
+                accept="image/*"
               />
               <img
                 id="profilePhoto"
@@ -196,6 +196,13 @@ function FormRegister() {
                 name="birthDate"
                 type="date"
                 className="input"
+                max={new Date(
+                  new Date().getFullYear() - 7,
+                  new Date().getMonth(),
+                  new Date().getDate()
+                )
+                  .toISOString()
+                  .slice(0, 10)}
               />
               <span className="texterr"> {formErrors.birthDate}</span>
               <br />
@@ -205,7 +212,7 @@ function FormRegister() {
                 onChange={handleChange}
                 value={formValues.weight}
                 name="weight"
-                type="number"
+                type="text"
                 className="input"
                 placeholder=" kg"
               />
@@ -217,7 +224,7 @@ function FormRegister() {
                 onChange={handleChange}
                 value={formValues.height}
                 name="height"
-                type="number"
+                type="text"
                 className="input"
                 placeholder=" cm"
               />
@@ -281,7 +288,7 @@ function FormRegister() {
             </div>
             <span className="texterr"> {formErrors.gender}</span>
             <br />
-            <button onClick={saveInput} className="btn">
+            <button type="submit" className="btn">
               SAVE
             </button>
           </form>
