@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { Link } from 'react-router-dom'
 import Layout from "../components/Layout"
-import "../assets/styles/homePage.css"
+import "../assets/styles/HomePage.css"
 
 // import image
 // for hero-section
@@ -18,11 +17,18 @@ import achievement from "/home/home-achievement.jpg";
 import statistic from "/home/home-statistic.jpg";
 import leaderboard from "/home/home-leaderboard.jpg";
 // for how-it-work-section
-import startImage from "/home-register.png";
-import workoutImage from "/home-workout.png";
-import connectImage from "/home-ranking.png";
+import startImage from "/home/home-register.png";
+import workoutImage from "/home/home-workout.png";
+import connectImage from "/home/home-ranking.png";
 // for meet-team-section
-import orangeCat from '/home-ceo.jpg'
+import orangeCat from '/home/home-ceo.jpg'
+import yhumyhum from '/home/home-frontend.jpg'
+// Import swiper
+import { Swiper, SwiperSlide } from 'swiper/react'
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Navigation,Scrollbar } from "swiper";
 
 export default function HomePage() {
   const [bmiInput, setBmiInput] = useState({
@@ -185,18 +191,32 @@ export function Homehow() {
 export function HomeMeetTeam() {
     return (
         <section>
-            <h2 className='home-section-header'>Hello World</h2>
+            <h2 className='home-section-header'>Meet our Team!</h2>
             <div className='home-meet-card-container'>
-                <Swiper>
-                    <SwiperSlide className='home-meet-card'>
-                        <div className='home-meet-img-container'>
-                            <img className='home-meet-img' src={orangeCat} alt='An orange cat wear suit.'/>
-                        </div>
-                        <div className='home-meet-card-text'>
-                            <h3>Orange <span className='home-meet-position'>CEO</span></h3>
-                            <h5>(K.Praew, Haluethaichanok)</h5>
-                        </div>
-                    </SwiperSlide>
+                <Swiper
+                  navigation={true}
+                  modules={[Navigation,Scrollbar]}
+                  scrollbar={{
+                    hide:true
+                  }}
+                >
+                {meetTeamSectionContent.map((employee) => {
+                  return (
+                        <SwiperSlide key={employee.id}>
+                          <div className='home-meet-card'>
+                            <div className='home-meet-img-container'>
+                                <img className='home-meet-img' src={employee.img} alt='An orange cat wear suit.'/>
+                            </div>
+                            <div className='home-meet-card-text'>
+                                <h3>{employee.name}</h3>
+                                <span className='home-meet-position'>{employee.position}</span>
+                                <h5>({employee.author})</h5>
+                            </div>
+                          </div>
+                      </SwiperSlide>
+                  )
+                })
+                    }
                 </Swiper>
             </div>
         </section>
@@ -258,4 +278,19 @@ const howSectionContent = [
     }
 ]
 // Content to map for meet teem section
-const meetTeamSectionContent = []
+const meetTeamSectionContent = [
+  {
+    id: 1,
+    img: orangeCat,
+    name: 'Som',
+    position: 'CEO',
+    author: 'Praew, Haluethaichanok'
+  },
+  {
+    id: 2,
+    img: yhumyhum,
+    name: 'Yhumyhum',
+    position: 'Frontend Developer',
+    author: 'Kim, Joakim'
+  },
+]
