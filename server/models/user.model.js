@@ -41,13 +41,9 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
-    "rank": {
-        "type": Number,
-        "required": false
-    },
-    "coverImage": {
-        "type": String,
-        "required": false
+    coverImage: {
+      type: String,
+      required: false,
     },
     quote: {
       type: String,
@@ -57,11 +53,14 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
-    },
-    {
-        collection: 'user'
-    }
-)
-
+    // "rank": {
+    //     "type": Number,
+    //     "required": false
+    // }
+  },
+  {
+    collection: "user",
+  }
+);
 
 export default mongoose.model("User", userSchema);
