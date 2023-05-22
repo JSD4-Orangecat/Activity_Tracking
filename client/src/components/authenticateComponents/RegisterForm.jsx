@@ -11,11 +11,17 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                 <input
                     onChange={handleFileChange}
                     name="picture"
-                    className="photo"
+                    id="uploadInput"
                     type="file"
                     accept="image/*"
                 />
-                <img id="profilePhoto" src={srcImg} style={{ display: "inline" }} />
+                <label htmlFor="uploadInput">
+                    <img
+                        id="profilePhoto"
+                        src={srcImg}
+                        className={srcImg ? 'uploaded-picture' : ''}
+                    />
+                </label>
             </div>
 
             <div className="allInform">
@@ -158,8 +164,8 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
             <span className="texterr"> {formErrors.gender}</span>
 
             {/* Submit Button */}
-            <button type="submit" className="btn">
-                SAVE
+            <button type="submit" className="register-button">
+                Register
             </button>
         </form>
     );
