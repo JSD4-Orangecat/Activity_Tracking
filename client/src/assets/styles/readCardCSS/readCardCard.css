@@ -7,6 +7,8 @@
   margin-top: 25px;
   margin-bottom: 30px;
   position: relative;
+  transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .r-previewStatus {
@@ -198,4 +200,9 @@
   height: 100%;
   border-radius: 15px;
   object-fit: cover;
+}
+
+.r-prevcard.hovered {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import "../../assets/styles/readCardCSS/readCardCard.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,9 +48,25 @@ function Card({ data, fetchActivity }) {
     }
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const cardClassName = `r-prevcard ${isHovered ? 'hovered' : ''}`;
+
   return (
     <>
-      <div className="r-prevcard">
+      <div
+        className={cardClassName}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {/* preview Image */}
         <div className="r-prevImg">
           <img src={data.img} className="r-img" />
