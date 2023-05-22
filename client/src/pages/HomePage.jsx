@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
-// import Footer from "../components/footer"
-import "../assets/styles/homePage.css";
+import { useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from 'react-router-dom'
+import Layout from "../components/Layout"
+import "../assets/styles/homePage.css"
+
 // import image
 // for hero-section
 import homeImageStrong from "/hero/hero-img.png";
@@ -17,9 +18,11 @@ import achievement from "/home/home-achievement.jpg";
 import statistic from "/home/home-statistic.jpg";
 import leaderboard from "/home/home-leaderboard.jpg";
 // for how-it-work-section
-import startImage from "/home/home-register.png";
-import workoutImage from "/home/home-workout.png";
-import connectImage from "/home/home-ranking.png";
+import startImage from "/home-register.png";
+import workoutImage from "/home-workout.png";
+import connectImage from "/home-ranking.png";
+// for meet-team-section
+import orangeCat from '/home-ceo.jpg'
 
 export default function HomePage() {
   const [bmiInput, setBmiInput] = useState({
@@ -59,7 +62,7 @@ export default function HomePage() {
         bmiInput={bmiInput}
       />
       <Homehow />
-      {/* <Footer /> */}
+      <HomeMeetTeam />
     </Layout>
   );
 }
@@ -179,6 +182,27 @@ export function Homehow() {
   );
 }
 
+export function HomeMeetTeam() {
+    return (
+        <section>
+            <h2 className='home-section-header'>Hello World</h2>
+            <div className='home-meet-card-container'>
+                <Swiper>
+                    <SwiperSlide className='home-meet-card'>
+                        <div className='home-meet-img-container'>
+                            <img className='home-meet-img' src={orangeCat} alt='An orange cat wear suit.'/>
+                        </div>
+                        <div className='home-meet-card-text'>
+                            <h3>Orange <span className='home-meet-position'>CEO</span></h3>
+                            <h5>(K.Praew, Haluethaichanok)</h5>
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
+            </div>
+        </section>
+    )
+}
+
 // Content to map for feature section
 const featuresContent = [
   {
@@ -214,22 +238,24 @@ const featuresContent = [
 ];
 // Content to map for how-it-word section
 const howSectionContent = [
-  {
-    title: "01 Get start!",
-    alt: "A pen",
-    imageUrl: startImage,
-    info: "Sign up and set your fitness goals!",
-  },
-  {
-    title: "02 Workout!",
-    alt: "Workout image",
-    imageUrl: workoutImage,
-    info: "Track your activities and view your progress statistics!",
-  },
-  {
-    title: "03 Connect!",
-    alt: "Statistic",
-    imageUrl: connectImage,
-    info: "Connect with friends, climb the leaderboard to stay motivated!",
-  },
-];
+    {
+        title: '01 Get start!',
+        alt: 'A pen',
+        imageUrl: startImage,
+        info: 'Sign up and set your fitness goals!'
+    },
+    {
+        title: '02 Workout!',
+        alt: 'Workout image',
+        imageUrl: workoutImage,
+        info: 'Track your activities and view your progress statistics!'
+    },
+    {
+        title: '03 Connect!',
+        alt: 'Statistic',
+        imageUrl: connectImage,
+        info: 'Connect with friends, climb the leaderboard to stay motivated!'
+    }
+]
+// Content to map for meet teem section
+const meetTeamSectionContent = []

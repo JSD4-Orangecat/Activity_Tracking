@@ -242,6 +242,50 @@ html {
     justify-self: center;
 }
 
+.home-meet-card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.home-meet-card {
+    display: flex;
+    border: 1px solid #000000;
+    background-color: #fff;
+    width: 800px;
+}
+
+.home-meet-img-container {
+    width: 40%;
+    padding: 3rem;
+}
+
+.home-meet-img {
+    width: 100%;
+    border-radius: 9999px;
+    border: 1px solid #000000;
+}
+
+.home-meet-card-text  {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* text-align: center; */
+    gap: 1rem;
+    width: 60%;
+    padding: 5rem;
+    padding-left: 0;
+}
+
+.home-meet-card-text > h3 {
+    font-size: 2rem;
+}
+
+.home-meet-position {
+    font-size: 1rem;
+    color: hsla(24, 100%, 50%, 0.8);
+}
+
+
 @media only screen and (max-width: 990px) {
     .hero-section {
         padding: 6rem 3rem;
