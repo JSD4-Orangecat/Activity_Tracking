@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import Layout from "../components/Layout";
 import axios from "axios";
 import "../assets/styles/Register.css";
-import { useNavigate } from "react-router";
+
 function FormRegister() {
   //useStates and variables
-  const [srcImg, setSrcImg] = useState(null);
   const navigate = useNavigate();
+  const [srcImg, setSrcImg] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   // all useState
   const [formValues, setFormValues] = useState({
@@ -22,8 +25,7 @@ function FormRegister() {
     height: "",
   });
 
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+
 
   //function to handle change in input
   const handleChange = (e) => {
@@ -40,8 +42,8 @@ function FormRegister() {
       setFormValues((prevInputs) => ({ ...prevInputs, picture: file }));
     }
   }
-  // function to handle save inputs
 
+  // function to handle save inputs
   const saveInput = async (e) => {
     e.preventDefault();
     // setIsSubmit(true);
@@ -67,10 +69,8 @@ function FormRegister() {
         );
 
         // // // Reset the form values
-
-        // setFormValues(initialValues);
-
         // Set the submission status to true
+
         setIsSubmit(true);
         navigate("/login");
       } catch (error) {
@@ -79,7 +79,6 @@ function FormRegister() {
     }
   };
 
-  // console.log(userData);
   //function for validate user data
   const validate = (values) => {
     const errors = {};
@@ -141,9 +140,14 @@ function FormRegister() {
 
     return errors;
   };
+
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+
 
   return (
     <Layout>
