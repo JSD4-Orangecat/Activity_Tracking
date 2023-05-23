@@ -236,9 +236,7 @@ function Form({
             />
           </div>
         ) : null}
-        <button value="cancel" className="btn-cancel" onClick={handleCancel}>
-          cancel
-        </button>
+        <button value="cancel" className="btn-cancel" onClick={handleCancel}>Cancel</button>
       </div>
     </form>
   );
