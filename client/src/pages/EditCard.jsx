@@ -9,7 +9,7 @@ import EditForm from "../components/editForm";
 import axios from "axios";
 
 function EditCard() {
- 
+
   const navigate = useNavigate()
   const { id } = useParams()
   console.log({ id })
@@ -17,7 +17,7 @@ function EditCard() {
   const [task, setTask] = useState("");
   const [image, setImage] = useState(null);
   const [durationAlert, setDurationAlert] = useState(false);
- 
+
   // eslint-disable-next-line no-unused-vars
   const [inputs, setInputs] = useState({
     title: "",
@@ -117,87 +117,87 @@ function EditCard() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-        const image = URL.createObjectURL(file)
-        setImage(image)
-    
-        setInputs((prevInputs) => ({ 
-          ...prevInputs,
-          img: file, 
-        }));
-      }
+    const image = URL.createObjectURL(file)
+    setImage(image)
 
-      useEffect(() => {
-        fetchActivity()
-      },[])
-    
-      console.log(inputs)
-      
-      const fetchActivity = async () => {
-        try {
-          const res = await axios.get("http://127.0.0.1:4000/activities/" + id)
-          console.log(res.data)
-    
-          const taskColor = {
-            complete: "#96d674",
-            inProgress: "#fff476",
-            fail: "#fd8888",
-          }; 
-    
-          setInputs({
-            ...inputs,
-            title:res.data.title,
-            caption:res.data.caption,
-            time_start:res.data.timeStart,
-            time_end:res.data.timeEnd,
-            duration:res.data.duration,
-            date:res.data.date,
-            task:res.data.task,
-            type:res.data.type,
-            img:res.data.img,
-          });
-    
-          setTask(taskColor[res.data.task])
-        } catch (err) {
-          console.error(err);
-        }
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      img: file,
+    }));
+  }
+
+  useEffect(() => {
+    fetchActivity()
+  }, [])
+
+  console.log(inputs)
+
+  const fetchActivity = async () => {
+    try {
+      const res = await axios.get("http://127.0.0.1:4000/activities/" + id)
+      console.log(res.data)
+
+      const taskColor = {
+        complete: "#96d674",
+        inProgress: "#fff476",
+        fail: "#fd8888",
       };
-    
-      // console.log(inputs)
 
-      const handleFormSubmit = async (e) => {
-        e.preventDefault();
-    
-        if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
-          setDurationAlert(true);
-          return;
-        }
-        // console.log(inputs)
+      setInputs({
+        ...inputs,
+        title: res.data.title,
+        caption: res.data.caption,
+        time_start: res.data.timeStart,
+        time_end: res.data.timeEnd,
+        duration: res.data.duration,
+        date: res.data.date,
+        task: res.data.task,
+        type: res.data.type,
+        img: res.data.img,
+      });
+
+      setTask(taskColor[res.data.task])
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // console.log(inputs)
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
+      setDurationAlert(true);
+      return;
+    }
+    // console.log(inputs)
 
 
-        const formData = new FormData();
-        for (const [key, value] of Object.entries(inputs)) {
-          formData.append(key, value);
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(inputs)) {
+      formData.append(key, value);
+    }
+
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:4000/activities/updatecard/${id}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
         }
-    
-        try {
-          const response = await axios.put(
-            `http://127.0.0.1:4000/activities/updatecard/${id}`,
-            formData,
-            {
-              headers: { "Content-Type": "multipart/form-data" },
-            }
-          );
-          // console.log("Hooooooeqwe")
-        
-          navigate("/readcard");
-        } catch(error) {
-          console.log(error)
-        }
-        }
-        
-        const handleCancel = async (e) => {
-          navigate("/readcard")
-          }
+      );
+      // console.log("Hooooooeqwe")
+
+      navigate("/readcard");
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleCancel = async (e) => {
+    navigate("/readcard")
+  }
 
   return (
     <Layout>
