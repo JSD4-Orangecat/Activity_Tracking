@@ -1,4 +1,4 @@
-// import "../../assets/styles/cardCSS/cretaeUploader.css";
+import "../../assets/styles/cardCSS/createUploader.css";
 import uploadIcon from "/generic/uploadIcon.png";
 
 function EditUploader({ image, handleFileChange, inputs }) {
