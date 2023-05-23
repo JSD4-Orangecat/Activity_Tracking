@@ -175,6 +175,10 @@
   top: 20%;
 }
 
+#responsive-duration-text {
+  display: none;
+}
+
 
 
 
@@ -204,5 +208,9 @@
 
   .icon-img {
     display: none;
+  }
+
+  #responsive-duration-text {
+    display: initial;
   }
 }

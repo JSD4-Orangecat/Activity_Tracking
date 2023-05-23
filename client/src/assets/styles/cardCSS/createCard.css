@@ -10,6 +10,7 @@
     width: 100%;
     height: auto;
     border-radius: 15px 0px 0px 15px;
+    padding-bottom: 50px;
 }
 
 .head-sentence {
@@ -47,5 +48,11 @@
 
     .create-container {
         border-radius: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .firsttopic {
+        display: none;
     }
 }
