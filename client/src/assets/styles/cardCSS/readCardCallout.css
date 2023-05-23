@@ -12,8 +12,10 @@
 .emoji-allcontainer{
     height: 70%;
     width: 80%;
+    padding: 10%;
+    top: 0;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     /* border: 1px solid rgb(43, 31, 151); */
     position: relative;
 }
@@ -23,8 +25,11 @@
     height: 70%;
     width: 100%;
     /* border: 1px solid palevioletred; */
-    position: relative;
+    position: absolute;
     display: flex;
+    top: 20px;
+    margin: 0 auto;
+    right: 0;
 }
 
 /* ---- display emoji ---- */
@@ -42,6 +47,7 @@
 .textarea {
     padding: 2.5%;
     width: 95%;
+    height: 80%;
     position: absolute;
     right: 0%;
     font-family: 'Sono', sans-serif;
@@ -62,9 +68,10 @@
 
 /* ---- emoji picker ---- */
 .emoji-picker {
-    right: 60px;
+    top: 70%;
+    right: -52%;
     z-index: 5;
-    position: fixed;
+    position: absolute;
 }
 
 /* ---- icon ---- */
@@ -83,8 +90,9 @@
     height: 1px;
     width: 100%;
     background-color: #757575;
-    bottom: 0%;
+    /* bottom: 0%; */
     position: absolute;
     border-radius: 5px;
+    margin: 0 auto;
     
 }
