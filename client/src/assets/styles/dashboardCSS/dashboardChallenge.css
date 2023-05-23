@@ -29,3 +29,27 @@
     color: black;
     overflow: auto;
 }
+
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .friend-profile-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .friend-profile {
+        margin: 2.5% auto;
+    }
+
+    .friend-profile img {
+        width: 7.5rem;
+    }
+
+    .friend-profile h3 {
+        display: none;
+    }
+}

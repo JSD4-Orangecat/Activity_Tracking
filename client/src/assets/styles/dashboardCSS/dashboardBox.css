@@ -28,8 +28,20 @@
     background-color: white;
 }
 
+#dashboard-card-responsive-small {
+    display: none;
+}
+
 @media screen and (max-width: 1200px) {
     .dashboard-container {
         flex-wrap: wrap;
+    }
+
+    #dashboard-card-responsive-big {
+        display: none;
+    }
+
+    #dashboard-card-responsive-small {
+        display: initial;
     }
 }

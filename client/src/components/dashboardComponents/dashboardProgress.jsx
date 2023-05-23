@@ -7,7 +7,6 @@ export default function DashboardProgress() {
             <h2 className="progress-text" id="progress-text-title">Silver</h2>
             <div className="progress-content">
                 <div className="progress-medal">
-                    <h2 className="progress-text" id="progress-text-title-2">Silver</h2>
                     <img className="progress-img" id="top-medal" src="/medals/Cardio/medalCardioSilver.png" alt="Silver Medal" />
                 </div>
                 <div className="progress-next">
