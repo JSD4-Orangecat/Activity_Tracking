@@ -1,40 +1,22 @@
 export function calcDuration(inputs) {
-    const tStart = inputs.timeStart;
-    const tEnd = inputs.timeEnd;
+    const toMilliseconds = (time) => {
+        const [hours, minutes] = time.split(":").map(Number);
+        return hours * 60 * 60 * 1000 + minutes * 60 * 1000;
+    };
 
-    const toMilliseconds = (time) => Number(time.split(":")[0]) * 60 * 60 * 1000 + Number(time.split(":")[1]) * 60 * 1000;
+    let difference = Math.abs(toMilliseconds(inputs.timeEnd) - toMilliseconds(inputs.timeStart));
 
-    let difference = Math.abs(toMilliseconds(tEnd) - toMilliseconds(tStart));
-
-    if (toMilliseconds(tEnd) < toMilliseconds(tStart)) {
+    if (toMilliseconds(inputs.timeEnd) < toMilliseconds(inputs.timeStart)) {
         difference = 86400000 - difference;
     }
 
-    let msec = difference;
-    let hh = Math.floor(msec / 1000 / 60 / 60);
-    msec -= hh * 1000 * 60 * 60;
-    let mm = Math.floor(msec / 1000 / 60);
-    msec -= mm * 1000 * 60;
-    let ss = Math.floor(msec / 1000);
-    msec -= ss * 1000;
+    let hh = Math.floor(difference / 1000 / 60 / 60);
+    let mm = Math.floor((difference / 1000 / 60) % 60);
 
-    let displayHour = hh + " h";
-    let displayMin = mm + " m";
+    let hour = hh > 0 ? hh + " h" : "";
+    let min = mm > 0 ? mm + " m" : "";
 
-    let hour;
-    let min;
-
-    if (hh === 0) {
-        hour = "";
-        min = displayMin;
-    } else if (mm === 0) {
-        hour = displayHour;
-        min = "";
-    } else if (hh > 0 && mm > 0) {
-        hour = displayHour;
-        min = displayMin;
-    } else {
-        hour = "0 h";
+    if (hh === 0 && mm === 0) {
         min = "0 m";
     }
 
