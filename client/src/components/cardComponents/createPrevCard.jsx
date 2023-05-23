@@ -58,11 +58,6 @@ function PrevCard({ inputs, task, image, handleFileChange }) {
         </div>
       </div>
 
-      <div className="prevDuration" id="responsive-duration-text">
-        {type && <img src={exerciseIcons[type]} className="icon-img" />}
-        <p className="duration-text">{duration}</p>
-      </div>
-
       {/* preview task status */}
       <div className="previewStatus" style={{ backgroundColor: task }}></div>
     </div>
