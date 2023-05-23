@@ -1,4 +1,5 @@
 import "../../assets/styles/dashboardCSS/dashboardProfile.css";
+import defaultImage from '/home/home-ceo.jpg'
 import { useAuth } from "../../contexts/authentication";
 
 export default function DashboardProfile() {
@@ -6,7 +7,7 @@ export default function DashboardProfile() {
 
   return (
     <div className="dashboard-profile">
-      <img src={currentUser.picture} alt="Profile" />
+      <img src={currentUser.picture ? currentUser.picture : defaultImage} alt="Profile" />
       <h3>{currentUser.firstName}</h3>
     </div>
   );
