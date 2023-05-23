@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
-import SideContainer from "../components/sideContainer";
+import SideContainer from "../components/readCardComponents/sideContainer";
 import EditPrevCard from "../components/editPrevCard";
 import EditForm from "../components/editForm";
 import axios from "axios";
