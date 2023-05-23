@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import Layout from "../components/Layout";
-import SideContainer from "../components/sideContainer";
+import SideContainer from "../components/readCardComponents/sideContainer";
 import EditPrevCard from "../components/editPrevCard";
 import EditForm from "../components/editForm";
 

@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import { calcDuration } from "../utils/calcDuration";
 import axios from "axios";
+
 import Layout from "../components/Layout";
 import PrevCard from "../components/createPrevCard";
 import Form from "../components/createForm";
-import SideContainer from "../components/sideContainer";
+import SideContainer from "../components/readCardComponents/sideContainer";
 import "../assets/styles/createCard.css";
+
+
 
 function CreateCard() {
   const navigate = useNavigate();
@@ -67,6 +70,8 @@ function CreateCard() {
     }
   };
 
+
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsProcessing(!isProcessing);
@@ -77,6 +82,7 @@ function CreateCard() {
     }
 
     const formData = new FormData();
+
     for (const [key, value] of Object.entries(inputs)) {
       formData.append(key, value);
     }
@@ -91,6 +97,7 @@ function CreateCard() {
       );
       console.log(response);
       navigate("/readcard");
+
     } catch (error) {
       console.log(error);
     }

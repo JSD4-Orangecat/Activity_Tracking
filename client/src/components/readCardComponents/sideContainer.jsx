@@ -1,9 +1,7 @@
-import '../assets/styles/sideContainer.css';
+import '../../assets/styles/sideContainer.css';
 import catBiceps from "/cat/catBiceps.png"
 
 function SideContainer() {
-
-
     return (
         <div className='sideContainer'>
             <div className='sideText'>
