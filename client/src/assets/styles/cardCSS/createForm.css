@@ -74,7 +74,7 @@ form {
 
 .tile:hover {
   border: 3px solid rgba(216, 216, 216, 0.275);
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .tile input[type="radio"] {
@@ -116,9 +116,10 @@ form {
 }
 
 /* after clicked, border appear */
-.tile input[type="radio"]:checked {
+.tile input[type="radio"]:checked+.activity-label {
   transform: scale(1.05);
   border: 3px solid orange;
+  border-radius: 15px;
 }
 
 /* after clicked, words turn to orange */
@@ -372,6 +373,7 @@ form {
   font-weight: 600;
   font-size: medium;
   padding: 4px 15px;
+  width: 12%;
   color: white;
   background-color: #ff7b54;
   border: #ff7b54;
@@ -379,28 +381,6 @@ form {
   cursor: pointer;
   top: 0.5rem;
   left: -10%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-#submit-btn {
-  left: -10%;
-}
-
-.btn-cancel {
-  position: relative;
-  font-family: "Sono", sans-serif;
-  font-weight: 600;
-  width: 10%;
-  font-size: medium;
-  padding: 4px 15px;
-  color: rgb(255, 255, 255);
-  background-color: lightgray;
-  border: lightgray;
-  border-radius: 5px;
-  cursor: pointer;
-  left: 10%;
   display: flex;
   justify-content: center;
   margin: 0 auto;
