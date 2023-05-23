@@ -60,6 +60,7 @@ export const getActivity = async (req, res) => {
   try {
     const user_ID = req.user.info._id;
     const activities = await Activity.find({ userID: user_ID })
+      .sort({ date: -1 })
       .limit(parseInt(limit))
       .skip((parseInt(page) - 1) * parseInt(limit))
       .exec();
