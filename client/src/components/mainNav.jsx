@@ -31,7 +31,7 @@ export default function MainNav() {
     profile = (
       <div className="profile-container">
         <div className="profile-image">
-          <img src={currentUser.picture} alt="Orange-cat's logo" />
+          <img src={currentUser.picture ? currentUser.picture : navLogoImage} alt="Orange-cat's logo" />
         </div>
         <span
           onClick={() => setIsDropdown(!isDropdown)}
