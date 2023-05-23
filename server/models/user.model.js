@@ -41,22 +41,10 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
-    coverImage: {
-      type: String,
+    rank: {
+      type: Number,
       required: false,
     },
-    quote: {
-      type: String,
-      required: false,
-    },
-    emoji: {
-      type: String,
-      required: false,
-    },
-    // "rank": {
-    //     "type": Number,
-    //     "required": false
-    // }
   },
   {
     collection: "user",

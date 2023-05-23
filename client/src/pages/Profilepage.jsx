@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-
+import swal from "sweetalert";
 import "../assets/styles/Profilpage.css";
 import { useNavigate } from "react-router";
+import BarLoader from "react-spinners/BarLoader";
 
 function Profile() {
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
   const [srcImg, setSrcImg] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
   //function fetch data
 
   const fetchData = async () => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     try {
-      const response = await axios.get("http://127.0.0.1:4000/auth/profile");
+      const response = await axios.get(`${backend}/profile`);
       setUserData(response.data.data);
-      // setSrcImg((response.data.data.picture));
-      console.log(response.data);
-      console.log(response.data.data.picture);
+      setSrcImg(response.data.data.picture);
     } catch (err) {
       console.log(err);
     }
@@ -28,104 +30,97 @@ function Profile() {
     fetchData();
   }, []);
 
-    //function to handle picture change
-    const handleChangePic = (e) => {
-      const { files } = e.target;
-      if (files && files[0]) {
-        const file = files[0];
-        setSrcImg(URL.createObjectURL(file));
-        setUserData({ ...userData, picture: file });
-      }
-    };
-  
+  //function to handle picture change
+  const handleChangePic = (e) => {
+    const { files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setSrcImg(URL.createObjectURL(file));
+      setUserData({ ...userData, picture: file });
+    }
+  };
 
   //function to handle change
   const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value, files } = e.target;
-    // if (files && files[0]) {
-    const file = files[0];
-    setSrcImg(URL.createObjectURL(file));
-    //set the handleChangeInput to store this img's value with others
-    setUserData((prevInputs) => ({
-      ...prevInputs,
-      [name]: value,
-      picture: file,
-    }));
-    // } else {
-    //setUserData({ ...userData, [name]: value });
-    // }
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
   };
-  console.log(userData);
-
-  console.log(userData);
 
   //function save update of profile
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
+    const backend = import.meta.env.VITE_BACKEND_URL;
+    setIsSubmit(true);
     //validate data
 
     const error = validate(userData);
     setFormErrors(error);
 
-    console.log(userData);
     //check errors before making the axios request
     if (Object.keys(error).length === 0) {
-      // const { name, value, files } = e.target;
-      // // const file = files[0];
-      // setUserData((prevInputs) => ({
-      //   ...prevInputs,
-      //   [name]: value,
-      //   picture: files,
-      // }));
-      const { confirmpassword, ...allData } = userData;
-      console.log("inside data");
-      console.log(allData);
-      //   setUserData({ ...userData, [name]: value });
-      console.log(userData);
-      console.log("no errors");
+      setIsProcessing(true);
+      const { ...allData } = userData;
+
       //convert to form data
       const formData = new FormData();
-      // formData.append("picture", userData.pic);
       for (const [key, value] of Object.entries(allData)) {
         formData.append(key, value);
       }
-      // if (file) {
-      formData.append("picture", file);
-      // }
-
-      console.log(...formData);
       try {
         const response = await axios.put(
-          "http://127.0.0.1:4000/auth/profile",
+          `${backend}/profile/update`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
-
-        console.log(response.data);
+        // update data to local storage
+        const updateData = response.data.data;
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUser.firstName = updateData.firstName;
+        currentUser.lastName = updateData.lastName;
+        currentUser.email = updateData.email;
+        currentUser.height = updateData.height;
+        currentUser.weight = updateData.weight;
+        currentUser.picture = updateData.picture;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        swal("Updated!", "Your profile has been updated!", "success");
         navigate("/dashboard"); // navigate to the dashboard
       } catch (err) {
         console.log(err);
+        setIsProcessing(false);
+        swal("Oops", "Something went wrong!", "error");
       }
     }
   };
   //function delete profile
-  const handleDeleteProfile = async () => {
-    const deleteUser = confirm("Are you sure you want to delete this account?");
-    if (!deleteUser) {
-      return;
-    }
-    try {
-      const response = await axios.delete("http://127.0.0.1:4000/auth/profile");
-
-      console.log(`res: ${response.data}`);
-      navigate("/"); // navigate to home page
-    } catch (error) {
-      console.log(error);
-    }
+  const handleDeleteProfile = async (e) => {
+    e.preventDefault();
+    const backend = import.meta.env.VITE_BACKEND_URL;
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this account!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        try {
+          const response = await axios.delete(`${backend}/profile/delete`);
+          swal("Your account has been deleted!", {
+            icon: "success",
+          });
+          localStorage.removeItem("currentUser");
+          localStorage.removeItem("token");
+          navigate("/"); // navigate to home
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        swal("Your account is safe!");
+      }
+    });
   };
 
   //function for validate user data
@@ -177,9 +172,6 @@ function Profile() {
 
     return errors;
   };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <Layout>
@@ -219,10 +211,27 @@ function Profile() {
                 <br />
               </div>
               <div className="allBtnProfile">
-                <button onClick={handleUpdateProfile} className="btnProfile">
-                  Submit
+                <button
+                  onClick={handleUpdateProfile}
+                  className="btnProfile"
+                  disabled={isProcessing}
+                >
+                  <span>{isProcessing ? "Updating ... " : "Update"}</span>
+                  {isProcessing ? (
+                    <div className="loading-icon-edit">
+                      <BarLoader
+                        color="#808080"
+                        size={200}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </div>
+                  ) : null}
                 </button>
-                <button onClick={handleDeleteProfile} className="btnProfile">
+                <button
+                  onClick={handleDeleteProfile}
+                  className="btnProfile-delete"
+                >
                   Delete
                 </button>
               </div>

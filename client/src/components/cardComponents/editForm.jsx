@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import BarLoader from "react-spinners/BarLoader";
 
 import biking from "/exercises/biking.png";
@@ -19,29 +19,23 @@ function Form({
   handleCancel,
   isProcessing,
 }) {
-
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
-
-
 
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-
 
   return (
     <form onSubmit={handleFormSubmit} className="create-card-form">
       <div className="title-date">
-
         {/* Add data: Title  */}
         <label htmlFor="title">Title:</label>
         <input
@@ -188,7 +182,6 @@ function Form({
       <div className="taskStatus">
         <p>Task Status:</p>
         <div className="wrapper">
-
           <input
             type="radio"
             value="complete"
@@ -220,15 +213,19 @@ function Form({
 
           <label htmlFor="complete" className="option option-1">
             <div className="dot dot-1"></div>
-            <span>{window.innerWidth <= 768 ? 'Completed' : 'Mission Completed'}</span>
+            <span>
+              {window.innerWidth <= 768 ? "Completed" : "Mission Completed"}
+            </span>
           </label>
           <label htmlFor="inProgress" className="option option-2">
             <div className="dot dot-2"></div>
-            <span>{window.innerWidth <= 768 ? 'Ongoing' : 'In Progress'}</span>
+            <span>{window.innerWidth <= 768 ? "Ongoing" : "In Progress"}</span>
           </label>
           <label htmlFor="fail" className="option option-3">
             <div className="dot dot-3"></div>
-            <span>{window.innerWidth <= 768 ? 'Failed' : 'Mission Failed'}</span>
+            <span>
+              {window.innerWidth <= 768 ? "Failed" : "Mission Failed"}
+            </span>
           </label>
         </div>
       </div>
@@ -247,18 +244,20 @@ function Form({
       <div className="create-buttons">
         <button type="submit" className="btn-submit" disabled={isProcessing}>
           <span>{isProcessing ? "Processing ... " : "Submit"}</span>
+          {isProcessing ? (
+            <div className="loading-icon-edit">
+              <BarLoader
+                color="#FFFFFF"
+                size={200}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : null}
         </button>
-        {isProcessing ? (
-          <div className="loading-icon">
-            <BarLoader
-              color="#FF7B54"
-              size={200}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-        ) : null}
-        <button value="cancel" className="btn-cancel" onClick={handleCancel}>Cancel</button>
+        <button value="cancel" className="btn-cancel" onClick={handleCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );

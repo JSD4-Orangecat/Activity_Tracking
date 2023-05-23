@@ -19,7 +19,7 @@
   margin: auto;
   z-index: 1;
 }
-.addjustHeader h1{
+.addjustHeader h1 {
   font-size: xx-large;
 }
 .editform {
@@ -99,6 +99,17 @@
   font-weight: 600;
   cursor: pointer;
 }
+.btnProfile-delete {
+  background-color: rgb(255, 64, 64);
+  height: 30%;
+  width: 30%;
+  border: rgb(255, 64, 64);
+  border-radius: 10px;
+  font-family: "Sono", sans-serif;
+  font-size: large;
+  font-weight: 600;
+  cursor: pointer;
+}
 
 .btnforinputphoto {
   cursor: pointer;
@@ -113,7 +124,7 @@
   height: 450px;
 }
 #genderForProfile {
-  padding-top: 2%;
+  padding-top: 2.5%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -148,4 +159,12 @@
   width: 50px;
   padding-top: 0;
   padding-right: 0;
+}
+
+.loading-icon-edit {
+  top: 1rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 0.1rem;
 }

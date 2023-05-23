@@ -39,15 +39,13 @@ function ReadCard() {
   };
 
   const pickEmoji = async (e) => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     setCurrentEmoji(e.native);
     setPickerVisible(!pickerVisible);
     setRcInputs((prevRcInputs) => ({ ...prevRcInputs, emoji: e.native }));
     const data = { quote: rcInputs.quote, emoji: e.native };
     try {
-      const response = await axios.put(
-        "http://localhost:4000/quote/update",
-        data
-      );
+      const response = await axios.put(`${backend}/quote/update`, data);
     } catch (err) {
       console.error(err);
     }
@@ -61,6 +59,7 @@ function ReadCard() {
   };
 
   const handleFileChange = async (e) => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     const { files } = e.target;
     if (files && files[0]) {
       const file = files[0];
@@ -75,13 +74,9 @@ function ReadCard() {
         formData.append(key, value);
       }
       try {
-        const response = await axios.put(
-          "http://localhost:4000/quote/update",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
+        const response = await axios.put(`${backend}/quote/update`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       } catch (err) {
         console.error(err);
       }
@@ -95,8 +90,9 @@ function ReadCard() {
 
   //for get method : activtiy data, use this inside useEffect
   const fetchActivity = async () => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     try {
-      const response = await axios.get("http://127.0.0.1:4000/activities", {
+      const response = await axios.get(`${backend}/activities`, {
         params: {
           page,
           limit,
@@ -138,8 +134,9 @@ function ReadCard() {
   // };
 
   const fetchQuote = async () => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     try {
-      const response = await axios.get("http://localhost:4000/quote");
+      const response = await axios.get(`${backend}/quote`);
       if (response.data.data) {
         setCover(response.data.data.cover);
         setCurrentEmoji(response.data.data.emoji);
@@ -151,14 +148,11 @@ function ReadCard() {
   };
 
   const handleOnBlur = async (event) => {
-    console.log("handle blur");
+    const backend = import.meta.env.VITE_BACKEND_URL;
     const { cover, emoji, ...data } = rcInputs;
     data.emoji = currentEmoji;
     try {
-      const response = await axios.put(
-        "http://localhost:4000/quote/update",
-        data
-      );
+      const response = await axios.put(`${backend}/quote/update`, data);
     } catch (err) {
       console.error(err);
     }
@@ -205,23 +199,23 @@ function ReadCard() {
         ></input>
 
         {/* page */}
-        {totalPages > 1 &&
+        {totalPages > 1 && (
           <div className="r-page">
             <FontAwesomeIcon
               onClick={handlerPrevPage}
               icon={faCircleLeft}
               className="faCircle"
-              style={{ color: page !== 1 ? 'ff7b54' : 'ababab' }}
+              style={{ color: page !== 1 ? "ff7b54" : "ababab" }}
             />
             <span>{page}</span>
             <FontAwesomeIcon
               onClick={handlerNextPage}
               icon={faCircleRight}
               className="faCircle"
-              style={{ color: page !== totalPages ? 'ff7b54' : 'ababab' }}
+              style={{ color: page !== totalPages ? "ff7b54" : "ababab" }}
             />
           </div>
-        }
+        )}
       </main>
     </Layout>
   );
