@@ -335,6 +335,10 @@ form {
   left: -10%;
 }
 
+.btn-cancle-link {
+  text-decoration: none;
+}
+
 .btn-cancel {
   position: relative;
   font-family: "Sono", sans-serif;
