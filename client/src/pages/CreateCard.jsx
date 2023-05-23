@@ -5,9 +5,9 @@ import { calcDuration } from "../utils/calcDuration";
 import axios from "axios";
 
 import Layout from "../components/Layout";
-import PrevCard from "../components/createPrevCard";
-import Form from "../components/createForm";
-import SideContainer from "../components/readCardComponents/sideContainer";
+import PrevCard from "../components/cardComponents/createPrevCard";
+import Form from "../components/cardComponents/createForm";
+import SideContainer from "../components/cardComponents/sideContainer";
 import "../assets/styles/createCard.css";
 
 
