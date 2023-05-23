@@ -74,7 +74,7 @@ form {
 
 .tile:hover {
   border: 3px solid rgba(216, 216, 216, 0.275);
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .tile input[type="radio"] {
@@ -116,9 +116,10 @@ form {
 }
 
 /* after clicked, border appear */
-.tile input[type="radio"]:checked {
+.tile input[type="radio"]:checked+.activity-label {
   transform: scale(1.05);
   border: 3px solid orange;
+  border-radius: 20px;
 }
 
 /* after clicked, words turn to orange */
