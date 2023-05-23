@@ -10,7 +10,6 @@
 }
 
 .container-text {
-  /* border: 1px solid rgb(65, 84, 182); */
   height: 110px;
   width: 63.6%;
   position: absolute;
@@ -19,7 +18,6 @@
 }
 
 .prevTextbox {
-  /* border: 1px solid burlywood; */
   height: 23px;
   width: 85%;
   overflow-y: scroll;
@@ -55,7 +53,6 @@
 
 .prevCaption {
   margin-top: 33px;
-  /* border: 1px solid rgb(212, 106, 24); */
   height: 50px;
   width: 98%;
   right: 0;
@@ -73,7 +70,6 @@
 }
 
 .prevDate {
-  /* border: 1px solid rgb(135, 190, 222); */
   height: 18px;
   width: 40%;
   position: absolute;
@@ -82,7 +78,6 @@
 }
 
 .prevDuration {
-  /* border: 1px solid rgb(158, 135, 222); */
   height: 18px;
   width: 30%;
   position: absolute;
@@ -196,5 +191,14 @@
 
   .container-text {
     display: none;
+  }
+
+  .prevDuration {
+    position: initial;
+  }
+
+  .duration-text {
+    text-align: center;
+    bottom: -20px;
   }
 }
