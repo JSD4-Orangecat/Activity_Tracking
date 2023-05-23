@@ -28,7 +28,7 @@ function FormRegister() {
   });
 
 
-
+  
   // Function to handle change in input
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -45,7 +45,7 @@ function FormRegister() {
   }
 
 
-
+  
   // Function to handle save inputs
   const saveInput = async (e) => {
     e.preventDefault();
@@ -79,7 +79,7 @@ function FormRegister() {
   };
 
 
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

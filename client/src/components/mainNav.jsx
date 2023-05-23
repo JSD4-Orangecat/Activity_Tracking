@@ -48,7 +48,7 @@ export default function MainNav() {
           <div className="arrow-up"></div>
         </li>
         <li>
-          <a className="navbar-link" href="#">
+          <a className="navbar-link" href="/profile">
             Profile
           </a>
         </li>
