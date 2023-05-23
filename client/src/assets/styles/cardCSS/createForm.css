@@ -331,6 +331,10 @@ form {
   margin: 0 auto;
 }
 
+#submit-btn {
+  left: -10%;
+}
+
 .btn-cancel {
   position: relative;
   font-family: "Sono", sans-serif;
