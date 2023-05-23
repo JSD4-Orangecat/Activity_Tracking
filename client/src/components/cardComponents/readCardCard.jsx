@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../assets/styles/readCardCSS/readCardCard.css";
+import "../../assets/styles/cardCSS/readCardCard.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";

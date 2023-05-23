@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "../../assets/styles/createPrevCard.css";
+import "../../assets/styles/cardCSS/createPrevCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
