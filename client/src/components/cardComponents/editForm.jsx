@@ -215,18 +215,18 @@ function Form({
 
         {/* submit button */}
         <button type="submit" className="btn-save" disabled={isProcessing}>
-        <span>{isProcessing ? "Processing ... " : "Submit"}</span>
-      </button>
-      {isProcessing ? (
-        <div className="loading-icon">
-          <BarLoader
-            color="#FF7B54"
-            size={200}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : null}
+          <span>{isProcessing ? "Processing ... " : "Submit"}</span>
+        </button>
+        {isProcessing ? (
+          <div className="loading-icon">
+            <BarLoader
+              color="#FF7B54"
+              size={200}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ) : null}
       </form>
       <button value="cancel" className="btn-cancel" onClick={handleCancel}>
         cancel
