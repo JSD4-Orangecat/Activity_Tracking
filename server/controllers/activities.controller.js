@@ -28,12 +28,13 @@ export const postActivities = async (req, res) => {
 
       const user = await User.findById(newActivity.userID)
 
-      user.rank += newActivity.exp;
-
+      const nextRank = user.rank + newActivity.exp;
+      user.rank = nextRank
+      
       await newActivity.save();
       await user.save()
       
-      return res.status(200).send("activity card created successfully");
+      return res.status(200).json({message: "activity card created successfully", rank: nextRank});
     } catch (err) {
       console.log(err);
       res.status(500).send("Creating activity card failed");

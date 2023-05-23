@@ -96,6 +96,15 @@ function CreateCard() {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      currentUser.rank = response.data.rank
+
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify(currentUser)
+        );
+
       console.log(response);
       navigate("/readcard");
 
