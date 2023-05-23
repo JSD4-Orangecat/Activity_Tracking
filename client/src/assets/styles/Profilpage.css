@@ -1,28 +1,30 @@
 /* #FF7B54, #FFD56B */
 .wrapImgProfile {
-    height: 300px;
-    width: 300px;
-    position: relative;
+  height: 300px;
+  width: 300px;
+  position: relative;
 
-    border-radius: 50%;
-    background: url("/public/generic/Login_logo.png");
-    background-size: 100% 100%;
-    margin: auto;
-    /* z-index: -1; */
-  }
-  #profileImg{
-    cursor: auto;
-    border-radius: 50%;
-    height: 300px;
-    width: 300px;
-    border: 100% double transparent;
-    margin: auto;
-    z-index: 1;
-  }
-  .editform{
-  
-    box-sizing: border-box;
-    width: 80%;
+  border-radius: 50%;
+  background: url("/public/generic/Login_logo.png");
+  background-size: 100% 100%;
+  margin: auto;
+  /* z-index: -1; */
+}
+#profileImg {
+  cursor: auto;
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  border: 100% double transparent;
+  margin: auto;
+  z-index: 1;
+}
+.addjustHeader h1{
+  font-size: xx-large;
+}
+.editform {
+  box-sizing: border-box;
+  width: 80%;
   border: solid none;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -31,87 +33,96 @@
   height: 600px;
   text-align: center;
   /* margin-bottom: 15%; */
-  }
-  .labelInputEdit{
- font-size: large;
-    line-height: 30px;
-font-weight: 300px;
-  }
-  .inputProfile{
-    background-color: transparent;
-    border-radius: 8px;
-    border: solid gray 1px;
-    width: 90%;
-    height: 2rem;
-    font-family: "Sono", sans-serif;
-   font-size: large;
-  }
- /*  box right information*/
-  .allInformations{
-    display: flex;
-    justify-content: center;
-    width: 60%;
-    align-items: center;
-    text-align: center;
-    height: 600px;
-  }
-  .boxforflex{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+.labelInputEdit {
+  font-size: large;
+  line-height: 30px;
+  font-weight: 300px;
+}
+.inputProfile {
+  background-color: transparent;
+  border-radius: 8px;
+  border: solid gray 1px;
+  width: 90%;
+  height: 2rem;
+  font-family: "Sono", sans-serif;
+  font-size: large;
+}
+/*  box right information*/
+.allInformations {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  align-items: center;
+  text-align: start;
+  margin-top: 18px;
+  height: 450px;
+  font-weight: 600;
+  /* border: 1px solid; */
+}
 
-  }
-  /* box left pictureprofile and button*/
-  .setprofile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
-    height: 450px;
-  }
-  .allBtnProfile{
-    width: 100%;
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    
-  }
-  .btnProfile{
-    background-color:  #939B62;
-    height: 30%;
-    width: 30%;
-    border: #939B62;
-    border-radius: 10px;
-    font-family: "Sono", sans-serif;
+.allInformations input {
+  margin-bottom: 15px;
+}
+
+.boxforflex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* box left pictureprofile and button*/
+.setprofile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 450px;
+}
+.allBtnProfile {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+.btnProfile {
+  background-color: #939b62;
+  height: 30%;
+  width: 30%;
+  border: #939b62;
+  border-radius: 10px;
+  font-family: "Sono", sans-serif;
   font-size: large;
   font-weight: 600;
-  }
-
-  .btnforinputphoto{
-    cursor: pointer;
-    height: 10%;
-    width: 10%;
-    background-color: #939B62;
-z-index: 1;
-    border: #939B62;
-  }
-  .boxRightForForm{
-    width: 80%;
-    height: 450px;
-
-  }
-  #genderForProfile{
-    padding-top: 2.5%;
-  }
-#inputPhotoProfile{
- /* display: non; */
- display: flex;
+  cursor: pointer;
 }
-.photos{
+
+.btnforinputphoto {
+  cursor: pointer;
+  height: 10%;
+  width: 10%;
+  background-color: #939b62;
+  z-index: 1;
+  border: #939b62;
+}
+.boxRightForForm {
+  width: 80%;
+  height: 450px;
+}
+#genderForProfile {
+  padding-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+#inputPhotoProfile {
+  /* display: non; */
+  display: flex;
+}
+.photos {
   position: absolute;
   bottom: 10px;
   left: 110px;
@@ -121,22 +132,20 @@ z-index: 1;
   height: 30px;
   box-sizing: border-box;
 }
-.TitleAndExit{
+.TitleAndExit {
   display: flex;
   width: 100%;
 }
-.headerProfile{
+.headerProfile {
   padding-top: 2.5%;
   width: 97%;
 }
- .cross {
+.cross {
   width: 5%;
-
 }
- .crossPic {
+.crossPic {
   height: 50px;
   width: 50px;
-  padding-top: 2.5%;
+  padding-top: 0;
   padding-right: 0;
 }
- 

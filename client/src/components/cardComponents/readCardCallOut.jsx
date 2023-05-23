@@ -30,12 +30,14 @@ function CallOut({
             placeholder="Got a quote that inspires you to keep pushing? tell us here!"
             defaultValue={quote}
           />
-        </div>
-        <FontAwesomeIcon
+
+          <FontAwesomeIcon
           icon={faFaceSmile}
           className="fa-facesmile"
           onClick={showPicker}
-        />
+          />
+        </div>
+        
         <div
           style={{ display: pickerVisible ? "block" : "none" }}
           className="emoji-picker"

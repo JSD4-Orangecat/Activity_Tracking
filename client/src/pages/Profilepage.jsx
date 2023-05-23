@@ -9,14 +9,14 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
-  const [srcImg, setSrcImg] = useState("");
+  const [srcImg, setSrcImg] = useState(null);
   //function fetch data
 
   const fetchData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:4000/auth/profile");
       setUserData(response.data.data);
-      setSrcImg(response.data.data.picture);
+      // setSrcImg((response.data.data.picture));
       console.log(response.data);
       console.log(response.data.data.picture);
     } catch (err) {
@@ -28,21 +28,37 @@ function Profile() {
     fetchData();
   }, []);
 
-  //function to handle picture change
-  const handleChangePic = (e) => {
-    const { files } = e.target;
-    if (files && files[0]) {
-      const file = files[0];
-      setSrcImg(URL.createObjectURL(file));
-      setUserData({ ...userData, picture: file });
-    }
-  };
+    //function to handle picture change
+    const handleChangePic = (e) => {
+      const { files } = e.target;
+      if (files && files[0]) {
+        const file = files[0];
+        setSrcImg(URL.createObjectURL(file));
+        setUserData({ ...userData, picture: file });
+      }
+    };
+  
 
   //function to handle change
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+    e.preventDefault();
+    const { name, value, files } = e.target;
+    // if (files && files[0]) {
+    const file = files[0];
+    setSrcImg(URL.createObjectURL(file));
+    //set the handleChangeInput to store this img's value with others
+    setUserData((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+      picture: file,
+    }));
+    // } else {
+    //setUserData({ ...userData, [name]: value });
+    // }
   };
+  console.log(userData);
+
+  console.log(userData);
 
   //function save update of profile
 
@@ -56,17 +72,28 @@ function Profile() {
     console.log(userData);
     //check errors before making the axios request
     if (Object.keys(error).length === 0) {
-      const { ...allData } = userData;
+      // const { name, value, files } = e.target;
+      // // const file = files[0];
+      // setUserData((prevInputs) => ({
+      //   ...prevInputs,
+      //   [name]: value,
+      //   picture: files,
+      // }));
+      const { confirmpassword, ...allData } = userData;
       console.log("inside data");
       console.log(allData);
+      //   setUserData({ ...userData, [name]: value });
       console.log(userData);
       console.log("no errors");
-
       //convert to form data
       const formData = new FormData();
+      // formData.append("picture", userData.pic);
       for (const [key, value] of Object.entries(allData)) {
         formData.append(key, value);
       }
+      // if (file) {
+      formData.append("picture", file);
+      // }
 
       console.log(...formData);
       try {
@@ -77,19 +104,6 @@ function Profile() {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        console.log(response.data)
-        currentUser.firstName = response.data.user.firstName
-        currentUser.lastName = response.data.user.lastName
-        currentUser.picture = response.data.user.picture
-        currentUser.height = response.data.user.height
-        currentUser.weight = response.data.user.weight
-
-        localStorage.setItem(
-          "currentUser",
-          JSON.stringify(currentUser)
-        );
-        console.log(currentUser)
 
         console.log(response.data);
         navigate("/dashboard"); // navigate to the dashboard
@@ -108,9 +122,7 @@ function Profile() {
       const response = await axios.delete("http://127.0.0.1:4000/auth/profile");
 
       console.log(`res: ${response.data}`);
-      localStorage.removeItem("currentUser");
-      localStorage.removeItem("token");
-      navigate("/register"); // navigate to register
+      navigate("/"); // navigate to home page
     } catch (error) {
       console.log(error);
     }
@@ -208,7 +220,7 @@ function Profile() {
               </div>
               <div className="allBtnProfile">
                 <button onClick={handleUpdateProfile} className="btnProfile">
-                  Update
+                  Submit
                 </button>
                 <button onClick={handleDeleteProfile} className="btnProfile">
                   Delete

@@ -1,7 +1,17 @@
 .friend-profile-container {
     height: 16rem;
     overflow: auto;
+    
 }
+
+.friend-profile-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .friend-profile-container::-webkit-scrollbar-thumb {
+    background-color: #ff7b54;
+    border-radius: 12px;
+  }
 
 .friend-profile {
     display: flex;
@@ -30,6 +40,15 @@
     overflow: auto;
 }
 
+.friend-profile h3::-webkit-scrollbar {
+    width: 1px;
+    height: 3px;
+  }
+  
+  .friend-profile h3::-webkit-scrollbar-thumb {
+    background-color: #ff7b54;
+    border-radius: 5px;
+  }
 
 
 

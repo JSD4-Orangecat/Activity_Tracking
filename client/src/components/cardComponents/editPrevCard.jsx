@@ -6,7 +6,7 @@ import running from '/exercises/running.png';
 import swimming from '/exercises/swimming.png';
 import cardio from '/exercises/cardio.png';
 import walking from '/exercises/walking.png';
-import Uploader from './createUploader'
+import EditUploader from './editUploader.jsx';
 
 
 function EditPrevCard({ inputs, task, image, handleFileChange }) {
@@ -16,7 +16,7 @@ function EditPrevCard({ inputs, task, image, handleFileChange }) {
             <div className='prevcard'>
                 {/* preview Image */}
                 <div className='prevImg'>
-                    <Uploader image={image} handleFileChange={handleFileChange} />
+                    <EditUploader image={image} handleFileChange={handleFileChange} inputs={inputs} />
                 </div>
 
 

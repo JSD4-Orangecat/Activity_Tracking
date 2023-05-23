@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import BarLoader from "react-spinners/BarLoader";
 import biking from "/exercises/biking.png";
 import running from "/exercises/running.png";
@@ -8,30 +8,32 @@ import walking from "/exercises/walking.png";
 import "../../assets/styles/cardCSS/createForm.css";
 import "../../assets/styles/cardCSS/createFormResponsive.css";
 
-function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert, isProcessing, handleCancel }) {
-
+function Form({
+  handleChangeInput,
+  calcDuration,
+  changeColor,
+  handleFormSubmit,
+  durationAlert,
+  isProcessing,
+  handleCancel,
+}) {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
-
-
 
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-
 
   return (
     <form onSubmit={handleFormSubmit} className="create-card-form">
       <div className="title-date">
-
         {/* Add data: Title  */}
         <label htmlFor="title">TiTle:</label>
         <input
@@ -165,7 +167,6 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
       <div className="taskStatus">
         <p>Task Status:</p>
         <div className="wrapper">
-
           <input
             type="radio"
             value="complete"
@@ -194,15 +195,19 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
 
           <label htmlFor="complete" className="option option-1">
             <div className="dot dot-1"></div>
-            <span>{window.innerWidth <= 768 ? 'Completed' : 'Mission Completed'}</span>
+            <span>
+              {window.innerWidth <= 768 ? "Completed" : "Mission Completed"}
+            </span>
           </label>
           <label htmlFor="inProgress" className="option option-2">
             <div className="dot dot-2"></div>
-            <span>{window.innerWidth <= 768 ? 'Ongoing' : 'In Progress'}</span>
+            <span>{window.innerWidth <= 768 ? "Ongoing" : "In Progress"}</span>
           </label>
           <label htmlFor="fail" className="option option-3">
             <div className="dot dot-3"></div>
-            <span>{window.innerWidth <= 768 ? 'Failed' : 'Mission Failed'}</span>
+            <span>
+              {window.innerWidth <= 768 ? "Failed" : "Mission Failed"}
+            </span>
           </label>
         </div>
       </div>
@@ -231,7 +236,9 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
             />
           </div>
         ) : null}
-        <button value="cancel" className="btn-cancel" onClick={handleCancel}>cancel</button>
+        <button value="cancel" className="btn-cancel" onClick={handleCancel}>
+          cancel
+        </button>
       </div>
     </form>
   );
