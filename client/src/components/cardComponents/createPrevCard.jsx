@@ -58,7 +58,7 @@ function PrevCard({ inputs, task, image, handleFileChange }) {
         </div>
       </div>
 
-      <div className="prevDuration">
+      <div className="prevDuration" id="responsive-duration-text">
         {type && <img src={exerciseIcons[type]} className="icon-img" />}
         <p className="duration-text">{duration}</p>
       </div>
