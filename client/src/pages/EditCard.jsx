@@ -128,7 +128,6 @@ function EditCard() {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      // console.log("Hooooooeqwe")
 
       navigate("/readcard");
     } catch (error) {
@@ -143,34 +142,32 @@ function EditCard() {
   return (
     <Layout>
       <div className="create-card-container">
-        <div className="bg">
-          <SideContainer />
-          <div className="container">
-            <div className="head-sentence">
-              <h1 className="firsttopic">Edit Your Awesome Card</h1>
-              <h2 className="secondtopic">Did You Meow Today?</h2>
-              <h3 className="thirdtopic">Today's Workout</h3>
-            </div>
-            {/* card */}
-            <EditPrevCard
-              inputs={inputs}
-              image={image}
-              handleFileChange={handleFileChange}
-              task={task}
-              handleChangeInput={handleChangeInput}
-            />
-            {/* form */}
-            <EditForm
-              handleChangeInput={handleChangeInput}
-              calcDuration={calcDuration}
-              changeColor={changeColor}
-              inputs={inputs}
-              handleFormSubmit={handleFormSubmit}
-              durationAlert={durationAlert}
-              handleCancel={handleCancel}
-              isProcessing={isProcessing}
-            />
+        <SideContainer />
+        <div className="create-container">
+          <div className="head-sentence">
+            <h1 className="firsttopic">Edit Your Awesome Card</h1>
+            <h2 className="secondtopic">Did You Meow Today?</h2>
+            <h3 className="thirdtopic">Today's Workout</h3>
           </div>
+          {/* card */}
+          <EditPrevCard
+            inputs={inputs}
+            image={image}
+            handleFileChange={handleFileChange}
+            task={task}
+            handleChangeInput={handleChangeInput}
+          />
+          {/* form */}
+          <EditForm
+            handleChangeInput={handleChangeInput}
+            calcDuration={handleCalcDuration}
+            changeColor={changeColor}
+            inputs={inputs}
+            handleFormSubmit={handleFormSubmit}
+            durationAlert={durationAlert}
+            handleCancel={handleCancel}
+            isProcessing={isProcessing}
+          />
         </div>
       </div>
     </Layout>
