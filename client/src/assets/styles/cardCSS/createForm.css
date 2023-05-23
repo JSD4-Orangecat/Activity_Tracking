@@ -385,6 +385,28 @@ form {
   margin: 0 auto;
 }
 
+#submit-btn {
+  left: -10%;
+}
+
+.btn-cancel {
+  position: relative;
+  font-family: "Sono", sans-serif;
+  font-weight: 600;
+  width: 10%;
+  font-size: medium;
+  padding: 4px 15px;
+  color: rgb(255, 255, 255);
+  background-color: lightgray;
+  border: lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .loading-icon {
   position: relative;
   top: 1rem;
