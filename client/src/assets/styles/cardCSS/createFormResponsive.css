@@ -20,9 +20,15 @@
         text-align: center;
     }
 
+    .activity-list {
+        justify-content: space-around;
+    }
+
     .time-duration {
+        margin-top: 10%;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
     }
 
     .time-start-end {
@@ -35,6 +41,33 @@
     .time-end {
         display: flex;
         gap: 20px;
+    }
+
+    .time-duration button {
+        width: 200px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .taskStatus p {
+        margin-top: 3%;
+        text-align: center;
+    }
+
+    .btn-submit {
+        padding: 8px 30px;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .dot {
+        display: none;
+    }
+
+    .activity-list {
+        justify-content: space-evenly;
     }
 }
 
