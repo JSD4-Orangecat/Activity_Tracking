@@ -32,6 +32,7 @@ function CreateCard() {
     task: "",
     type: "",
     img: "",
+    exp: "",
     userID: currentUser._id,
   });
 

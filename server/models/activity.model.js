@@ -40,14 +40,14 @@ const ActivitySchema = new Schema(
       type: "string",
       required: false,
     },
+    exp: {
+      type: "Number",
+      required: false
+    },
     userID: {
       type: "string",
       required: true,
-    },
-    // exp: {
-    //   type: "Number",
-    //   required: true
-    // }
+    }
   },
   {
     timestamps: true,
