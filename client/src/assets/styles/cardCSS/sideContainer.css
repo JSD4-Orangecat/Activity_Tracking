@@ -1,6 +1,6 @@
 .sideContainer {
-    width: 400px;
-    height: 100%;
+    width: 60%;
+    height: auto;
     border-radius: 0px 15px 15px 0px;
     float: right;
     background-color: antiquewhite;
@@ -28,6 +28,12 @@
     color: #FF7B54;
 }
 
-.greyText{
+.greyText {
     color: #525252;
+}
+
+@media screen and (max-width: 1250px) {
+    .sideContainer {
+        display: none;
+    }
 }
