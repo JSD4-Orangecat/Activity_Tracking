@@ -1,12 +1,13 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { calcDuration } from "../utils/calcDuration";
+import axios from "axios";
+
 import Layout from "../components/Layout";
-import SideContainer from "../components/cardComponents/sideContainer";
 import EditPrevCard from "../components/cardComponents/editPrevCard";
 import EditForm from "../components/cardComponents/editForm";
-import axios from "axios";
+import SideContainer from "../components/cardComponents/sideContainer";
+import "../assets/styles/cardCSS/createCard.css";
 
 function EditCard() {
 
@@ -18,7 +19,6 @@ function EditCard() {
   const [image, setImage] = useState(null);
   const [durationAlert, setDurationAlert] = useState(false);
 
-  // eslint-disable-next-line no-unused-vars
   const [inputs, setInputs] = useState({
     title: "",
     caption: "",
@@ -31,89 +31,28 @@ function EditCard() {
     img: "",
   });
 
-  function calcDuration() {
-    let tStart = inputs.time_start;
-    let tEnd = inputs.time_end;
-    // console.log(tStart, tEnd);
-
-    //convert timeStart and timeEnd to milliseconds
-    let milliseconds1 =
-      Number(tStart.split(":")[0]) * 60 * 60 * 1000 +
-      Number(tStart.split(":")[1]) * 60 * 1000;
-    let milliseconds2 =
-      Number(tEnd.split(":")[0]) * 60 * 60 * 1000 +
-      Number(tEnd.split(":")[1]) * 60 * 1000;
-    // console.log(milliseconds1, milliseconds2);
-
-    //find differences in milliseconds
-    let difference = Math.abs(milliseconds2 - milliseconds1);
-    if (milliseconds2 < milliseconds1) {
-      difference = 86400000 - difference;
-    }
-    // console.log(difference)
-
-    let msec = difference;
-    let hh = Math.floor(msec / 1000 / 60 / 60);
-    msec -= hh * 1000 * 60 * 60;
-    //console.log('hh ' + hh);
-    //console.log('hh ' + msec);
-    let mm = Math.floor(msec / 1000 / 60);
-    //console.log('mm1 ' + mm);
-    msec -= mm * 1000 * 60;
-    //console.log('mm2 ' + msec);
-    let ss = Math.floor(msec / 1000);
-    msec -= ss * 1000;
-
-    // console.log(hh + ":" + mm + ":" + ss);
-
-    //prepare to display in preview card
-    let displayHour = hh + " h";
-    let displayMin = mm + " m";
-    // console.log(displayHour, displayMin)
-
-    let hour;
-    let min;
-    if (hh === 0) {
-      hour = "";
-      min = displayMin;
-    } else if (mm === 0) {
-      hour = displayHour;
-      min = "";
-    } else if (hh > 0 && mm > 0) {
-      hour = displayHour;
-      min = displayMin;
-    } else {
-      hour = "0 h";
-      min = "0 m";
-    }
-    let calculateDuration = `${hour} ${min}`;
-    setInputs({ ...inputs, duration: calculateDuration });
-  }
+  const handleCalcDuration = () => {
+    setInputs(calcDuration(inputs));
+  };
 
   let changeColor = (e) => {
     const color = ["#96d674", "#fff476", "#fd8888"];
     const { value } = e.target;
-    if (value == "complete") {
-      //console.log('you click green')
+    if (value === "complete") {
       setTask(color[0]);
     }
-    if (value == "inProgress") {
-      //console.log('you click yellow')
+    if (value === "inProgress") {
       setTask(color[1]);
     }
-    if (value == "fail") {
-      // console.log('you click red')
+    if (value === "fail") {
       setTask(color[2]);
     }
   };
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    //console.log({...inputs})
     setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
-
-  console.log(inputs);
 
   function handleFileChange(e) {
     const file = e.target.files[0];
@@ -126,11 +65,13 @@ function EditCard() {
     }));
   }
 
+
+
   useEffect(() => {
     fetchActivity()
   }, [])
 
-  console.log(inputs)
+
 
   const fetchActivity = async () => {
     try {
@@ -162,7 +103,7 @@ function EditCard() {
     }
   };
 
-  // console.log(inputs)
+
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -171,8 +112,6 @@ function EditCard() {
       setDurationAlert(true);
       return;
     }
-    // console.log(inputs)
-
 
     const formData = new FormData();
     for (const [key, value] of Object.entries(inputs)) {
@@ -187,7 +126,6 @@ function EditCard() {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      // console.log("Hooooooeqwe")
 
       navigate("/readcard");
     } catch (error) {
@@ -202,33 +140,31 @@ function EditCard() {
   return (
     <Layout>
       <div className="create-card-container">
-        <div className="bg">
-          <SideContainer />
-          <div className="container">
-            <div className="head-sentence">
-              <h1 className="firsttopic">Edit Your Awesome Card</h1>
-              <h2 className="secondtopic">Did You Meow Today?</h2>
-              <h3 className="thirdtopic">Today's Workout</h3>
-            </div>
-            {/* card */}
-            <EditPrevCard
-              inputs={inputs}
-              image={image}
-              handleFileChange={handleFileChange}
-              task={task}
-              handleChangeInput={handleChangeInput}
-            />
-            {/* form */}
-            <EditForm
-              handleChangeInput={handleChangeInput}
-              calcDuration={calcDuration}
-              changeColor={changeColor}
-              inputs={inputs}
-              handleFormSubmit={handleFormSubmit}
-              durationAlert={durationAlert}
-              handleCancel={handleCancel}
-            />
+        <SideContainer />
+        <div className="create-container">
+          <div className="head-sentence">
+            <h1 className="firsttopic">Edit Your Awesome Card</h1>
+            <h2 className="secondtopic">Did You Meow Today?</h2>
+            <h3 className="thirdtopic">Today's Workout</h3>
           </div>
+          {/* card */}
+          <EditPrevCard
+            inputs={inputs}
+            image={image}
+            handleFileChange={handleFileChange}
+            task={task}
+            handleChangeInput={handleChangeInput}
+          />
+          {/* form */}
+          <EditForm
+            handleChangeInput={handleChangeInput}
+            calcDuration={handleCalcDuration}
+            changeColor={changeColor}
+            inputs={inputs}
+            handleFormSubmit={handleFormSubmit}
+            durationAlert={durationAlert}
+            handleCancel={handleCancel}
+          />
         </div>
       </div>
     </Layout>

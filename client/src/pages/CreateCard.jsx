@@ -103,6 +103,10 @@ function CreateCard() {
     }
   };
 
+  const handleCancel = async (e) => {
+    navigate("/readcard")
+  }
+
 
 
   return (
@@ -129,6 +133,7 @@ function CreateCard() {
             handleFormSubmit={handleFormSubmit}
             durationAlert={durationAlert}
             isProcessing={isProcessing}
+            handleCancel={handleCancel}
           />
         </div>
       </div>

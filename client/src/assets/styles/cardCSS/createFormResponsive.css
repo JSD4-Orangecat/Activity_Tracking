@@ -54,7 +54,8 @@
         text-align: center;
     }
 
-    .btn-submit {
+    .btn-submit,
+    .btn-cancel {
         padding: 8px 30px;
     }
 }

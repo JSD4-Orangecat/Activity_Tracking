@@ -316,12 +316,16 @@ form {
 }
 
 /* submit button */
+.create-buttons {
+  display: flex;
+}
+
 .btn-submit {
   position: relative;
   font-family: "Sono", sans-serif;
   font-weight: 600;
   font-size: medium;
-  padding: 4px 15px;
+  padding: 8px 30px;
   margin: 0 auto;
   margin-top: 2%;
   color: white;
@@ -335,6 +339,28 @@ form {
 
 .btn-submit:hover {
   background-color: #ff5f33;
+  transform: scale(1.1);
+}
+
+.btn-cancel {
+  position: relative;
+  font-family: "Sono", sans-serif;
+  font-weight: 600;
+  font-size: medium;
+  padding: 8px 30px;
+  margin: 0 auto;
+  margin-top: 2%;
+  color: white;
+  background-color: lightgray;
+  border: lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  top: 0.5rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-cancel:hover {
+  background-color: darkgray;
   transform: scale(1.1);
 }
 
@@ -354,24 +380,6 @@ form {
   cursor: pointer;
   top: 0.5rem;
   left: -10%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.btn-cancel {
-  position: relative;
-  font-family: "Sono", sans-serif;
-  font-weight: 600;
-  width: 10%;
-  font-size: medium;
-  padding: 4px 15px;
-  color: rgb(255, 255, 255);
-  background-color: lightgray;
-  border: lightgray;
-  border-radius: 5px;
-  cursor: pointer;
-  left: 10%;
   display: flex;
   justify-content: center;
   margin: 0 auto;
