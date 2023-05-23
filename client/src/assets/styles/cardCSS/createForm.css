@@ -134,12 +134,6 @@ form {
   gap: 20px;
 }
 
-.time-start-end {
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-}
-
 .time-duration button {
   font-family: "Sono", sans-serif;
   font-weight: 600;

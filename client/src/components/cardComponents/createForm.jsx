@@ -194,7 +194,7 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
 
           <label htmlFor="complete" className="option option-1">
             <div className="dot dot-1"></div>
-            <span>{window.innerWidth <= 768 ? 'Completed' : 'Mission Completed'}</span>
+            <span>Mission Completed</span>
           </label>
           <label htmlFor="inProgress" className="option option-2">
             <div className="dot dot-2"></div>
@@ -202,7 +202,7 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
           </label>
           <label htmlFor="fail" className="option option-3">
             <div className="dot dot-3"></div>
-            <span>{window.innerWidth <= 768 ? 'Failed' : 'Mission Failed'}</span>
+            <span>Mission Failed</span>
           </label>
         </div>
       </div>
