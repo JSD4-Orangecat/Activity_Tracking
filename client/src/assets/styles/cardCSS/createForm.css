@@ -4,9 +4,14 @@ form {
   top: 20px;
   color: black;
   position: relative;
-  /* border: 1px solid goldenrod; */
   width: 740px;
   margin: 0 auto;
+}
+
+.create-card-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
 }
 
 .title-date {
@@ -122,15 +127,14 @@ form {
 }
 
 /* --------- duration --------- */
-.time_duration {
+.time-duration {
   margin-top: 15px;
   display: flex;
   justify-content: start;
   gap: 20px;
-  /* border: 1px solid black; */
 }
 
-.time_duration button {
+.time-duration button {
   font-family: "Sono", sans-serif;
   font-weight: 600;
   padding: 0 15px;
