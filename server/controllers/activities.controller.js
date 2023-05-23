@@ -31,6 +31,8 @@ export const postActivities = async (req, res) => {
       user.rank += newActivity.exp;
 
       await newActivity.save();
+      await user.save()
+      
       return res.status(200).send("activity card created successfully");
     } catch (err) {
       console.log(err);
