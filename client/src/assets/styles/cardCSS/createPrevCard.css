@@ -175,10 +175,6 @@
   top: 20%;
 }
 
-#responsive-duration-text {
-  display: none;
-}
-
 
 
 
@@ -195,22 +191,5 @@
 
   .container-text {
     display: none;
-  }
-
-  .prevDuration {
-    position: initial;
-  }
-
-  .duration-text {
-    text-align: center;
-    bottom: -20px;
-  }
-
-  .icon-img {
-    display: none;
-  }
-
-  #responsive-duration-text {
-    display: initial;
   }
 }
