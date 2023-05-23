@@ -126,9 +126,17 @@ z-index: 1;
   width: 100%;
 }
 .headerProfile{
-  width: 95%;
+  padding-top: 2.5%;
+  width: 97%;
 }
- .cross {width: 5%;}
+ .cross {
+  width: 5%;
+
+}
  .crossPic {
   height: 50px;
-  width: 50px;}
+  width: 50px;
+  padding-top: 2.5%;
+  padding-right: 0;
+}
+ 
