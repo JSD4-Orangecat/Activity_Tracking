@@ -17,8 +17,9 @@ function AuthProvider(props) {
   const navigate = useNavigate();
 
   const login = async (data) => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     try {
-      const result = await axios.post("http://localhost:4000/auth/login", data);
+      const result = await axios.post(`${backend}/auth/login`, data);
       const token = result.data.token;
       localStorage.setItem("token", token);
       const userDataFromToken = jwtDecode(token);

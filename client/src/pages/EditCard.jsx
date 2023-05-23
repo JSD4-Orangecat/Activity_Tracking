@@ -8,12 +8,12 @@ import EditPrevCard from "../components/cardComponents/editPrevCard";
 import EditForm from "../components/cardComponents/editForm";
 import SideContainer from "../components/cardComponents/sideContainer";
 import "../assets/styles/cardCSS/createCard.css";
+import swal from "sweetalert";
 
 function EditCard() {
-
-  const navigate = useNavigate()
-  const { id } = useParams()
-  console.log({ id })
+  const navigate = useNavigate();
+  const { id } = useParams();
+  console.log({ id });
 
   const [task, setTask] = useState("");
   const [image, setImage] = useState(null);
@@ -57,8 +57,8 @@ function EditCard() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const image = URL.createObjectURL(file)
-    setImage(image)
+    const image = URL.createObjectURL(file);
+    setImage(image);
 
     setInputs((prevInputs) => ({
       ...prevInputs,
@@ -66,18 +66,15 @@ function EditCard() {
     }));
   }
 
-
-
   useEffect(() => {
-    fetchActivity()
-  }, [])
-
-
+    fetchActivity();
+  }, []);
 
   const fetchActivity = async () => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
     try {
-      const res = await axios.get("http://127.0.0.1:4000/activities/" + id)
-      console.log(res.data)
+      const res = await axios.get(`${backend}/activities/` + id);
+      console.log(res.data);
 
       const taskColor = {
         complete: "#96d674",
@@ -98,16 +95,15 @@ function EditCard() {
         img: res.data.img,
       });
 
-      setTask(taskColor[res.data.task])
+      setTask(taskColor[res.data.task]);
     } catch (err) {
       console.error(err);
     }
   };
 
-
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    const backend = import.meta.env.VITE_BACKEND_URL;
     setIsProcessing(!isProcessing);
 
     if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
@@ -122,22 +118,23 @@ function EditCard() {
 
     try {
       const response = await axios.put(
-        `http://127.0.0.1:4000/activities/updatecard/${id}`,
+        `${backend}/activities/updatecard/${id}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+      swal("Edited!", "Your activity card has been edited!", "success");
 
       navigate("/readcard");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleCancel = async (e) => {
-    navigate("/readcard")
-  }
+    navigate("/readcard");
+  };
 
   return (
     <Layout>

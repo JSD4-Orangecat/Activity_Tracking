@@ -48,6 +48,7 @@ function FormRegister() {
   // Function to handle save inputs
   const saveInput = async (e) => {
     e.preventDefault();
+    const backend = import.meta.env.VITE_BACKEND_URL;
     setIsSubmit(true);
     const error = validate(formValues);
     setFormErrors(error);
@@ -63,7 +64,7 @@ function FormRegister() {
 
       try {
         const response = await axios.post(
-          "http://localhost:4000/auth/register",
+          `${backend}/auth/register`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

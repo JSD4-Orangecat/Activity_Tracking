@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import { calcDuration } from "../utils/calcDuration";
 import axios from "axios";
+import swal from "sweetalert";
 import Layout from "../components/Layout";
 import PrevCard from "../components/cardComponents/createPrevCard";
 import Form from "../components/cardComponents/createForm";
 import SideContainer from "../components/cardComponents/sideContainer";
 import "../assets/styles/cardCSS/createCard.css";
-
-
 
 function CreateCard() {
   const navigate = useNavigate();
@@ -23,7 +22,8 @@ function CreateCard() {
 
   const [inputs, setInputs] = useState({
     title: "This is title",
-    caption: "I wish I was a cat, no school, no work, no exercise, just meow meow meow meow meow",
+    caption:
+      "I wish I was a cat, no school, no work, no exercise, just meow meow meow meow meow",
     timeStart: "",
     timeEnd: "",
     duration: "0 h 0 m",
@@ -34,8 +34,6 @@ function CreateCard() {
     exp: "",
     userID: currentUser._id,
   });
-
-
 
   const handleCalcDuration = () => {
     setInputs(calcDuration(inputs));
@@ -70,11 +68,10 @@ function CreateCard() {
     }
   };
 
-
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsProcessing(!isProcessing);
+    const backend = import.meta.env.VITE_BACKEND_URL;
 
     if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
       setDurationAlert(true);
@@ -89,7 +86,7 @@ function CreateCard() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:4000/activities/createActivityCard",
+        `${backend}/activities/createActivityCard`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -97,26 +94,20 @@ function CreateCard() {
       );
 
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      currentUser.rank = response.data.rank
+      currentUser.rank = response.data.rank;
 
-        localStorage.setItem(
-          "currentUser",
-          JSON.stringify(currentUser)
-        );
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-      console.log(response);
+      swal("Created!", "Your activity card has been created!", "success");
       navigate("/readcard");
-
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleCancel = async (e) => {
-    navigate("/readcard")
-  }
-
-
+    navigate("/readcard");
+  };
 
   return (
     <Layout>
