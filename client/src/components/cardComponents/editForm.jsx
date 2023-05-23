@@ -229,7 +229,7 @@ function Form({
         ) : null}
       </form>
       <button value="cancel" className="btn-cancel" onClick={handleCancel}>
-        cancel
+        Cancel
       </button>
     </>
   );
