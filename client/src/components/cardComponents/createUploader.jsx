@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-import "../../assets/styles/createUploader.css";
+import "../../assets/styles/cardCSS/createUploader.css";
 import uploadIcon from "/generic/uploadIcon.png";
 
 function Uploader({ image, handleFileChange }) {

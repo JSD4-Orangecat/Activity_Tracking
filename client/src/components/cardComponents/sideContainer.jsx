@@ -1,4 +1,4 @@
-import '../../assets/styles/sideContainer.css';
+import '../../assets/styles/cardCSS/sideContainer.css';
 import catBiceps from "/cat/catBiceps.png"
 
 function SideContainer() {

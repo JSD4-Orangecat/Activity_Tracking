@@ -1,4 +1,4 @@
-import "../assets/styles/readCardCSS/readCard.css";
+import "../assets/styles/cardCSS/readCard.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";

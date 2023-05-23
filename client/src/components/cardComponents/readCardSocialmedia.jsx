@@ -1,8 +1,8 @@
-import '../../assets/styles/readCardCSS/readCardSocialmedia.css';
+import '../../assets/styles/cardCSS/readCardSocialmedia.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook,faInstagram,faTwitter } from '@fortawesome/fontawesome-free-brands'
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/fontawesome-free-brands'
 
-function SocialMedia () {
+function SocialMedia() {
 
 
     return (

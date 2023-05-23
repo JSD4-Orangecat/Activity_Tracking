@@ -8,7 +8,7 @@ import Layout from "../components/Layout";
 import PrevCard from "../components/cardComponents/createPrevCard";
 import Form from "../components/cardComponents/createForm";
 import SideContainer from "../components/cardComponents/sideContainer";
-import "../assets/styles/createCard.css";
+import "../assets/styles/cardCSS/createCard.css";
 
 
 

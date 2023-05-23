@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "../../assets/styles/createForm.css";
+import "../../assets/styles/cardCSS/createForm.css";
 import biking from "/exercises/biking.png";
 import running from "/exercises/running.png";
 import swimming from "/exercises/swimming.png";
