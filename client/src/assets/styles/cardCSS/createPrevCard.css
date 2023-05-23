@@ -9,14 +9,6 @@
   position: relative;
 }
 
-.previewStatus {
-  background-color: rgb(204, 204, 204);
-  height: 20%;
-  border-radius: 0 0 19px 19px;
-  position: relative;
-  top: 80%;
-}
-
 .container-text {
   /* border: 1px solid rgb(65, 84, 182); */
   height: 110px;
@@ -173,12 +165,36 @@
 }
 
 .prevImg {
-  /* background-color: #FF7B54; */
   background-size: cover;
   width: 231px;
   height: 109px;
   border-radius: 10%;
-  position: absolute;
-  left: 13px;
-  top: 13px;
+}
+
+.previewStatus {
+  background-color: rgb(204, 204, 204);
+  width: 100%;
+  height: 20%;
+  border-radius: 0 0 19px 19px;
+  position: relative;
+  top: 20%;
+}
+
+
+
+
+
+
+@media screen and (max-width: 900px) {
+  .prevcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-radius: 0 0 19px 19px;
+  }
+
+  .container-text {
+    display: none;
+  }
 }
