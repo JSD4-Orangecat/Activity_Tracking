@@ -22,6 +22,7 @@ const RegisterForm = ({ srcImg, handleChange, handleFileChange, formValues, form
                         className={srcImg ? 'uploaded-picture' : ''}
                     />
                 </label>
+                <div className="plus-symbol">+</div>
             </div>
 
             <div className="allInform">
