@@ -28,10 +28,17 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
 
 
 
+function Form({
+  handleChangeInput,
+  calcDuration,
+  changeColor,
+  handleFormSubmit,
+  durationAlert,
+  isProcessing,
+}) {
   return (
     <form onSubmit={handleFormSubmit} className="create-card-form">
       <div className="title-date">
-
         {/* Add data: Title  */}
         <label htmlFor="title">TiTle:</label>
         <input
