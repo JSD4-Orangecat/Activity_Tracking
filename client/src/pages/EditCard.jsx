@@ -57,8 +57,8 @@ function EditCard() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const image = URL.createObjectURL(file)
-    setImage(image)
+    const imageURL = URL.createObjectURL(file)
+    setImage(imageURL)
 
     setInputs((prevInputs) => ({
       ...prevInputs,
@@ -119,6 +119,7 @@ function EditCard() {
     for (const [key, value] of Object.entries(inputs)) {
       formData.append(key, value);
     }
+    console.log(...formData);
 
     try {
       const response = await axios.put(
@@ -128,6 +129,7 @@ function EditCard() {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+      
 
       navigate("/readcard");
     } catch (error) {

@@ -2,7 +2,7 @@ import "../../assets/styles/cardCSS/createUploader.css";
 import uploadIcon from "/generic/uploadIcon.png";
 
 function EditUploader({ image, handleFileChange, inputs }) {
-  // console.log({image})
+  console.log({image})
   return (
 
     <main className="upload-container">

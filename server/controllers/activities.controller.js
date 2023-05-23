@@ -3,7 +3,7 @@ import { cloudinaryUploadCard } from "../utils/upload.js";
 
 export const postActivities = async (req, res) => {
   const defaultIMG =
-    "https://res.cloudinary.com/dtcqqdjua/image/private/s--HRdDM5FN--/v1684469511/orangecat/card/vfi7ysb8jzjqkcy1fxf5.jpg";
+    "https://res.cloudinary.com/dtcqqdjua/image/upload/v1684829449/orangecat/dafaultIMG/og_nermoe.jpg";
 
   if (req.file) {
     try {
@@ -104,8 +104,6 @@ export const getSingleActivity = async (req, res) => {
 
 export const updateActivity = async (req, res) => {
   const { id } = req.params;
-  const defaultIMG =
-    "https://res.cloudinary.com/dtcqqdjua/image/private/s--HRdDM5FN--/v1684469511/orangecat/card/vfi7ysb8jzjqkcy1fxf5.jpg";
 
   if (req.file) {
     try {
@@ -142,7 +140,7 @@ export const updateActivity = async (req, res) => {
         duration: req.body.duration,
         task: req.body.task,
         caption: req.body.caption,
-        img: defaultIMG,
+        img: req.body.img,
         userID: req.body.userID,
       };
 
@@ -161,8 +159,6 @@ export const updateActivity = async (req, res) => {
 export const deleteActivity = async (req, res) => {
   try {
     const { id } = req.params;
-    //const id = req.params.id; อันบน destructuring ที่มีค่าเท่ากับอันนี้
-    //console.log(`id in delete : ${ id }`);
 
     const deleteActivity = await Activity.findByIdAndRemove(id);
 
