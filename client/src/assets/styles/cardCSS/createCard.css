@@ -41,6 +41,10 @@
 }
 
 @media screen and (max-width: 1250px) {
+    .create-card-container {
+        padding: 2rem;
+    }
+
     .create-container {
         border-radius: 15px;
     }
