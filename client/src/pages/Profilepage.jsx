@@ -77,6 +77,19 @@ function Profile() {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        console.log(response.data)
+        currentUser.firstName = response.data.user.firstName
+        currentUser.lastName = response.data.user.lastName
+        currentUser.picture = response.data.user.picture
+        currentUser.height = response.data.user.height
+        currentUser.weight = response.data.user.weight
+
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify(currentUser)
+        );
+        console.log(currentUser)
 
         console.log(response.data);
         navigate("/dashboard"); // navigate to the dashboard

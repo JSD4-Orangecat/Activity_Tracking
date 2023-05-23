@@ -1,57 +1,44 @@
 import Activity from "../models/activity.model.js";
+import User from '../models/user.model.js'
 import { cloudinaryUploadCard } from "../utils/upload.js";
 
 export const postActivities = async (req, res) => {
-  const defaultIMG =
+  let image =
     "https://res.cloudinary.com/dtcqqdjua/image/private/s--HRdDM5FN--/v1684469511/orangecat/card/vfi7ysb8jzjqkcy1fxf5.jpg";
 
   if (req.file) {
-    try {
-      const uploadedImage = await cloudinaryUploadCard(req.file);
-
-      const newActivity = new Activity({
-        title: req.body.title,
-        date: req.body.date,
-        type: req.body.type,
-        timeStart: req.body.timeStart,
-        timeEnd: req.body.timeEnd,
-        duration: req.body.duration,
-        task: req.body.task,
-        caption: req.body.caption,
-        img: uploadedImage,
-        userID: req.body.userID,
-      });
-      console.log(`this is ${newActivity}`);
-
-      await newActivity.save();
-      return res.status(200).send("activity card created successfully");
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("Creating activity card failed");
-    }
-  } else {
-    try {
-      const newActivity = new Activity({
-        title: req.body.title,
-        date: req.body.date,
-        type: req.body.type,
-        timeStart: req.body.timeStart,
-        timeEnd: req.body.timeEnd,
-        duration: req.body.duration,
-        task: req.body.task,
-        caption: req.body.caption,
-        img: defaultIMG,
-        userID: req.body.userID,
-      });
-      console.log(`this is ${newActivity}`);
-
-      await newActivity.save();
-      return res.status(200).send("activity card created successfully");
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("Creating activity card failed");
-    }
+    image = await cloudinaryUploadCard(req.file)
   }
+
+  try {
+      const newActivity = new Activity({
+        title: req.body.title,
+        date: req.body.date,
+        type: req.body.type,
+        timeStart: req.body.timeStart,
+        timeEnd: req.body.timeEnd,
+        duration: req.body.duration,
+        task: req.body.task,
+        caption: req.body.caption,
+        img: image,
+        exp: req.body.exp,
+        userID: req.body.userID,
+      });
+      console.log(`this is ${newActivity}`);
+
+      const user = await User.findById(newActivity.userID)
+
+      const nextRank = user.rank + newActivity.exp;
+      user.rank = nextRank
+      
+      await newActivity.save();
+      await user.save()
+      
+      return res.status(200).json({message: "activity card created successfully", rank: nextRank});
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Creating activity card failed");
+    }
 };
 
 export const getActivity = async (req, res) => {
@@ -103,14 +90,13 @@ export const getSingleActivity = async (req, res) => {
 
 export const updateActivity = async (req, res) => {
   const { id } = req.params;
-  const defaultIMG =
-    "https://res.cloudinary.com/dtcqqdjua/image/private/s--HRdDM5FN--/v1684469511/orangecat/card/vfi7ysb8jzjqkcy1fxf5.jpg";
+  let image = "https://res.cloudinary.com/dtcqqdjua/image/private/s--HRdDM5FN--/v1684469511/orangecat/card/vfi7ysb8jzjqkcy1fxf5.jpg";
 
   if (req.file) {
-    try {
-      const uploadedImage = await cloudinaryUploadCard(req.file);
-      console.log(uploadedImage);
+    image = await cloudinaryUploadCard(req.file);
+  }
 
+    try {
       const updatedActivity = {
         title: req.body.title,
         date: req.body.date,
@@ -120,7 +106,7 @@ export const updateActivity = async (req, res) => {
         duration: req.body.duration,
         task: req.body.task,
         caption: req.body.caption,
-        img: uploadedImage,
+        img: image,
         userID: req.body.userID,
       };
 
@@ -130,28 +116,6 @@ export const updateActivity = async (req, res) => {
       console.log(err);
       return res.status(500).send("Updating activity card failed");
     }
-  } else {
-    try {
-      const updatedActivity = {
-        title: req.body.title,
-        date: req.body.date,
-        type: req.body.type,
-        timeStart: req.body.timeStart,
-        timeEnd: req.body.timeEnd,
-        duration: req.body.duration,
-        task: req.body.task,
-        caption: req.body.caption,
-        img: defaultIMG,
-        userID: req.body.userID,
-      };
-
-      await Activity.findByIdAndUpdate(id, updatedActivity);
-      return res.status(200).send("Activity card updated successfully");
-    } catch (err) {
-      console.log(err);
-      return res.status(500).json("Can't update activity card");
-    }
-  }
 };
 
 

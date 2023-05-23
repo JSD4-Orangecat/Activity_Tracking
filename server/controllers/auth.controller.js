@@ -183,7 +183,7 @@ export const editProfile = async (req, res, next) => {
       const uploadedImage = await cloudinaryUploadProfile(req.file);
       // Update other profile fields
       account.password = req.body.password;
-      account.email = email || account.email;
+      // account.email = email || account.email;
       account.firstName = req.body.firstName || account.firstName;
       account.lastName = req.body.lastName || account.lastName;
       account.birthDate = req.body.birthDate || account.birthDate;
@@ -192,9 +192,19 @@ export const editProfile = async (req, res, next) => {
       account.weight = req.body.weight || account.weight;
       account.height = req.body.height || account.height;
 
+      const updatedUser = {
+        firstName: req.body.firstName || account.firstName,
+        lastName: req.body.lastName || account.lastName,
+        birthDate: req.body.birthDate || account.birthDate,
+        gender: req.body.gender || account.gender,
+        picture: uploadedImage || account.picture,
+        weight: req.body.weight || account.weight,
+        height: req.body.height || account.height,
+      }
+
       await account.save();
 
-      res.status(200).send({ message: "Profile updated successfully" });
+      res.status(200).json({message: "Profile updated successfully", user: updatedUser})
     } catch (err) {
       res
         .status(500)
@@ -229,7 +239,7 @@ export const editProfile = async (req, res, next) => {
 
       // Update other profile fields
       account.password = req.body.password;
-      account.email = email || account.email;
+      // account.email = email || account.email;
       account.firstName = req.body.firstName || account.firstName;
       account.lastName = req.body.lastName || account.lastName;
       account.birthDate = req.body.birthDate || account.birthDate;
@@ -238,9 +248,19 @@ export const editProfile = async (req, res, next) => {
       account.weight = req.body.weight || account.weight;
       account.height = req.body.height || account.height;
 
+      const updatedUser = {
+        firstName: req.body.firstName || account.firstName,
+        lastName: req.body.lastName || account.lastName,
+        birthDate: req.body.birthDate || account.birthDate,
+        gender: req.body.gender || account.gender,
+        picture: account.picture || account.picture,
+        weight: req.body.weight || account.weight,
+        height: req.body.height || account.height,
+      }
+
       await account.save();
 
-      res.status(200).send({ message: "Profile updated successfully" });
+      res.status(200).send({ message: "Profile updated successfully",user: updatedUser });
     } catch (err) {
       res
         .status(500)
