@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "../../assets/styles/readCardCSS/readCardCallout.css";
+import "../../assets/styles/cardCSS/readCardCallout.css";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
