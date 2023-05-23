@@ -27,8 +27,6 @@ function FormRegister() {
     height: "",
   });
 
-
-
   // Function to handle change in input
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -44,8 +42,6 @@ function FormRegister() {
     }
   }
 
-
-
   // Function to handle save inputs
   const saveInput = async (e) => {
     e.preventDefault();
@@ -59,7 +55,7 @@ function FormRegister() {
       for (const [key, value] of Object.entries(userData)) {
         formData.append(key, value);
       }
-      console.log(...formData);
+
       try {
         const response = await axios.post(
           "http://localhost:4000/auth/register",
@@ -77,8 +73,6 @@ function FormRegister() {
       }
     }
   };
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
