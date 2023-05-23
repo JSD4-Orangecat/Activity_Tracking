@@ -1,12 +1,12 @@
-import "../assets/styles/readCardCSS/readCard.css";
+import "../assets/styles/cardCSS/readCard.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
-import CoverImage from "../components/readCardComponents/readCardCoverImage";
-import CallOut from "../components/readCardComponents/readCardCallOut";
-import SocialMedia from "../components/readCardComponents/readCardSocialmedia";
+import CoverImage from "../components/cardComponents/readCardCoverImage";
+import CallOut from "../components/cardComponents/readCardCallOut";
+import SocialMedia from "../components/cardComponents/readCardSocialmedia";
 import axios from "axios";
-import Card from "../components/readCardComponents/readCardCard";
+import Card from "../components/cardComponents/readCardCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleLeft,
@@ -205,19 +205,23 @@ function ReadCard() {
         ></input>
 
         {/* page */}
-        <div className="r-page">
-          <FontAwesomeIcon
-            onClick={handlerPrevPage}
-            icon={faCircleLeft}
-            className="faCircle"
-          />
-          <span>{page}</span>
-          <FontAwesomeIcon
-            onClick={handlerNextPage}
-            icon={faCircleRight}
-            className="faCircle"
-          />
-        </div>
+        {totalPages > 1 &&
+          <div className="r-page">
+            <FontAwesomeIcon
+              onClick={handlerPrevPage}
+              icon={faCircleLeft}
+              className="faCircle"
+              style={{ color: page !== 1 ? 'ff7b54' : 'ababab' }}
+            />
+            <span>{page}</span>
+            <FontAwesomeIcon
+              onClick={handlerNextPage}
+              icon={faCircleRight}
+              className="faCircle"
+              style={{ color: page !== totalPages ? 'ff7b54' : 'ababab' }}
+            />
+          </div>
+        }
       </main>
     </Layout>
   );

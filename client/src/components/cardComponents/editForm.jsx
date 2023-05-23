@@ -1,23 +1,22 @@
 /* eslint-disable react/prop-types */
-import biking from '/exercises/biking.png';
-import running from '/exercises/running.png';
-import swimming from '/exercises/swimming.png';
-import cardio from '/exercises/cardio.png';
-import walking from '/exercises/walking.png';
+import biking from "/exercises/biking.png"
+import running from '/exercises//running.png';
+import swimming from '/exercises//swimming.png';
+import cardio from '/exercises//cardio.png';
+import walking from '/exercises//walking.png';
 
-function Form({ handleChangeInput, calcDuration, changeColor }) {
+function Form({ handleChangeInput, calcDuration, changeColor, inputs, handleFormSubmit, durationAlert, handleCancel }) {
     return (
         <>
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <div className='title-date'>
-
                     {/* Add data: Title  */}
-                    <label htmlFor='title'>TiTle:</label>
-                    <input type="text" placeholder="type your title" name="title" id='title' required onChange={handleChangeInput} ></input>
+                    <label htmlFor='title'>Title:</label>
+                    <input type="text" placeholder="type your title" name="title" id='title' required onChange={handleChangeInput} value={inputs.title}></input>
 
                     {/* Add data: Date */}
                     <label htmlFor='date'>Date:</label>
-                    <input type="date" name="date" id='date' onChange={handleChangeInput} required ></input>
+                    <input type="date" name="date" id='date' onChange={handleChangeInput} required value={inputs.date}></input>
                 </div>
 
                 {/* Add data: activity */}
@@ -25,35 +24,40 @@ function Form({ handleChangeInput, calcDuration, changeColor }) {
                     <p>Activity:</p>
                     <div className='activity-list'>
                         <div className="tile">
-                            <input type="radio" value="biking" name="type" id='biking' required onChange={handleChangeInput}></input>
+                            <input type="radio" value="biking" name="type" id='biking' required onChange={handleChangeInput}
+                                checked={inputs.type === "biking"}></input>
                             <label htmlFor="biking" className='activity-label'>
                                 <img src={biking} alt='biking' className='activity-image' />
                                 <h6>Biking</h6>
                             </label>
                         </div>
                         <div className="tile">
-                            <input type="radio" value="running" name="type" id='running' onChange={handleChangeInput}></input>
+                            <input type="radio" value="running" name="type" id='running' required onChange={handleChangeInput}
+                                checked={inputs.type === "running"}></input>
                             <label htmlFor="running" className='activity-label'>
                                 <img src={running} alt='running' className='activity-image' />
                                 <h6>running</h6>
                             </label>
                         </div>
                         <div className="tile">
-                            <input type="radio" value="swimming" name="type" id='swimming' onChange={handleChangeInput}></input>
+                            <input type="radio" value="swimming" name="type" id='swimming' required onChange={handleChangeInput}
+                                checked={inputs.type === "swimming"}></input>
                             <label htmlFor="swimming" className='activity-label'>
                                 <img src={swimming} alt='swimming' className='activity-image' />
                                 <h6>swimming</h6>
                             </label>
                         </div>
                         <div className="tile">
-                            <input type="radio" value="cardio" name="type" id='cardio' onChange={handleChangeInput}></input>
+                            <input type="radio" value="cardio" name="type" id='cardio' required onChange={handleChangeInput}
+                                checked={inputs.type === "cardio"}></input>
                             <label htmlFor="cardio" className='activity-label'>
                                 <img src={cardio} alt='cardio' className='activity-image' />
                                 <h6>cardio</h6>
                             </label>
                         </div>
                         <div className="tile">
-                            <input type="radio" value="walking" name="type" id='walking' onChange={handleChangeInput}></input>
+                            <input type="radio" value="walking" name="type" id='walking' required onChange={handleChangeInput}
+                                checked={inputs.type === "walking"}></input>
                             <label htmlFor="walking" className='activity-label'>
                                 <img src={walking} alt='walking' className='activity-image' />
                                 <h6>walking</h6>
@@ -65,19 +69,26 @@ function Form({ handleChangeInput, calcDuration, changeColor }) {
                 {/* Add data: Duration */}
                 <div className='time_duration'>
                     <label htmlFor='time_start'>Time-Start:</label>
-                    <input type='time' className='time' name='time_start' onChange={handleChangeInput} required></input>
+                    <input type='time' className='time' name='time_start' onChange={handleChangeInput} required value={inputs.time_start}></input>
                     <label htmlFor='time-end' className='time2'>Time-End:</label>
-                    <input type='time' className='time' name='time_end' onChange={handleChangeInput} required></input>
+                    <input type='time' className='time' name='time_end' onChange={handleChangeInput} required value={inputs.time_end}></input>
                     <button type='button' onClick={calcDuration}>Duration</button>
+                    {durationAlert && (<p className='alert-duration'>*check your duration</p>)}
                 </div>
 
                 {/* Add data: Task status */}
                 <div className='taskStatus'>
                     <p>Task Status:</p>
                     <div className='wrapper'>
-                        <input type='radio' value='complete' name='task' id='complete' onClick={(e) => changeColor(e)} onChange={handleChangeInput} required></input>
-                        <input type='radio' value='inProgress' name='task' id='inProgress' onClick={(e) => changeColor(e)} onChange={handleChangeInput}></input>
-                        <input type='radio' value='fail' name='task' id='fail' onClick={(e) => changeColor(e)} onChange={handleChangeInput}></input>
+                        <input type='radio' value='complete' name='task' id='complete' onClick={(e) => changeColor(e)} onChange={handleChangeInput} required
+                            checked={inputs.task === 'complete'}
+                        ></input>
+                        <input type='radio' value='inProgress' name='task' id='inProgress' onClick={(e) => changeColor(e)} onChange={handleChangeInput}
+                            checked={inputs.task === 'inProgress'}
+                        ></input>
+                        <input type='radio' value='fail' name='task' id='fail' onClick={(e) => changeColor(e)} onChange={handleChangeInput}
+                            checked={inputs.task === 'fail'}
+                        ></input>
                         <label htmlFor='complete' className='option option-1'>
                             <div className='dot dot-1'></div>
                             <span>Missison Complete</span>
@@ -97,10 +108,10 @@ function Form({ handleChangeInput, calcDuration, changeColor }) {
                 <textarea id='textbox' placeholder='Add caption:' name='caption' onChange={handleChangeInput} required></textarea>
 
                 {/* submit button */}
-                <input type="submit" value="Save" className="btn-save"></input>
+                <input type="submit" value="Save" className="btn-save" onClick={handleFormSubmit}></input>
 
             </form>
-            <button value="cancel" className="btn-cancel">cancel</button>
+            <button value="cancel" className="btn-cancel" onClick={handleCancel}>cancel</button>
         </>
     )
 }

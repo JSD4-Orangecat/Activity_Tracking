@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
-// import Footer from "../components/footer"
-import "../assets/styles/homePage.css";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import Layout from "../components/Layout"
+import "../assets/styles/HomePage.css"
+
 // import image
 // for hero-section
 import homeImageStrong from "/hero/hero-img.png";
@@ -20,6 +20,21 @@ import leaderboard from "/home/home-leaderboard.jpg";
 import startImage from "/home/home-register.png";
 import workoutImage from "/home/home-workout.png";
 import connectImage from "/home/home-ranking.png";
+// for meet-team-section
+import som from '/home/home-ceo.jpg'
+import yhumyhum from '/home/home-frontend.jpg'
+import teng from '/home/home-backend.jpg'
+import mena from '/home/home-scrum.jpg'
+import tung from '/home/home-product.jpg'
+import mafia from '/home/home-uxui.jpg'
+
+// Import swiper
+import { Swiper, SwiperSlide } from 'swiper/react'
+import "swiper/css";
+// import "swiper/css/lazy"
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Navigation, Scrollbar, Autoplay } from "swiper";
 
 export default function HomePage() {
   const [bmiInput, setBmiInput] = useState({
@@ -43,8 +58,8 @@ export default function HomePage() {
       bmiResult < 18.5
         ? "under"
         : bmiResult >= 18.5 && bmiResult < 25
-        ? "strong"
-        : "over";
+          ? "strong"
+          : "over";
     console.log(bmiState);
     setBmiInput({ ...bmiInput, bmi: bmiResult, shape: bmiState });
   }
@@ -59,7 +74,7 @@ export default function HomePage() {
         bmiInput={bmiInput}
       />
       <Homehow />
-      {/* <Footer /> */}
+      <HomeMeetTeam />
     </Layout>
   );
 }
@@ -179,6 +194,46 @@ export function Homehow() {
   );
 }
 
+export function HomeMeetTeam() {
+  return (
+    <section>
+      <h2 className='home-section-header'>Meet our Team!</h2>
+      <div className='home-meet-card-container'>
+        <Swiper
+          navigation={true}
+          modules={[Navigation, Scrollbar, Autoplay]}
+          scrollbar={{
+            hide: true
+          }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+        >
+          {meetTeamSectionContent.map((employee) => {
+            return (
+              <SwiperSlide key={employee.id}>
+                <div className='home-meet-card'>
+                  <div className='home-meet-img-container'>
+                    <img className='home-meet-img' src={employee.img} alt='An orange cat wear suit.' />
+                  </div>
+                  <div className='home-meet-card-text'>
+                    <h3>{employee.name}</h3>
+                    <span className='home-meet-position'>{employee.position}</span>
+                    <h5>({employee.author})</h5>
+                  </div>
+                </div>
+              </SwiperSlide>
+            )
+          })
+          }
+        </Swiper>
+      </div>
+    </section>
+  )
+}
+
 // Content to map for feature section
 const featuresContent = [
   {
@@ -215,21 +270,66 @@ const featuresContent = [
 // Content to map for how-it-word section
 const howSectionContent = [
   {
-    title: "01 Get start!",
-    alt: "A pen",
+    title: '01 Get start!',
+    alt: 'A pen',
     imageUrl: startImage,
-    info: "Sign up and set your fitness goals!",
+    info: 'Sign up and set your fitness goals!'
   },
   {
-    title: "02 Workout!",
-    alt: "Workout image",
+    title: '02 Workout!',
+    alt: 'Workout image',
     imageUrl: workoutImage,
-    info: "Track your activities and view your progress statistics!",
+    info: 'Track your activities and view your progress statistics!'
   },
   {
-    title: "03 Connect!",
-    alt: "Statistic",
+    title: '03 Connect!',
+    alt: 'Statistic',
     imageUrl: connectImage,
-    info: "Connect with friends, climb the leaderboard to stay motivated!",
+    info: 'Connect with friends, climb the leaderboard to stay motivated!'
+  }
+]
+// Content to map for meet teem section
+const meetTeamSectionContent = [
+  {
+    id: 1,
+    img: som,
+    name: 'Som',
+    position: 'CEO',
+    author: 'Praew, Haluethaichanok'
   },
-];
+  {
+    id: 2,
+    img: tung,
+    name: 'Tungthong',
+    position: 'Product Manager',
+    author: 'Arm, Siwat'
+  },
+  {
+    id: 3,
+    img: mena,
+    name: 'Mena',
+    position: 'Scrum Master',
+    author: 'Kitti, Kittipol'
+  },
+  {
+    id: 4,
+    img: yhumyhum,
+    name: 'Yhumyhum',
+    position: 'Frontend Developer',
+    author: 'Kim, Joakim'
+  },
+  {
+    id: 5,
+    img: teng,
+    name: 'Teng',
+    position: 'Backend Developer',
+    author: 'Seed, Peeranat'
+  },
+  {
+    id: 6,
+    img: mafia,
+    name: 'Mafia',
+    position: 'UX/UI Designer',
+    author: 'Folk, Nonlaphan'
+  }
+]

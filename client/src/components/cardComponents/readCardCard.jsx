@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../assets/styles/readCardCSS/readCardCard.css";
+import "../../assets/styles/cardCSS/readCardCard.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
@@ -45,7 +45,11 @@ function Card({ data, fetchActivity }) {
         <div className="r-prevTextbox">
           <p className="r-title-text">{data.title}</p>
         </div>
+
+          <a href={`/updatecard/${data._id}`}>
         <FontAwesomeIcon icon={faPenToSquare} className="r-faPenToSquare" />
+          </a>
+          
         <FontAwesomeIcon icon={faTrashCan} className="r-faTrashCan" onClick={handleDelete} />
         <div className="r-prevCaption">
           <p className="r-caption-text">{data.caption}</p>

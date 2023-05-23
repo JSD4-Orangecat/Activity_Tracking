@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import "../assets/styles/createPrevCard.css";
+import "../../assets/styles/cardCSS/createPrevCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
   faPenToSquare,
   faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
-import Uploader from "../components/createUploader";
+import Uploader from "./createUploader";
 import biking from "/exercises/biking.png";
 import running from "/exercises/running.png";
 import swimming from "/exercises/swimming.png";

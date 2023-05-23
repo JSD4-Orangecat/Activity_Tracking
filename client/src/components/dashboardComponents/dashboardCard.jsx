@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Card from "../readCardComponents/readCardCard";
+import Card from "../cardComponents/readCardCard";
 import BlankCard from "./BlankCard";
 import '../../assets/styles/dashboardCSS/dashboardCard.css';
 
@@ -39,8 +39,8 @@ export default function DashboardCards() {
     const renderActivity = getActivity.slice(0, 3);
 
     if (getActivity?.length < 3) {
-    const emptyItems = Array(3 - (getActivity?.length || 0)).fill({});
-    renderActivity.push(...emptyItems);
+        const emptyItems = Array(3 - (getActivity?.length || 0)).fill({});
+        renderActivity.push(...emptyItems);
     }
 
     return (

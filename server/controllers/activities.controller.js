@@ -78,6 +78,85 @@ export const getActivity = async (req, res) => {
   }
 };
 
+
+export const getSingleActivity = async (req, res) => {
+  console.log(req.params)
+  try {
+    const { id } = req.params;
+    console.log(`This is : ${id}`);
+    
+
+    const singleActivity = await Activity.findById(id);
+
+    console.log(`single activity: ${singleActivity}`)
+
+    if (!singleActivity) {
+      return res.status(404).send("Activity not found")
+    }
+
+    return res.json(singleActivity)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send("failed to fetch activity")
+  }
+};
+
+export const updateActivity = async (req, res) => {
+  const { id } = req.params;
+  const defaultIMG =
+    "https://res.cloudinary.com/dtcqqdjua/image/private/s--HRdDM5FN--/v1684469511/orangecat/card/vfi7ysb8jzjqkcy1fxf5.jpg";
+
+  if (req.file) {
+    try {
+      const uploadedImage = await cloudinaryUploadCard(req.file);
+      console.log(uploadedImage);
+
+      const updatedActivity = {
+        title: req.body.title,
+        date: req.body.date,
+        type: req.body.type,
+        timeStart: req.body.timeStart,
+        timeEnd: req.body.timeEnd,
+        duration: req.body.duration,
+        task: req.body.task,
+        caption: req.body.caption,
+        img: uploadedImage,
+        userID: req.body.userID,
+      };
+
+      await Activity.findByIdAndUpdate(id, updatedActivity);
+      return res.status(200).send("Activity card updated successfully");
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send("Updating activity card failed");
+    }
+  } else {
+    try {
+      const updatedActivity = {
+        title: req.body.title,
+        date: req.body.date,
+        type: req.body.type,
+        timeStart: req.body.timeStart,
+        timeEnd: req.body.timeEnd,
+        duration: req.body.duration,
+        task: req.body.task,
+        caption: req.body.caption,
+        img: defaultIMG,
+        userID: req.body.userID,
+      };
+
+      await Activity.findByIdAndUpdate(id, updatedActivity);
+      return res.status(200).send("Activity card updated successfully");
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json("Can't update activity card");
+    }
+  }
+};
+
+
+
+
 export const deleteActivity = async (req, res) => {
   try {
     const { id } = req.params;

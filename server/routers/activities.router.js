@@ -5,6 +5,8 @@ import {
   postActivities,
   getActivity,
   deleteActivity,
+  getSingleActivity,
+  updateActivity
 } from "../controllers/activities.controller.js";
 
 const activitiesRouter = Router();
@@ -16,6 +18,8 @@ activitiesRouter.post(
   postActivities
 );
 activitiesRouter.get("/", protect, getActivity);
+activitiesRouter.get("/:id", getSingleActivity);
+activitiesRouter.put("/updatecard/:id",protect,upload.single("img") , updateActivity);
 activitiesRouter.delete("/:id", protect, deleteActivity);
 
 export default activitiesRouter;

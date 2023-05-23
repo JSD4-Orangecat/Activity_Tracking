@@ -11,7 +11,7 @@ function AuthenticatedApp() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/createcard" element={<CreateCard />} />
-        <Route path="/editcard" element={<EditCard />} />
+        <Route path="/updatecard/:id" element={<EditCard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/readcard" element={<ReadCard />} />
         <Route path="/profile" element={<Profile />} />

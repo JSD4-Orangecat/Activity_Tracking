@@ -1,24 +1,16 @@
-/* eslint-disable react/prop-types */
-import "../assets/styles/createForm.css";
+import BarLoader from "react-spinners/BarLoader";
 import biking from "/exercises/biking.png";
 import running from "/exercises/running.png";
 import swimming from "/exercises/swimming.png";
 import cardio from "/exercises/cardio.png";
 import walking from "/exercises/walking.png";
-import BarLoader from "react-spinners/BarLoader";
-import { useState } from "react";
+import "../../assets/styles/cardCSS/createForm.css";
 
-function Form({
-  handleChangeInput,
-  calcDuration,
-  changeColor,
-  handleFormSubmit,
-  durationAlert,
-  isProcessing,
-}) {
+function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert, isProcessing }) {
   return (
     <form onSubmit={handleFormSubmit}>
       <div className="title-date">
+
         {/* Add data: Title  */}
         <label htmlFor="title">TiTle:</label>
         <input
@@ -194,6 +186,7 @@ function Form({
         onChange={handleChangeInput}
         required
       ></textarea>
+
       {/* submit button */}
       <button type="submit" className="btn-submit" disabled={isProcessing}>
         <span>{isProcessing ? "Processing ... " : "Submit"}</span>
