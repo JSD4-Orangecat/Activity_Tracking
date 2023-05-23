@@ -201,4 +201,8 @@
     text-align: center;
     bottom: -20px;
   }
+
+  .icon-img {
+    display: none;
+  }
 }
