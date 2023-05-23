@@ -218,7 +218,7 @@ function Form({ handleChangeInput, calcDuration, changeColor, inputs, handleForm
             {/* submit button */}
             <div className="create-buttons">
                 <input type="submit" value="Save" className="btn-submit" onClick={handleFormSubmit}></input>
-                <button value="cancel" className="btn-cancel" onClick={handleCancel}>cancel</button>
+                <button value="cancel" className="btn-cancel" onClick={handleCancel}>Cancel</button>
             </div>
         </form>
     )
