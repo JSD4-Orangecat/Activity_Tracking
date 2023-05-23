@@ -1,33 +1,28 @@
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable react/prop-types */
-import "../../assets/styles/cardCSS/createUploader.css";
 import uploadIcon from "/generic/uploadIcon.png";
+import "../../assets/styles/cardCSS/createUploader.css";
 
 function Uploader({ image, handleFileChange }) {
-  // console.log({image})
-  return (
-    <main className="upload-container">
-      <form
-        className="ImgForm"
-        onClick={() => document.querySelector(".input-field").click()}
-      >
-        <input
-          type="file"
-          accept="image/*"
-          className="input-field"
-          hidden
-          name="img"
-          onChange={handleFileChange}
-          required
-        ></input>
 
-        <img src={image} className="img-upload" name="img" />
-        <label forhtml="file" className="label-upload">
-          <img src={uploadIcon} className="icon-upload" />
-        </label>
-        <p>choose Image</p>
-      </form>
-    </main>
+  const handleClick = () => {
+    document.querySelector(".input-field").click();
+  };
+
+  return (
+    <form className="imgForm" onClick={handleClick}>
+      <input
+        type="file"
+        accept="image/*"
+        className="input-field"
+        hidden
+        name="img"
+        onChange={handleFileChange}
+        required
+      />
+
+      <img src={image} className="img-upload" name="img" />
+      <img src={uploadIcon} className="icon-upload-image" />
+      <p>Choose Image</p>
+    </form>
   );
 }
 

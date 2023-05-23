@@ -1,20 +1,19 @@
-.icon-upload {
-  position: absolute;
-  left: 38%;
-  top: 22%;
-  width: 50px;
-  height: 50px;
-}
-
-.ImgForm {
-  /* border: 2px dashed #1475cf; */
+.imgForm {
   border: transparent;
   cursor: pointer;
   border-radius: 10%;
   width: 100%;
   height: 100%;
-  position: absolute;
   top: 0%;
+  display: flex;
+}
+
+.icon-upload-image {
+  position: absolute;
+  left: 38%;
+  top: 22%;
+  width: 50px;
+  height: 50px;
 }
 
 .img-upload {
@@ -23,9 +22,10 @@
   border-radius: 10%;
   border: transparent;
   object-fit: cover;
+  margin: 5%;
 }
 
-.ImgForm p {
+.imgForm p {
   position: absolute;
   top: 66%;
   left: 23%;
