@@ -162,7 +162,9 @@ function Profile() {
         <form className="editform">
           <div className="TitleAndExit">
             <div className="headerProfile">
-              <h1>Profile</h1>
+              <div className="addjustHeader">
+                <h1>Profile</h1>
+              </div>
             </div>
             <div className="exitEditProfile">
               <a href="/dashboard" className="cross">
