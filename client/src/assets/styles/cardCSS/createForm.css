@@ -4,9 +4,14 @@ form {
   top: 20px;
   color: black;
   position: relative;
-  /* border: 1px solid goldenrod; */
   width: 740px;
   margin: 0 auto;
+}
+
+.create-card-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
 }
 
 .title-date {
@@ -122,15 +127,20 @@ form {
 }
 
 /* --------- duration --------- */
-.time_duration {
+.time-duration {
   margin-top: 15px;
   display: flex;
   justify-content: start;
   gap: 20px;
-  /* border: 1px solid black; */
 }
 
-.time_duration button {
+.time-start-end {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.time-duration button {
   font-family: "Sono", sans-serif;
   font-weight: 600;
   padding: 0 15px;
@@ -139,6 +149,12 @@ form {
   border: #ff7b54;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.time-duration button:hover {
+  background-color: #ff5f33;
+  transform: scale(1.1);
 }
 
 .time {
@@ -195,6 +211,14 @@ form {
   justify-content: space-evenly;
   margin: 3px;
   transition: all 0.3s ease;
+}
+
+.option {
+  transition: transform 0.3s;
+}
+
+.option:hover {
+  transform: scale(1.1);
 }
 
 /* กดแล้ว ตัวbgในช่องสี่เหลี่ยมของแต่ละช้อยส์จะเปลี่ยนจากสี #fff เป็นสีที่กำหนด */
@@ -278,10 +302,8 @@ form {
 #textbox {
   width: 100%;
   position: relative;
-  /* bottom: 0; */
   border: none;
   outline: none;
-  /* background: transparent; */
   color: #ff7b54;
   padding: 8px;
   font-weight: 540;
@@ -294,20 +316,52 @@ form {
 }
 
 /* submit button */
+.create-buttons {
+  display: flex;
+}
+
 .btn-submit {
   position: relative;
   font-family: "Sono", sans-serif;
   font-weight: 600;
   font-size: medium;
-  padding: 4px 15px;
+  padding: 8px 30px;
+  margin: 0 auto;
+  margin-top: 2%;
   color: white;
   background-color: #ff7b54;
   border: #ff7b54;
   border-radius: 5px;
   cursor: pointer;
   top: 0.5rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #ff5f33;
+  transform: scale(1.1);
+}
+
+.btn-cancel {
+  position: relative;
+  font-family: "Sono", sans-serif;
+  font-weight: 600;
+  font-size: medium;
+  padding: 8px 30px;
   margin: 0 auto;
-  display: flex;
+  margin-top: 2%;
+  color: white;
+  background-color: lightgray;
+  border: lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  top: 0.5rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-cancel:hover {
+  background-color: darkgray;
+  transform: scale(1.1);
 }
 
 /* --------- edit card  ------------*/
@@ -326,24 +380,6 @@ form {
   cursor: pointer;
   top: 0.5rem;
   left: -10%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.btn-cancel {
-  position: relative;
-  font-family: "Sono", sans-serif;
-  font-weight: 600;
-  width: 10%;
-  font-size: medium;
-  padding: 4px 15px;
-  color: rgb(255, 255, 255);
-  background-color: lightgray;
-  border: lightgray;
-  border-radius: 5px;
-  cursor: pointer;
-  left: 10%;
   display: flex;
   justify-content: center;
   margin: 0 auto;
