@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { useEffect } from "react";
+import swal from "sweetalert";
 
 const AuthContext = React.createContext();
 
@@ -26,9 +27,11 @@ function AuthProvider(props) {
         JSON.stringify(userDataFromToken.info)
       );
       setState({ ...state, error: null, user: userDataFromToken });
+      swal("Login success!", "Welcome to Meow Meow!", "success");
       navigate("/dashboard");
     } catch (error) {
       setState({ ...state, error: error.response.data.message });
+      swal("Oops", "Something went wrong!", "error");
     }
   };
 
