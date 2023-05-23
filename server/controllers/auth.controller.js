@@ -11,17 +11,19 @@ export const register = async (req, res) => {
       const uploadedImage = await cloudinaryUploadProfile(req.file);
       // console.log(req.body)
       const { email, password } = req.body;
-      
+
       // Check that email must be unique
       const isUniqueEmail = await User.findOne({ email });
       if (isUniqueEmail) {
-        return res.status(400).send({ message: "This email already registered" });
+        return res
+          .status(400)
+          .json({ message: "This email already registered" });
       }
-      
+
       // Hash password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-      
+
       const user = new User({
         ...req.body,
         password: hashedPassword,
@@ -39,23 +41,25 @@ export const register = async (req, res) => {
     try {
       // console.log(req.body)
       const { email, password } = req.body;
-      
+
       // Check that email must be unique
       const isUniqueEmail = await User.findOne({ email });
       if (isUniqueEmail) {
-        return res.status(400).send({ message: "This email already registered" });
+        return res
+          .status(400)
+          .send({ message: "This email already registered" });
       }
-      
+
       // Hash password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-      
+
       const user = new User({
         ...req.body,
         password: hashedPassword,
         weight: weight,
         height: height,
-        picture: '',
+        picture: "",
       });
       console.log({ user });
       await user.save();
@@ -64,7 +68,7 @@ export const register = async (req, res) => {
       res.status(500).send({ message: err.message });
     }
   }
-  };
+};
 
 export const login = async (req, res) => {
   try {
@@ -97,9 +101,12 @@ export const login = async (req, res) => {
 
     return res.json({ message: "login successfully", token });
   } catch (err) {
-    return res.status(400).json({
-      message: err.message,
-    });
+    return res
+      .status(400)
+      .json({
+        message: "Something went wrong!!",
+      })
+      .send(err.message);
   }
 };
 // delete user account
