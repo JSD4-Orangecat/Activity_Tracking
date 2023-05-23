@@ -8,7 +8,7 @@ import walking from "/exercises/walking.png";
 import "../../assets/styles/cardCSS/createForm.css";
 import "../../assets/styles/cardCSS/createFormResponsive.css";
 
-function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert, isProcessing }) {
+function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert, isProcessing, handleCancel }) {
 
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
 
@@ -217,19 +217,22 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
       ></textarea>
 
       {/* submit button */}
-      <button type="submit" className="btn-submit" disabled={isProcessing}>
-        <span>{isProcessing ? "Processing ... " : "Submit"}</span>
-      </button>
-      {isProcessing ? (
-        <div className="loading-icon">
-          <BarLoader
-            color="#FF7B54"
-            size={200}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : null}
+      <div className="create-buttons">
+        <button type="submit" className="btn-submit" disabled={isProcessing}>
+          <span>{isProcessing ? "Processing ... " : "Submit"}</span>
+        </button>
+        {isProcessing ? (
+          <div className="loading-icon">
+            <BarLoader
+              color="#FF7B54"
+              size={200}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ) : null}
+        <button value="cancel" className="btn-cancel" onClick={handleCancel}>cancel</button>
+      </div>
     </form>
   );
 }
