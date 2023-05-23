@@ -37,8 +37,7 @@ form {
 }
 
 #date::-webkit-calendar-picker-indicator {
-  filter: invert(56%) sepia(66%) saturate(1162%) hue-rotate(325deg)
-    brightness(103%) contrast(105%);
+  filter: invert(56%) sepia(66%) saturate(1162%) hue-rotate(325deg) brightness(103%) contrast(105%);
 }
 
 /* --------- activity --------- */
@@ -66,8 +65,6 @@ form {
   height: 80px;
   width: 90px;
   position: relative;
-  /* border-radius: 10%; */
-  /* border: 1px solid rgba(216, 216, 216, 0.275); */
 }
 
 .tile:hover {
@@ -76,7 +73,7 @@ form {
 }
 
 .tile input[type="radio"] {
-  -webkit-appearance: none;
+  display: none;
   position: relative;
   background-color: white;
   height: 100%;
@@ -108,7 +105,7 @@ form {
 }
 
 /* when mouse hover: icon get more bigger */
-.tile input[type="radio"]:hover + label .activity-image {
+.tile input[type="radio"]:hover+label .activity-image {
   width: 60px;
   height: 60px;
 }
@@ -120,7 +117,7 @@ form {
 }
 
 /* after clicked, words turn to orange */
-.tile input[type="radio"]:checked + .activity-label {
+.tile input[type="radio"]:checked+.activity-label {
   color: orange;
 }
 
@@ -153,8 +150,7 @@ form {
 }
 
 .time::-webkit-calendar-picker-indicator {
-  filter: invert(56%) sepia(66%) saturate(1162%) hue-rotate(325deg)
-    brightness(103%) contrast(105%);
+  filter: invert(56%) sepia(66%) saturate(1162%) hue-rotate(325deg) brightness(103%) contrast(105%);
 }
 
 .alert-duration {
@@ -202,15 +198,15 @@ form {
 }
 
 /* กดแล้ว ตัวbgในช่องสี่เหลี่ยมของแต่ละช้อยส์จะเปลี่ยนจากสี #fff เป็นสีที่กำหนด */
-#complete:checked ~ .option-1 {
+#complete:checked~.option-1 {
   background: #96d674;
 }
 
-#inProgress:checked ~ .option-2 {
+#inProgress:checked~.option-2 {
   background: #fff476;
 }
 
-#fail:checked ~ .option-3 {
+#fail:checked~.option-3 {
   background: #fd8888;
 }
 
@@ -252,9 +248,9 @@ form {
 }
 
 /* opacity: 1; = กดเลือกแล้วขึ้นสีในวงกลมช่องนั้น */
-#complete:checked ~ .option-1 .dot::before,
-#inProgress:checked ~ .option-2 .dot::before,
-#fail:checked ~ .option-3 .dot::before {
+#complete:checked~.option-1 .dot::before,
+#inProgress:checked~.option-2 .dot::before,
+#fail:checked~.option-3 .dot::before {
   opacity: 1;
   transform: scale(1);
 }
@@ -265,9 +261,9 @@ form {
 }
 
 /* กดแล้วตัวอักษรสีเทาจะกลายเป็นสี #fff */
-#complete:checked ~ .option-1 span,
-#inProgress:checked ~ .option-2 span,
-#fail:checked ~ .option-3 span {
+#complete:checked~.option-1 span,
+#inProgress:checked~.option-2 span,
+#fail:checked~.option-3 span {
   color: white;
 }
 
