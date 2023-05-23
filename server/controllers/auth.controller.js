@@ -30,6 +30,7 @@ export const register = async (req, res) => {
         weight: weight,
         height: height,
         picture: uploadedImage,
+        rank: 0
       });
       console.log({ user });
       await user.save();
@@ -60,6 +61,7 @@ export const register = async (req, res) => {
         weight: weight,
         height: height,
         picture: "",
+        rank: 0
       });
       console.log({ user });
       await user.save();

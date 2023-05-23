@@ -48,8 +48,14 @@ export default function DashboardProgress() {
                     <p className="progress-text" id="progress-text-next">{rank.nextRank}</p>
                     <div id="progress-next-container">
                         <div id="progress-next-left">
-                            <div id="progress-bar-text">{currentUser.rank % 100}%</div>
-                            <progress id="progress-bar" value={currentUser.rank % 100} max="100" />
+                            
+                            {rank.nextImage && 
+                            <>
+                                <div id="progress-bar-text">{currentUser.rank % 100}%</div>
+                                <progress id="progress-bar" value={currentUser.rank % 100} max="100" />
+                            </>
+                            }
+                            {!rank.nextImage && <h2>Your rating : {currentUser.rank}</h2>}
                         </div>
                         {rank.nextImage && <img className="progress-img" id="bottom-medal" src={rank.nextImage} alt={`${rank.nextRank} rank image`} />}
                     </div>
@@ -66,31 +72,31 @@ const woodenRank = {
     nextImage: '/rank/rank-stone.png',
 }
 const stoneRank = {
-    rankName: 'stone',
+    rankName: 'Stone',
     rankImage: '/rank/rank-stone.png',
     nextRank: 'Next to Copper!',
     nextImage: '/rank/rank-copper.png',
 }
 const copperRank = {
-    rankName: 'copper',
+    rankName: 'Copper',
     rankImage: '/rank/rank-copper.png',
     nextRank: 'Next to Silver!',
     nextImage: '/rank/rank-silver.png',
 }
 const silverRank = {
-    rankName: 'silver',
+    rankName: 'Silver',
     rankImage: '/rank/rank-silver.png',
     nextRank: 'Next to Gold!',
     nextImage: '/rank/rank-gold.png',
 }
 const goldRank = {
-    rankName: 'gold',
+    rankName: 'Gold',
     rankImage: '/rank/rank-gold.png',
     nextRank: 'Next to Diamond!',
     nextImage: '/rank/rank-diamond.png',
 }
 const diamondRank = {
-    rankName: 'diamond',
+    rankName: 'Diamond',
     rankImage: '/rank/rank-diamond.png',
-    nextRank: 'Congrat! You beat our highest rank!',
+    nextRank: 'Congrats! You beat our highest rank!',
 }
