@@ -134,6 +134,12 @@ form {
   gap: 20px;
 }
 
+.time-start-end {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
 .time-duration button {
   font-family: "Sono", sans-serif;
   font-weight: 600;
@@ -143,6 +149,12 @@ form {
   border: #ff7b54;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.time-duration button:hover {
+  background-color: #ff5f33;
+  transform: scale(1.1);
 }
 
 .time {
@@ -199,6 +211,14 @@ form {
   justify-content: space-evenly;
   margin: 3px;
   transition: all 0.3s ease;
+}
+
+.option {
+  transition: transform 0.3s;
+}
+
+.option:hover {
+  transform: scale(1.1);
 }
 
 /* กดแล้ว ตัวbgในช่องสี่เหลี่ยมของแต่ละช้อยส์จะเปลี่ยนจากสี #fff เป็นสีที่กำหนด */
@@ -282,10 +302,8 @@ form {
 #textbox {
   width: 100%;
   position: relative;
-  /* bottom: 0; */
   border: none;
   outline: none;
-  /* background: transparent; */
   color: #ff7b54;
   padding: 8px;
   font-weight: 540;
@@ -304,14 +322,20 @@ form {
   font-weight: 600;
   font-size: medium;
   padding: 4px 15px;
+  margin: 0 auto;
+  margin-top: 2%;
   color: white;
   background-color: #ff7b54;
   border: #ff7b54;
   border-radius: 5px;
   cursor: pointer;
   top: 0.5rem;
-  margin: 0 auto;
-  display: flex;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #ff5f33;
+  transform: scale(1.1);
 }
 
 /* --------- edit card  ------------*/
