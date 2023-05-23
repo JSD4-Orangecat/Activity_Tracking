@@ -18,6 +18,7 @@ function EditCard() {
   const [task, setTask] = useState("");
   const [image, setImage] = useState(null);
   const [durationAlert, setDurationAlert] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const [inputs, setInputs] = useState({
     title: "",
@@ -107,6 +108,7 @@ function EditCard() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsProcessing(!isProcessing);
 
     if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
       setDurationAlert(true);
@@ -140,31 +142,34 @@ function EditCard() {
   return (
     <Layout>
       <div className="create-card-container">
-        <SideContainer />
-        <div className="create-container">
-          <div className="head-sentence">
-            <h1 className="firsttopic">Edit Your Awesome Card</h1>
-            <h2 className="secondtopic">Did You Meow Today?</h2>
-            <h3 className="thirdtopic">Today's Workout</h3>
+        <div className="bg">
+          <SideContainer />
+          <div className="container">
+            <div className="head-sentence">
+              <h1 className="firsttopic">Edit Your Awesome Card</h1>
+              <h2 className="secondtopic">Did You Meow Today?</h2>
+              <h3 className="thirdtopic">Today's Workout</h3>
+            </div>
+            {/* card */}
+            <EditPrevCard
+              inputs={inputs}
+              image={image}
+              handleFileChange={handleFileChange}
+              task={task}
+              handleChangeInput={handleChangeInput}
+            />
+            {/* form */}
+            <EditForm
+              handleChangeInput={handleChangeInput}
+              calcDuration={calcDuration}
+              changeColor={changeColor}
+              inputs={inputs}
+              handleFormSubmit={handleFormSubmit}
+              durationAlert={durationAlert}
+              handleCancel={handleCancel}
+              isProcessing={isProcessing}
+            />
           </div>
-          {/* card */}
-          <EditPrevCard
-            inputs={inputs}
-            image={image}
-            handleFileChange={handleFileChange}
-            task={task}
-            handleChangeInput={handleChangeInput}
-          />
-          {/* form */}
-          <EditForm
-            handleChangeInput={handleChangeInput}
-            calcDuration={handleCalcDuration}
-            changeColor={changeColor}
-            inputs={inputs}
-            handleFormSubmit={handleFormSubmit}
-            durationAlert={durationAlert}
-            handleCancel={handleCancel}
-          />
         </div>
       </div>
     </Layout>
