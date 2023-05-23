@@ -161,10 +161,10 @@
   padding-right: 0;
 }
 
-.loading-icon {
+.loading-icon-edit {
   top: 1rem;
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  padding-right: 40%;
+  padding-top: 0.1rem;
 }

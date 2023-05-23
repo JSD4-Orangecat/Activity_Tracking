@@ -104,7 +104,6 @@ function EditCard() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const backend = import.meta.env.VITE_BACKEND_URL;
-    setIsProcessing(!isProcessing);
 
     if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
       setDurationAlert(true);
@@ -115,6 +114,8 @@ function EditCard() {
     for (const [key, value] of Object.entries(inputs)) {
       formData.append(key, value);
     }
+
+    setIsProcessing(!isProcessing);
 
     try {
       const response = await axios.put(

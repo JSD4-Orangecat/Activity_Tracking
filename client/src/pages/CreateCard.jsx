@@ -70,7 +70,6 @@ function CreateCard() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setIsProcessing(!isProcessing);
     const backend = import.meta.env.VITE_BACKEND_URL;
 
     if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
@@ -83,6 +82,7 @@ function CreateCard() {
     for (const [key, value] of Object.entries(inputs)) {
       formData.append(key, value);
     }
+    setIsProcessing(!isProcessing);
 
     try {
       const response = await axios.post(

@@ -20,7 +20,7 @@ function Profile() {
     try {
       const response = await axios.get(`${backend}/profile`);
       setUserData(response.data.data);
-      // setSrcImg((response.data.data.picture));
+      setSrcImg(response.data.data.picture);
     } catch (err) {
       console.log(err);
     }
@@ -42,24 +42,9 @@ function Profile() {
 
   //function to handle change
   const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value, files } = e.target;
-    // if (files && files[0]) {
-    const file = files[0];
-    setSrcImg(URL.createObjectURL(file));
-    //set the handleChangeInput to store this img's value with others
-    setUserData((prevInputs) => ({
-      ...prevInputs,
-      [name]: value,
-      picture: file,
-    }));
-    // } else {
-    //setUserData({ ...userData, [name]: value });
-    // }
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
   };
-  console.log(userData);
-
-  console.log(userData);
 
   //function save update of profile
 
@@ -74,30 +59,14 @@ function Profile() {
 
     //check errors before making the axios request
     if (Object.keys(error).length === 0) {
-      // const { name, value, files } = e.target;
-      // // const file = files[0];
-      // setUserData((prevInputs) => ({
-      //   ...prevInputs,
-      //   [name]: value,
-      //   picture: files,
-      // }));
-      const { confirmpassword, ...allData } = userData;
-      console.log("inside data");
-      console.log(allData);
-      //   setUserData({ ...userData, [name]: value });
-      console.log(userData);
-      console.log("no errors");
+      setIsProcessing(true);
+      const { ...allData } = userData;
+
       //convert to form data
       const formData = new FormData();
-      setIsProcessing(!isProcessing);
-      // formData.append("picture", userData.pic);
       for (const [key, value] of Object.entries(allData)) {
         formData.append(key, value);
       }
-      // if (file) {
-      formData.append("picture", file);
-      // }
-
       try {
         const response = await axios.put(
           `${backend}/profile/update`,
@@ -106,11 +75,21 @@ function Profile() {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
+        // update data to local storage
+        const updateData = response.data.data;
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUser.firstName = updateData.firstName;
+        currentUser.lastName = updateData.lastName;
+        currentUser.email = updateData.email;
+        currentUser.height = updateData.height;
+        currentUser.weight = updateData.weight;
+        currentUser.picture = updateData.picture;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
         swal("Updated!", "Your profile has been updated!", "success");
         navigate("/dashboard"); // navigate to the dashboard
       } catch (err) {
         console.log(err);
-        setIsSubmit(false);
+        setIsProcessing(false);
         swal("Oops", "Something went wrong!", "error");
       }
     }
@@ -193,12 +172,6 @@ function Profile() {
 
     return errors;
   };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-  useEffect(() => {
-    setIsProcessing(false);
-  }, [isSubmit]);
 
   return (
     <Layout>
@@ -244,6 +217,16 @@ function Profile() {
                   disabled={isProcessing}
                 >
                   <span>{isProcessing ? "Updating ... " : "Update"}</span>
+                  {isProcessing ? (
+                    <div className="loading-icon-edit">
+                      <BarLoader
+                        color="#808080"
+                        size={200}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </div>
+                  ) : null}
                 </button>
                 <button
                   onClick={handleDeleteProfile}
@@ -252,16 +235,6 @@ function Profile() {
                   Delete
                 </button>
               </div>
-              {isProcessing ? (
-                <div className="loading-icon">
-                  <BarLoader
-                    color="#939b62"
-                    size={200}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                  />
-                </div>
-              ) : null}
             </div>
 
             <div className="allInformations">

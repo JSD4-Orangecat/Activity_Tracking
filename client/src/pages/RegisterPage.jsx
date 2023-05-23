@@ -76,6 +76,7 @@ function FormRegister() {
       } catch (error) {
         setError(error.response.data.message);
         setIsSubmit(false);
+        setIsProcessing(false);
         swal("Oops", "Something went wrong!", "error");
       }
     }
@@ -85,9 +86,9 @@ function FormRegister() {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    setIsProcessing(false);
-  }, [error, isSubmit]);
+  // useEffect(() => {
+  //   setIsProcessing(false);
+  // }, [error, isSubmit]);
 
   return (
     <Layout>

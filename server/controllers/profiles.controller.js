@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import { cloudinaryUploadProfile } from "../utils/upload.js";
+import Activity from "../models/activity.model.js";
 
 // delete user account
 export const deleteUserAccount = async (req, res) => {
@@ -9,6 +10,8 @@ export const deleteUserAccount = async (req, res) => {
     const userid = req.user.info._id;
     // Find the user by ID and delete
     const deleteAccount = await User.findByIdAndRemove({ _id: userid });
+
+    const deleteActivity = await Activity.deleteMany({ userID: userid });
 
     // // Check account for deleting
 
@@ -79,13 +82,22 @@ export const editProfile = async (req, res) => {
       account.lastName = req.body.lastName || account.lastName;
       account.birthDate = req.body.birthDate || account.birthDate;
       account.gender = req.body.gender || account.gender;
-      account.picture = uploadedImage || account.picture;
+      account.picture = uploadedImage;
       account.weight = req.body.weight || account.weight;
       account.height = req.body.height || account.height;
 
       await account.save();
 
-      res.status(200).send({ message: "Profile updated successfully" });
+      const data = {
+        firstName: account.firstName,
+        lastName: account.lastName,
+        weight: account.weight,
+        height: account.height,
+        email: account.email,
+        picture: account.picture,
+      };
+
+      res.status(200).send({ message: "Profile updated successfully", data });
     } catch (err) {
       res
         .status(500)
@@ -131,7 +143,16 @@ export const editProfile = async (req, res) => {
 
       await account.save();
 
-      res.status(200).send({ message: "Profile updated successfully" });
+      const data = {
+        firstName: account.firstName,
+        lastName: account.lastName,
+        weight: account.weight,
+        height: account.height,
+        email: account.email,
+        picture: account.picture,
+      };
+
+      res.status(200).send({ message: "Profile updated successfully", data });
     } catch (err) {
       res
         .status(500)
