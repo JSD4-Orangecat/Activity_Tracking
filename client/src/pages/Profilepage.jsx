@@ -27,6 +27,18 @@ function Profile() {
   useEffect(() => {
     fetchData();
   }, []);
+
+    //function to handle picture change
+    const handleChangePic = (e) => {
+      const { files } = e.target;
+      if (files && files[0]) {
+        const file = files[0];
+        setSrcImg(URL.createObjectURL(file));
+        setUserData({ ...userData, picture: file });
+      }
+    };
+  
+
   //function to handle change
   const handleChange = (e) => {
     e.preventDefault();
