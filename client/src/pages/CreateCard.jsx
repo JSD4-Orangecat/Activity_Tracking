@@ -108,30 +108,28 @@ function CreateCard() {
   return (
     <Layout>
       <div className="create-card-container">
-        <div className="bg">
-          <SideContainer />
-          <div className="container">
-            <div className="head-sentence">
-              <h1 className="firsttopic">Create Your Awesome Card</h1>
-              <h2 className="secondtopic">Did You Meow Today?</h2>
-              <h3 className="thirdtopic">Today's Workout</h3>
-            </div>
-            <PrevCard
-              inputs={inputs}
-              image={image}
-              handleFileChange={handleFileChange}
-              task={task}
-              handleChangeInput={handleChangeInput}
-            />
-            <Form
-              handleChangeInput={handleChangeInput}
-              calcDuration={handleCalcDuration}
-              changeColor={changeColor}
-              handleFormSubmit={handleFormSubmit}
-              durationAlert={durationAlert}
-              isProcessing={isProcessing}
-            />
+        <SideContainer />
+        <div className="create-container">
+          <div className="head-sentence">
+            <h1 className="firsttopic">Create Your Awesome Card</h1>
+            <h2 className="secondtopic">Did You Meow Today?</h2>
+            <h3 className="thirdtopic">Today's Workout</h3>
           </div>
+          <PrevCard
+            inputs={inputs}
+            image={image}
+            handleFileChange={handleFileChange}
+            task={task}
+            handleChangeInput={handleChangeInput}
+          />
+          <Form
+            handleChangeInput={handleChangeInput}
+            calcDuration={handleCalcDuration}
+            changeColor={changeColor}
+            handleFormSubmit={handleFormSubmit}
+            durationAlert={durationAlert}
+            isProcessing={isProcessing}
+          />
         </div>
       </div>
     </Layout>
