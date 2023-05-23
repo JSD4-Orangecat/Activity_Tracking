@@ -5,10 +5,11 @@ import swimming from "/exercises/swimming.png";
 import cardio from "/exercises/cardio.png";
 import walking from "/exercises/walking.png";
 import "../../assets/styles/cardCSS/createForm.css";
+import "../../assets/styles/cardCSS/createFormResponsive.css";
 
 function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, durationAlert, isProcessing }) {
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} className="create-card-form">
       <div className="title-date">
 
         {/* Add data: Title  */}
@@ -107,25 +108,31 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
       </div>
 
       {/* Add data: Duration */}
-      <div className="time_duration">
-        <label htmlFor="time_start">Time-Start:</label>
-        <input
-          type="time"
-          className="time"
-          name="timeStart"
-          onChange={handleChangeInput}
-          required
-        ></input>
-        <label htmlFor="time-end" className="time2">
-          Time-End:
-        </label>
-        <input
-          type="time"
-          className="time"
-          name="timeEnd"
-          onChange={handleChangeInput}
-          required
-        ></input>
+      <div className="time-duration">
+        <div className="time-start-end">
+          <div className="time-start">
+            <label htmlFor="time_start">Time-Start:</label>
+            <input
+              type="time"
+              className="time"
+              name="timeStart"
+              onChange={handleChangeInput}
+              required
+            ></input>
+          </div>
+          <div className="time-end">
+            <label htmlFor="time-end" className="time2">
+              Time-End:
+            </label>
+            <input
+              type="time"
+              className="time"
+              name="timeEnd"
+              onChange={handleChangeInput}
+              required
+            ></input>
+          </div>
+        </div>
         <button type="button" onClick={calcDuration}>
           Duration
         </button>
@@ -138,6 +145,7 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
       <div className="taskStatus">
         <p>Task Status:</p>
         <div className="wrapper">
+
           <input
             type="radio"
             value="complete"
@@ -163,9 +171,10 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
             onClick={changeColor}
             onChange={handleChangeInput}
           ></input>
+
           <label htmlFor="complete" className="option option-1">
             <div className="dot dot-1"></div>
-            <span>Missison Complete</span>
+            <span>Mission Completed</span>
           </label>
           <label htmlFor="inProgress" className="option option-2">
             <div className="dot dot-2"></div>
@@ -173,7 +182,7 @@ function Form({ handleChangeInput, calcDuration, changeColor, handleFormSubmit, 
           </label>
           <label htmlFor="fail" className="option option-3">
             <div className="dot dot-3"></div>
-            <span>Missison Failed</span>
+            <span>Mission Failed</span>
           </label>
         </div>
       </div>
