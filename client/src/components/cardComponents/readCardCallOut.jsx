@@ -34,7 +34,7 @@ const CallOut = ({
       }
     };
 
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const mediaQuery = window.matchMedia("(min-width: 769px) and (max-width: 1200px)");
 
     updatePlaceholder(mediaQuery);
     mediaQuery.addEventListener("change", updatePlaceholder);
