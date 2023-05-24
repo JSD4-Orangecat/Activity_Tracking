@@ -153,7 +153,7 @@ function Form({
               name="timeStart"
               onChange={handleChangeInput}
               required
-              value={inputs.time_start}
+              value={inputs.timeStart}
             ></input>
           </div>
           <div className="time-end">
@@ -166,7 +166,7 @@ function Form({
               name="timeEnd"
               onChange={handleChangeInput}
               required
-              value={inputs.time_end}
+              value={inputs.timeEnd}
             ></input>
           </div>
         </div>

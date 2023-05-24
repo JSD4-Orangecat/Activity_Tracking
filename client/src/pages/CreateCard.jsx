@@ -72,7 +72,7 @@ function CreateCard() {
     e.preventDefault();
     const backend = import.meta.env.VITE_BACKEND_URL;
 
-    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m") {
+    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m" || inputs.duration === " ") {
       setDurationAlert(true);
       return;
     }
