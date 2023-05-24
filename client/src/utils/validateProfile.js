@@ -1,4 +1,4 @@
-const validateProfile = (values) => {
+export const validateProfile = (values) => {
     const errors = {};
 
     const regexEmail =
@@ -36,5 +36,3 @@ const validateProfile = (values) => {
 
     return errors;
 };
-
-export default validateProfile;
