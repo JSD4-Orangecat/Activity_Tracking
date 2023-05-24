@@ -85,6 +85,7 @@ export const editProfile = async (req, res) => {
       account.picture = uploadedImage;
       account.weight = req.body.weight || account.weight;
       account.height = req.body.height || account.height;
+      account.rank = req.body.rank
 
       await account.save();
 
@@ -95,6 +96,7 @@ export const editProfile = async (req, res) => {
         height: account.height,
         email: account.email,
         picture: account.picture,
+        rank: account.rank,
       };
 
       res.status(200).send({ message: "Profile updated successfully", data });
@@ -140,6 +142,7 @@ export const editProfile = async (req, res) => {
       account.picture = account.picture;
       account.weight = req.body.weight || account.weight;
       account.height = req.body.height || account.height;
+      account.rank = req.body.rank
 
       await account.save();
 
@@ -150,6 +153,7 @@ export const editProfile = async (req, res) => {
         height: account.height,
         email: account.email,
         picture: account.picture,
+        rank: account.rank,
       };
 
       res.status(200).send({ message: "Profile updated successfully", data });
