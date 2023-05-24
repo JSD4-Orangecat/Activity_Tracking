@@ -51,16 +51,28 @@ export default function HomePage() {
 
   function calcBmi(e) {
     e.preventDefault();
-    let height = bmiInput.height;
-    let weight = bmiInput.weight;
-    let bmiResult = (+weight / (+height / 100) ** 2).toFixed(2);
-    let bmiState =
+    let height = parseFloat(bmiInput.height);
+    let weight = parseFloat(bmiInput.weight);
+
+    if (isNaN(height)) {
+      const bmiResult = 'Wrong height input!'
+      return setBmiInput({...bmiInput, bmi: bmiResult, shape: 'strong'})
+    }
+    if (isNaN(weight)) {
+      const bmiResult = 'Wrong Weight input!'
+      return setBmiInput({...bmiInput, bmi: bmiResult, shape: 'strong'})
+    }
+
+    const bmiResult = `Your BMI is : ${(weight / (height / 100) ** 2).toFixed(2)}`;
+    const bmiState =
       bmiResult < 18.5
         ? "under"
         : bmiResult >= 18.5 && bmiResult < 25
           ? "strong"
-          : "over";
-    console.log(bmiState);
+          : bmiResult >= 25 
+          ? "over"
+          : "strong"
+  
     setBmiInput({ ...bmiInput, bmi: bmiResult, shape: bmiState });
   }
 
@@ -141,13 +153,13 @@ export function Homebmi({ bmiInput, onChange, onClick }) {
         <form className="bmi-form">
           <h3>BMI Calculator</h3>
           <input
-            placeholder="Your Height!"
+            placeholder="Your Height (in cm.)"
             onChange={onChange}
             name="height"
             value={bmiInput.height}
           />
           <input
-            placeholder="Your Weight!"
+            placeholder="Your Weight (in kg.)"
             onChange={onChange}
             name="weight"
             value={bmiInput.weight}
