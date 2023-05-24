@@ -15,7 +15,6 @@
 }
 
 .r-callout {
-    /* border: 1px solid black; */
     width: 60%;
     height: 30%;
     top: 0%;
@@ -24,8 +23,7 @@
 }
 
 .r-socialmedia {
-    /* border: 1px solid black; */
-    width: 8%;
+    width: 15%;
     height: 4%;
     margin: 0 auto;
     position: relative;
@@ -33,7 +31,6 @@
 }
 
 .r-card {
-    /* border: 1px solid black; */
     position: relative;
     margin: 0 auto;
     width: 100%;
@@ -89,5 +86,19 @@
 @media screen and (max-width: 768px) {
     .r-coverimage {
         padding-bottom: 35%;
+    }
+
+    .r-callout {
+        width: 90%;
+    }
+
+    .r-socialmedia {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .r-socialmedia {
+        width: 20%;
     }
 }

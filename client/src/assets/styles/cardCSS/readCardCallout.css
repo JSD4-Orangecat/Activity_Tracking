@@ -9,22 +9,20 @@
 }
 
 /* ------------ */
-.emoji-allcontainer{
+.emoji-allcontainer {
     height: 70%;
     width: 80%;
-    padding: 10%;
+    padding: 8%;
     top: 0;
     margin: 0 auto;
     margin-top: 10px;
-    /* border: 1px solid rgb(43, 31, 151); */
     position: relative;
 }
 
 /* ----- container for display emoji and textarea ----- */
-.emoji-subcontainer{
+.emoji-subcontainer {
     height: 70%;
     width: 100%;
-    /* border: 1px solid palevioletred; */
     position: absolute;
     display: flex;
     top: 20px;
@@ -34,20 +32,18 @@
 
 /* ---- display emoji ---- */
 .displayEmoji {
-    /* border: 1px solid green; */
     width: 30px;
     height: 30px;
     position: absolute;
-    left: 0%;
+    left: -3%;
     top: 10px;
-    
 }
 
 /* ---- textarea ---- */
 .textarea {
     padding: 2.5%;
     width: 95%;
-    height: 80%;
+    height: 100%;
     position: absolute;
     right: 0%;
     font-family: 'Sono', sans-serif;
@@ -76,23 +72,50 @@
 
 /* ---- icon ---- */
 .fa-facesmile {
-        width: 20px;
-        height: 20px;
-        color: #757575;
-        cursor: pointer;
-        position: absolute;
-        bottom: 0%;
-        right: 0%;
-    }
+    width: 20px;
+    height: 20px;
+    color: #757575;
+    cursor: pointer;
+    position: absolute;
+    bottom: 6%;
+    right: -6%;
+}
 
-    /* ---- line ---- */
+/* ---- line ---- */
 .callout-line {
     height: 1px;
     width: 100%;
     background-color: #757575;
-    /* bottom: 0%; */
     position: absolute;
     border-radius: 5px;
     margin: 0 auto;
-    
+}
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .emoji-subcontainer {
+        top: 10px;
+    }
+
+    .textarea {
+        height: 130%;
+    }
+
+    .displayEmoji {
+        left: -9%;
+        top: 3%;
+    }
+
+    .fa-facesmile {
+        bottom: 37%;
+        right: -10%;
+    }
+
+    .callout-line {
+        margin: 10px auto;
+    }
 }
