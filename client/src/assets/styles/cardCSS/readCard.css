@@ -77,28 +77,3 @@
     margin-bottom: 4rem;
     cursor: pointer;
 }
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-    .r-coverimage {
-        padding-bottom: 35%;
-    }
-
-    .r-callout {
-        width: 90%;
-    }
-
-    .r-socialmedia {
-        width: 30%;
-    }
-}
-
-@media screen and (min-width: 769px) and (max-width: 1200px) {
-    .r-socialmedia {
-        width: 20%;
-    }
-}
