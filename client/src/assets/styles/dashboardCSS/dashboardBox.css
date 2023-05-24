@@ -42,7 +42,8 @@
         display: initial;
     }
 
-    .dashboard-page .r-prevcard {
+    .dashboard-page .r-prevcard,
+    .dashboard-page .blankCard {
         width: 514px;
     }
 
@@ -54,7 +55,9 @@
 }
 
 @media screen and (max-width: 650px) {
-    .dashboard-page .r-prevcard {
+
+    .dashboard-page .r-prevcard,
+    .dashboard-page .blankCard {
         border-radius: 19px;
         width: 278px;
     }

@@ -6,6 +6,7 @@ import BlankCard from "./BlankCard";
 import "../../assets/styles/dashboardCSS/dashboardCard.css";
 
 export default function DashboardCards() {
+  const cardColumn = 2;
   const navigate = useNavigate();
   const [getActivity, setActivity] = useState([]);
 
@@ -37,10 +38,10 @@ export default function DashboardCards() {
   // Ensure exactly three activities are rendered
   // const renderActivity = getActivity.slice(0, 3).concat(Array(3 - getActivity?.length).fill({}));
 
-  const renderActivity = getActivity.slice(0, 3);
+  const renderActivity = getActivity.slice(0, cardColumn);
 
-  if (getActivity?.length < 3) {
-    const emptyItems = Array(3 - (getActivity?.length || 0)).fill({});
+  if (getActivity?.length < cardColumn) {
+    const emptyItems = Array(cardColumn - (getActivity?.length || 0)).fill({});
     renderActivity.push(...emptyItems);
   }
 
