@@ -172,3 +172,38 @@ export const deleteActivity = async (req, res) => {
     res.status(500).send("Deleting activity failed");
   }
 };
+
+
+
+export const countActivity = async (req, res) => {
+  try {
+    const userID = req.user.info._id;
+
+    const counts = await Activity.aggregate([
+      {
+        '$match': {
+          'userID': userID
+        }
+      }, {
+        '$group': {
+          '_id': '$type', 
+          'count': {
+            '$sum': 1
+          }
+        }
+      }
+    ]);
+    // console.log(counts)
+
+    const result = {};
+    counts.forEach((count)=> {
+      result[count._id] = count.count;
+    })
+
+    res.json(result);
+  }
+  catch (err) {
+    console.log(err)
+    res.status(500).send("Cannot count activity")
+  }
+}

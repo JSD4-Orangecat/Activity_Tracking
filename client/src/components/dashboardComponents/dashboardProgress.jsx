@@ -38,7 +38,7 @@ export default function DashboardProgress() {
 
     
 
-    console.log(rank)
+    // console.log(rank)
 
     return (
         <div className="progress-container">
