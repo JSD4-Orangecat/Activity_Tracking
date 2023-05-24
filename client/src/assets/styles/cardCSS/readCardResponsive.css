@@ -10,6 +10,11 @@
     .r-socialmedia {
         width: 30%;
     }
+
+    .r-page {
+        justify-content: center;
+        margin: 5% 0 0%;
+    }
 }
 
 
