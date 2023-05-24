@@ -8,12 +8,7 @@ export default function DashboardProfile() {
   return (
     <div className="dashboard-profile">
       <img src={currentUser.picture ? currentUser.picture : defaultImage} alt="Profile" />
-      <h3>{currentUser.firstName}</h3>
+      <h3>{currentUser.firstName} {currentUser.lastName}</h3>
     </div>
   );
 }
-
-const profileData = {
-  profilePicture: "/mockProfiles/mockProfile1.jpg",
-  username: "Chris_Cross",
-};

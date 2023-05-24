@@ -1,57 +1,45 @@
 import Activity from "../models/activity.model.js";
+import User from "../models/user.model.js"
 import { cloudinaryUploadCard } from "../utils/upload.js";
 
 export const postActivities = async (req, res) => {
-  const defaultIMG =
-    "https://res.cloudinary.com/dtcqqdjua/image/upload/v1684829449/orangecat/dafaultIMG/og_nermoe.jpg";
 
+  let image = "https://res.cloudinary.com/dtcqqdjua/image/upload/v1684829449/orangecat/dafaultIMG/og_nermoe.jpg";
   if (req.file) {
-    try {
-      const uploadedImage = await cloudinaryUploadCard(req.file);
-
-      const newActivity = new Activity({
-        title: req.body.title,
-        date: req.body.date,
-        type: req.body.type,
-        timeStart: req.body.timeStart,
-        timeEnd: req.body.timeEnd,
-        duration: req.body.duration,
-        task: req.body.task,
-        caption: req.body.caption,
-        img: uploadedImage,
-        userID: req.body.userID,
-      });
-      console.log(`this is ${newActivity}`);
-
-      await newActivity.save();
-      return res.status(200).send("activity card created successfully");
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("Creating activity card failed");
-    }
-  } else {
-    try {
-      const newActivity = new Activity({
-        title: req.body.title,
-        date: req.body.date,
-        type: req.body.type,
-        timeStart: req.body.timeStart,
-        timeEnd: req.body.timeEnd,
-        duration: req.body.duration,
-        task: req.body.task,
-        caption: req.body.caption,
-        img: defaultIMG,
-        userID: req.body.userID,
-      });
-      console.log(`this is ${newActivity}`);
-
-      await newActivity.save();
-      return res.status(200).send("activity card created successfully");
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("Creating activity card failed");
-    }
+    image = await cloudinaryUploadCard(req.file)
   }
+  
+  try {
+      const newActivity = new Activity({
+        title: req.body.title,
+        date: req.body.date,
+        type: req.body.type,
+        timeStart: req.body.timeStart,
+        timeEnd: req.body.timeEnd,
+        duration: req.body.duration,
+        task: req.body.task,
+        caption: req.body.caption,
+        img: image,
+        exp: req.body.exp,
+        userID: req.body.userID,
+      });
+      console.log(`this is ${newActivity}`);
+
+      const user = await User.findById(newActivity.userID)
+      console.log(user)
+      
+      const nextRank = user.rank + newActivity.exp;
+      console.log(user)
+      user.rank = nextRank;
+      console.log(user)
+      await newActivity.save();
+      await user.save()
+
+      return res.status(200).json({message: "activity card created successfully", rank: nextRank});
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Creating activity card failed");
+    }
 };
 
 export const getActivity = async (req, res) => {
@@ -172,3 +160,38 @@ export const deleteActivity = async (req, res) => {
     res.status(500).send("Deleting activity failed");
   }
 };
+
+
+
+export const countActivity = async (req, res) => {
+  try {
+    const userID = req.user.info._id;
+
+    const counts = await Activity.aggregate([
+      {
+        '$match': {
+          'userID': userID
+        }
+      }, {
+        '$group': {
+          '_id': '$type', 
+          'count': {
+            '$sum': 1
+          }
+        }
+      }
+    ]);
+    // console.log(counts)
+
+    const result = {};
+    counts.forEach((count)=> {
+      result[count._id] = count.count;
+    })
+
+    res.json(result);
+  }
+  catch (err) {
+    console.log(err)
+    res.status(500).send("Cannot count activity")
+  }
+}

@@ -84,6 +84,7 @@ function Profile() {
         currentUser.height = updateData.height;
         currentUser.weight = updateData.weight;
         currentUser.picture = updateData.picture;
+        currentUser.rank = updateData.rank;
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
         swal("Updated!", "Your profile has been updated!", "success");
         navigate("/dashboard"); // navigate to the dashboard

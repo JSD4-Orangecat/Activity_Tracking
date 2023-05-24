@@ -1,5 +1,5 @@
 import '../../assets/styles/dashboardCSS/dashboardProgress.css';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { useAuth } from '../../contexts/authentication';
 // import image for rank
 // import wooden from '/rank/rank-wooden.png'
@@ -12,30 +12,33 @@ import { useAuth } from '../../contexts/authentication';
 export default function DashboardProgress() {
     const {currentUser} = useAuth()
 
-    const calcRank = (rank) => {
-        console.log(rank)
+    // const calcRank = (rank) => {
+    //     console.log(rank)
 
-        if (rank >= 500) {
-          return diamondRank;
-        } else if (rank >= 400) {
-          return goldRank;
-        } else if (rank >= 300) {
-          return silverRank;
-        } else if (rank >= 200) {
-          return copperRank;
-        } else if (rank >= 100) {
-          return stoneRank;
-        } else if (rank < 100) {
-          return woodenRank;
-        }
-      };
 
-    console.log(currentUser.rank)
-    const rank = calcRank(currentUser?.rank)
+    //   };
+
+    // console.log(currentUser.rank)
+    // const rank = calcRank(currentUser?.rank)
+    const rank = useMemo(() => {
+        if (currentUser?.rank >= 500) {
+            return diamondRank;
+          } else if (currentUser?.rank >= 400) {
+            return goldRank;
+          } else if (currentUser?.rank >= 300) {
+            return silverRank;
+          } else if (currentUser?.rank >= 200) {
+            return copperRank;
+          } else if (currentUser?.rank >= 100) {
+            return stoneRank;
+          } else if (currentUser?.rank < 100) {
+            return woodenRank;
+          }
+    },[currentUser.rank])
 
     
 
-    console.log(rank)
+    // console.log(rank)
 
     return (
         <div className="progress-container">
