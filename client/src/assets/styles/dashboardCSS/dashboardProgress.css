@@ -2,20 +2,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .progress-text {
     color: black;
 }
 
+.progress-medal {
+    display: flex;
+    justify-content: center;
+}
+
 .progress-img {
-    width: 100%;
+    width: 15rem;
+    margin: 5% auto
 }
 
 #progress-text-title {
     font-size: 32px;
     margin-top: 0;
-    margin-bottom: 5%;
 }
 
 #progress-text-title-2 {
@@ -29,7 +35,7 @@
 }
 
 #bottom-medal {
-    width: 25%;
+    width: 5rem;
 }
 
 
@@ -50,6 +56,10 @@
     margin-top: 5%;
     font-size: 20px;
     font-weight: bold;
+}
+
+#progress-next-left {
+    margin-right: 15%;
 }
 
 progress::-moz-progress-bar {
@@ -76,29 +86,17 @@ progress {
 
 
 @media screen and (max-width: 1200px) {
-    .progress-content {
-        flex-direction: row;
-    }
-
     #progress-text-next {
-        margin-bottom: 5%;
-    }
-
-    .progress-next {
-        align-items: flex-end;
-    }
-
-    .progress-img {
-        display: none;
-    }
-
-    #progress-text-title {
-        display: none
+        margin: 10% auto;
     }
 
     .progress-medal {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .progress-img {
+        width: 10rem;
     }
 }

@@ -15,7 +15,6 @@
 }
 
 .r-callout {
-    /* border: 1px solid black; */
     width: 60%;
     height: 30%;
     top: 0%;
@@ -24,8 +23,7 @@
 }
 
 .r-socialmedia {
-    /* border: 1px solid black; */
-    width: 8%;
+    width: 15%;
     height: 4%;
     margin: 0 auto;
     position: relative;
@@ -33,22 +31,21 @@
 }
 
 .r-card {
-     /* border: 1px solid black; */
-     position: relative;
-     margin: 0 auto;
-     width: 100%;
-     display: flex;
-     flex-wrap: wrap;
-     margin-bottom: 15px;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
 .r-btn-create {
     position: relative;
-    top: 1.5rem;
+    top: -1.5rem;
     font-family: 'Sono', sans-serif;
     font-weight: 600;
-    font-size:x-large;
-    padding:  10px 25px;
+    font-size: x-large;
+    padding: 10px 25px;
     color: white;
     background-color: #FF7B54;
     border: #FF7B54;
@@ -56,10 +53,10 @@
     cursor: pointer;
     margin: 0 auto;
     display: flex;
-    
+
 }
 
-.r-page{
+.r-page {
     display: flex;
     position: relative;
     justify-content: end;
@@ -68,9 +65,9 @@
     top: 2.5rem;
 }
 
-.r-page span{
+.r-page span {
     color: #FF7B54;
-    font-size:xx-large;
+    font-size: xx-large;
 }
 
 .faCircle {

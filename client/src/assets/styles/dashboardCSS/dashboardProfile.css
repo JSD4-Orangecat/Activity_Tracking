@@ -5,7 +5,7 @@
 }
 
 .dashboard-profile img {
-    width: 7rem;
+    width: 10rem;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -25,7 +25,7 @@
 
 @media screen and (max-width: 1200px) {
     .dashboard-profile img {
-        width: 30%;
+        width: 7rem;
         margin-right: 5%;
     }
 
