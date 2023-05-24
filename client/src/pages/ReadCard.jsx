@@ -14,6 +14,7 @@ import Card from "../components/cardComponents/readCardCard";
 import CoverImage from "../components/cardComponents/readCardCoverImage";
 import SocialMedia from "../components/cardComponents/readCardSocialmedia";
 import "../assets/styles/cardCSS/readCard.css";
+import "../assets/styles/cardCSS/readCardResponsive.css";
 
 
 
