@@ -1,38 +1,41 @@
-import "../assets/styles/cardCSS/readCard.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
-import CoverImage from "../components/cardComponents/readCardCoverImage";
-import CallOut from "../components/cardComponents/readCardCallOut";
-import SocialMedia from "../components/cardComponents/readCardSocialmedia";
 import axios from "axios";
-import Card from "../components/cardComponents/readCardCard";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleLeft,
   faCircleRight,
 } from "@fortawesome/free-regular-svg-icons";
 
-const pageLimit = 4;
+import Layout from "../components/Layout";
+import CallOut from "../components/cardComponents/readCardCallOut";
+import Card from "../components/cardComponents/readCardCard";
+import CoverImage from "../components/cardComponents/readCardCoverImage";
+import SocialMedia from "../components/cardComponents/readCardSocialmedia";
+import "../assets/styles/cardCSS/readCard.css";
+
+
 
 function ReadCard() {
   const navigate = useNavigate();
 
   const [cover, setCover] = useState(null);
-  const [quote, setQuote] = useState(null);
-  // eslint-disable-next-line no-unused-vars
-  const [filename, setFilename] = useState("no selected file");
-  const [pickerVisible, setPickerVisible] = useState(false);
   const [currentEmoji, setCurrentEmoji] = useState(null);
+  const [filename, setFilename] = useState("no selected file");
   const [getactivity, setGetActivity] = useState([]);
+  const [limit, setLimit] = useState(4); //page limit
+  const [page, setPage] = useState(1);
+  const [pickerVisible, setPickerVisible] = useState(false);
+  const [quote, setQuote] = useState(null);
   const [rcInputs, setRcInputs] = useState({
     quote: "",
     emoji: "",
     cover: "",
   });
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(pageLimit);
   const [totalPages, setTotalPages] = useState(1);
+
+
 
   const showPicker = () => {
     setPickerVisible(!pickerVisible);
@@ -53,9 +56,7 @@ function ReadCard() {
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    //console.log(e.target.value)
     setRcInputs((prevRcInputs) => ({ ...prevRcInputs, [name]: value }));
-    //console.log({...callOut})
   };
 
   const handleFileChange = async (e) => {
@@ -83,10 +84,37 @@ function ReadCard() {
     }
   };
 
-  //for get method : activity data
-  useEffect(() => {
-    fetchActivity();
-  }, [page, limit]);
+  //link to create card page
+  const handleButton = () => {
+    navigate("/createcard");
+  };
+
+  //Handler page change functions
+  const handlerPrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handlerNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
+  const fetchQuote = async () => {
+    const backend = import.meta.env.VITE_BACKEND_URL;
+    try {
+      const response = await axios.get(`${backend}/quote`);
+      if (response.data.data) {
+        setCover(response.data.data.cover);
+        setCurrentEmoji(response.data.data.emoji);
+        setQuote(response.data.data.quote);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   //for get method : activtiy data, use this inside useEffect
   const fetchActivity = async () => {
@@ -108,45 +136,6 @@ function ReadCard() {
     }
   };
 
-  //link to create card page
-  const handleButton = () => {
-    navigate("/createcard");
-  };
-
-  //Handler page change function
-  const handlerPrevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  };
-
-  const handlerNextPage = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
-    }
-  };
-
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter") {
-  //     // 👇 Get input value
-  //     setQuote(rcInputs.quote);
-  //   }
-  // };
-
-  const fetchQuote = async () => {
-    const backend = import.meta.env.VITE_BACKEND_URL;
-    try {
-      const response = await axios.get(`${backend}/quote`);
-      if (response.data.data) {
-        setCover(response.data.data.cover);
-        setCurrentEmoji(response.data.data.emoji);
-        setQuote(response.data.data.quote);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const handleOnBlur = async (event) => {
     const backend = import.meta.env.VITE_BACKEND_URL;
     const { cover, emoji, ...data } = rcInputs;
@@ -158,9 +147,18 @@ function ReadCard() {
     }
   };
 
+
+
+  //for get method : activity data
+  useEffect(() => {
+    fetchActivity();
+  }, [page, limit]);
+
   useEffect(() => {
     fetchQuote();
   }, []);
+
+
 
   return (
     <Layout>
