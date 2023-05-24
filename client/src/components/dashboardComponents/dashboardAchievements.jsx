@@ -12,9 +12,9 @@ export default function DashboardAchievements() {
     const calcAchievementImage = useCallback((activity) => {
         if (activity >= 10) {
             return 'Gold'
-        } else if (activity >= 3) {
+        } else if (activity >= 5) {
             return 'Silver'
-        } else if (activity < 3) {
+        } else if (activity < 5) {
             return 'Bronze'
         }
     },[activitiesType])
@@ -66,7 +66,7 @@ export default function DashboardAchievements() {
                         <div className="achievement-image">
                             <img src={achievementImg} alt="Profile" />
                         </div>
-                        {/* <p className='achievement-count'>{count}</p> */}
+                        <p className='achievement-count'>{count}</p>
                     </div>
                     
                 ))}
