@@ -72,8 +72,7 @@ export default function HomePage() {
           : bmiResult >= 25 
           ? "over"
           : "strong"
-    console.log(bmiResult)
-    console.log(bmiState);
+  
     setBmiInput({ ...bmiInput, bmi: bmiResult, shape: bmiState });
   }
 
