@@ -1,41 +1,24 @@
-/* #FF7B54, #FFD56B */
-.wrapImgProfile {
-  height: 300px;
-  width: 300px;
-  position: relative;
-
-  border-radius: 50%;
-  background: url("/public/generic/Login_logo.png");
-  background-size: 100% 100%;
-  margin: auto;
-  /* z-index: -1; */
-}
-
-#profileImg {
-  cursor: auto;
-  border-radius: 50%;
-  height: 300px;
-  width: 300px;
-  border: 100% double transparent;
-  margin: auto;
-  z-index: 1;
-}
-
-.addjustHeader h1 {
-  font-size: xx-large;
-}
-
 .editform {
   box-sizing: border-box;
   width: 80%;
-  border: solid none;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.5);
   margin-top: 0;
   margin-bottom: 15%;
-  height: 600px;
   text-align: center;
-  /* margin-bottom: 15%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.boxforflex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileNameHeader {
+  margin-top: 2%;
 }
 
 .labelInputEdit {
@@ -54,86 +37,77 @@
   font-size: large;
 }
 
-/*  box right information*/
-.allInformations {
+.boxRightForForm {
   display: flex;
-  justify-content: center;
-  width: 60%;
+  flex-direction: column;
   align-items: center;
+  width: 80%;
   text-align: start;
   margin-top: 18px;
-  height: 450px;
   font-weight: 600;
-  /* border: 1px solid; */
 }
 
-.allInformations input {
+/* .boxRightForForm input {
   margin-bottom: 15px;
-}
+} */
 
-.boxforflex {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* box left pictureprofile and button*/
 .setprofile {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40%;
-  height: 450px;
+  margin: 0 10%;
 }
 
+#profile-photo-setting {
+  transform: scale(1.5);
+}
+
+
+
+
+
+
 .allBtnProfile {
-  width: 100%;
-  height: 30%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
+  gap: 40px;
+  margin: 25% auto 15%;
+}
+
+.btnProfile,
+.btnProfile-delete {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btnProfile {
-  background-color: #939b62;
-  height: 30%;
-  width: 30%;
-  border: #939b62;
-  border-radius: 10px;
+  background-color: #4286f4;
+  color: white;
   font-family: "Sono", sans-serif;
-  font-size: large;
-  font-weight: 600;
-  cursor: pointer;
+}
+
+.btnProfile:hover {
+  background-color: #2e69c8;
 }
 
 .btnProfile-delete {
-  background-color: rgb(255, 64, 64);
-  height: 30%;
-  width: 30%;
-  border: rgb(255, 64, 64);
-  border-radius: 10px;
+  background-color: #f44336;
+  color: white;
   font-family: "Sono", sans-serif;
-  font-size: large;
-  font-weight: 600;
-  cursor: pointer;
 }
 
-.btnforinputphoto {
-  cursor: pointer;
-  height: 10%;
-  width: 10%;
-  background-color: #939b62;
-  z-index: 1;
-  border: #939b62;
+.btnProfile-delete:hover {
+  background-color: #c41f1f;
 }
 
-.boxRightForForm {
-  width: 80%;
-  height: 450px;
-}
+
+
+
+
 
 #genderForProfile {
   padding-top: 2.5%;
@@ -142,33 +116,13 @@
   justify-content: flex-start;
 }
 
-#inputPhotoProfile {
-  /* display: non; */
-  display: flex;
-}
-
-.photos {
-  position: absolute;
-  bottom: 10px;
-  left: 110px;
-  outline: none;
-  color: transparent;
-  width: 100%;
-  height: 30px;
-  box-sizing: border-box;
-}
-
 .TitleAndExit {
   display: flex;
   width: 100%;
 }
 
-.headerProfile {
-  padding-top: 2.5%;
-  width: 97%;
-}
-
 .cross {
+  position: absolute;
   width: 5%;
 }
 
@@ -185,4 +139,23 @@
   justify-content: center;
   margin: 0 auto;
   padding-top: 0.1rem;
+}
+
+
+
+
+
+
+@media screen and (max-width: 990px) {
+  .boxforflex {
+    flex-direction: column;
+  }
+
+  .allInformations {
+    width: 100%;
+  }
+
+  .profileNameHeader {
+    margin: 10% auto;
+  }
 }
