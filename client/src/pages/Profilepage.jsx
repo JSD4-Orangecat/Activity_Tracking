@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../components/Layout";
+import { useNavigate } from "react-router";
+import validateProfile from "../utils/validateProfile";
 import axios from "axios";
 import swal from "sweetalert";
-import "../assets/styles/Profilpage.css";
-import { useNavigate } from "react-router";
+import Layout from "../components/Layout";
 import BarLoader from "react-spinners/BarLoader";
+import "../assets/styles/ProfilePage.css";
 
-function Profile() {
-  const [userData, setUserData] = useState({});
-  const [formErrors, setFormErrors] = useState({});
+const Profile = () => {
   const navigate = useNavigate();
+
+  const [userData, setUserData] = useState({});
   const [srcImg, setSrcImg] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  //function fetch data
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     const backend = import.meta.env.VITE_BACKEND_URL;
@@ -25,48 +30,36 @@ function Profile() {
       console.log(err);
     }
   };
-  // fetchData();
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  //function to handle picture change
   const handleChangePic = (e) => {
     const { files } = e.target;
     if (files && files[0]) {
       const file = files[0];
       setSrcImg(URL.createObjectURL(file));
-      setUserData({ ...userData, picture: file });
+      setUserData((prevData) => ({ ...prevData, picture: file }));
     }
   };
 
-  //function to handle change
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+    setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
-
-  //function save update of profile
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     const backend = import.meta.env.VITE_BACKEND_URL;
     setIsSubmit(true);
-    //validate data
 
-    const error = validate(userData);
+    const error = validateProfile(userData);
     setFormErrors(error);
 
-    //check errors before making the axios request
     if (Object.keys(error).length === 0) {
       setIsProcessing(true);
-      const { ...allData } = userData;
-
-      //convert to form data
       const formData = new FormData();
-      for (const [key, value] of Object.entries(allData)) {
+      Object.entries(userData).forEach(([key, value]) => {
         formData.append(key, value);
-      }
+      });
+
       try {
         const response = await axios.put(
           `${backend}/profile/update`,
@@ -75,19 +68,21 @@ function Profile() {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
-        // update data to local storage
+
         const updateData = response.data.data;
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        currentUser.firstName = updateData.firstName;
-        currentUser.lastName = updateData.lastName;
-        currentUser.email = updateData.email;
-        currentUser.height = updateData.height;
-        currentUser.weight = updateData.weight;
-        currentUser.picture = updateData.picture;
-        currentUser.rank = updateData.rank;
+        Object.assign(currentUser, {
+          firstName: updateData.firstName,
+          lastName: updateData.lastName,
+          email: updateData.email,
+          height: updateData.height,
+          weight: updateData.weight,
+          picture: updateData.picture,
+        });
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
         swal("Updated!", "Your profile has been updated!", "success");
-        navigate("/dashboard"); // navigate to the dashboard
+        navigate("/dashboard");
       } catch (err) {
         console.log(err);
         setIsProcessing(false);
@@ -95,7 +90,7 @@ function Profile() {
       }
     }
   };
-  //function delete profile
+
   const handleDeleteProfile = async (e) => {
     e.preventDefault();
     const backend = import.meta.env.VITE_BACKEND_URL;
@@ -108,13 +103,11 @@ function Profile() {
     }).then(async (willDelete) => {
       if (willDelete) {
         try {
-          const response = await axios.delete(`${backend}/profile/delete`);
-          swal("Your account has been deleted!", {
-            icon: "success",
-          });
+          await axios.delete(`${backend}/profile/delete`);
+          swal("Your account has been deleted!", { icon: "success" });
           localStorage.removeItem("currentUser");
           localStorage.removeItem("token");
-          navigate("/"); // navigate to home
+          navigate("/");
         } catch (error) {
           console.log(error);
         }
@@ -122,56 +115,6 @@ function Profile() {
         swal("Your account is safe!");
       }
     });
-  };
-
-  //function for validate user data
-  const validate = (values) => {
-    const errors = {};
-
-    const regexEmail =
-      /^(?=.*[a-z])[a-z0-9._%+-]+@(?:gmail|hotmail|yahoo)\.[a-z]{2,}$/i;
-    const currentDate = new Date();
-    console.log({ currentDate });
-    const BirthDate = new Date(values.birthDate);
-    console.log({ BirthDate });
-    console.log(values.birthDate);
-    // Calculate age
-    const age = currentDate.getFullYear() - BirthDate.getFullYear();
-    console.log({ age });
-    if (!values.firstName) {
-      errors.firstName = "First Name is required!";
-    }
-    if (!values.lastName) {
-      errors.lastName = "Last name is required!";
-    }
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regexEmail.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
-
-    if (!values.birthDate) {
-      errors.birthDate = "Birthdate is required";
-    } else if (BirthDate > currentDate) {
-      errors.birthDate = "Birthdate cannot refer to a future date";
-    } else if (age < 7) {
-      errors.birthDate = "Age must be more than 7 years";
-    }
-    if (!values.gender) {
-      errors.gender = "Gender is required";
-    }
-    if (!values.height) {
-      errors.height = "Height is required";
-    } else if (values.height <= 0) {
-      errors.height = "Height must be a  positive number";
-    }
-    if (!values.weight) {
-      errors.weight = "Weight is required";
-    } else if (values.weight <= 0) {
-      errors.weight = "Weight must be a  positive number";
-    }
-
-    return errors;
   };
 
   return (
@@ -340,4 +283,5 @@ function Profile() {
     </Layout>
   );
 }
+
 export default Profile;
