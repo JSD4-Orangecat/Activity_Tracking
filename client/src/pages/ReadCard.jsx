@@ -11,6 +11,7 @@ import {
 import Layout from "../components/Layout";
 import CallOut from "../components/cardComponents/readCardCallOut";
 import Card from "../components/cardComponents/readCardCard";
+import BlankCard from "../components/dashboardComponents/BlankCard";
 import CoverImage from "../components/cardComponents/readCardCoverImage";
 import SocialMedia from "../components/cardComponents/readCardSocialmedia";
 import "../assets/styles/cardCSS/readCard.css";
@@ -184,9 +185,13 @@ function ReadCard() {
         </div>
 
         <div className="r-card">
-          {getactivity.map((ele) => (
-            <Card key={ele._id} data={ele} fetchActivity={fetchActivity} />
-          ))}
+          {getactivity.length > 0 ? (
+            getactivity.map((ele) => (
+              <Card key={ele._id} data={ele} fetchActivity={fetchActivity} />
+            ))
+          ) : (
+            <BlankCard />
+          )}
         </div>
 
         {/* submit button */}
