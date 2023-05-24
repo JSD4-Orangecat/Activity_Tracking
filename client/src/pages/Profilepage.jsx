@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import validateProfile from "../utils/validateProfile";
+import { validateProfile } from "../utils/validateProfile";
 import axios from "axios";
 import swal from "sweetalert";
 import Layout from "../components/Layout";
