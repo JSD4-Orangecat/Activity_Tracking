@@ -106,8 +106,8 @@ function FormRegister() {
         />
         <div className="register-cats">
           <img src={Cat} alt="Muscular Orange Cat" className="right" />
-          <img src={Cat} alt="Muscular Orange Cat" className="right" />
-          <img src={Cat} alt="Muscular Orange Cat" className="right" />
+          {/* <img src={Cat} alt="Muscular Orange Cat" className="right" />
+          <img src={Cat} alt="Muscular Orange Cat" className="right" /> */}
         </div>
       </section>
     </Layout>
