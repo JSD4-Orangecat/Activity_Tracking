@@ -30,4 +30,8 @@
         width: 50%;
         margin: 20px;
     }
+
+    .login-image {
+        display: none;
+    }
 }

@@ -33,8 +33,6 @@
   }
 
   .register-cats {
-    display: flex;
-    flex-direction: row;
-    margin-left: 0;
+    display: none;
   }
 }
