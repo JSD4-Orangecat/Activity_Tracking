@@ -48,7 +48,7 @@ export default function DashboardProgress() {
                     <img className="progress-img" id="top-medal" src={rank.rankImage} alt={`${rank.rankName} rank image`} />
                 </div>
                 <div className="progress-next">
-                    <p className="progress-text" id="progress-text-next">Next rank ➡ {rank.nextRank}</p>
+                    <p className="progress-text" id="progress-text-next">{rank.nextRank}</p>
                     <div id="progress-next-container">
                         <div id="progress-next-left">
                             
