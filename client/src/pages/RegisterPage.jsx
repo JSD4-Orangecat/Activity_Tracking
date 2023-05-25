@@ -35,7 +35,7 @@ function FormRegister() {
     const { name, value, files } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
+  console.log(formValues);
   function handleFileChange(e) {
     const { files } = e.target;
     if (files && files[0]) {
