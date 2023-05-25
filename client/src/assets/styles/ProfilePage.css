@@ -21,6 +21,11 @@
   margin-top: 2%;
 }
 
+.profile-field {
+  margin: 1.5% auto;
+  width: 80%;
+}
+
 .labelInputEdit {
   font-size: large;
   line-height: 30px;
@@ -46,10 +51,6 @@
   margin-top: 18px;
   font-weight: 600;
 }
-
-/* .boxRightForForm input {
-  margin-bottom: 15px;
-} */
 
 .setprofile {
   display: flex;
@@ -110,7 +111,7 @@
 
 
 #genderForProfile {
-  padding-top: 2.5%;
+  margin: 5% auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -123,14 +124,19 @@
 
 .cross {
   position: absolute;
-  width: 5%;
+  top: 3%;
+  left: 91%;
+  transition: transform 0.3s ease;
+}
+
+.cross:hover {
+  transform: scale(1.2);
 }
 
 .crossPic {
   height: 50px;
   width: 50px;
-  padding-top: 0;
-  padding-right: 0;
+  border-radius: 5px;
 }
 
 .loading-icon-edit {
@@ -157,5 +163,25 @@
 
   .profileNameHeader {
     margin: 10% auto;
+  }
+
+  .profile-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .labelInputEdit {
+    margin-bottom: 2%;
+  }
+
+  .cross {
+    top: 2%;
+    left: 77%;
+  }
+
+  .crossPic {
+    border-radius: 5px;
   }
 }

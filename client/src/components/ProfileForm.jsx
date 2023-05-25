@@ -16,7 +16,7 @@ const ProfileForm = ({
         <form className="editform">
 
             <a href="/dashboard" className="cross">
-                <img src="/generic/cross.jpg" className="crossPic" />
+                <img src="/generic/cross.png" className="crossPic" />
             </a>
 
             <h1 className="profileNameHeader">Profile</h1>
@@ -48,7 +48,7 @@ const ProfileForm = ({
                             className="btnProfile"
                             disabled={isProcessing}
                         >
-                            <span>{isProcessing ? "Updating ... " : "Update"}</span>
+                            <span>{isProcessing ? "Updating ... " : "Update Account"}</span>
                             {isProcessing ? (
                                 <div className="loading-icon-edit">
                                     <BarLoader
@@ -64,80 +64,95 @@ const ProfileForm = ({
                             onClick={handleDeleteProfile}
                             className="btnProfile-delete"
                         >
-                            Delete
+                            Delete Account
                         </button>
                     </div>
                 </div>
 
                 <div className="boxRightForForm">
-                    <label className="labelInputEdit">First Name* :</label>
-                    <br />
-                    <input
-                        type="text"
-                        id="firstname"
-                        value={userData.firstName}
-                        onChange={handleChange}
-                        name="firstName"
-                        className="inputProfile"
-                    />
-                    <span className="texterr"> {formErrors.firstName}</span>
-                    <br />
-                    <label className="labelInputEdit">Last Name* :</label> <br />
-                    <input
-                        onChange={handleChange}
-                        name="lastName"
-                        value={userData.lastName}
-                        type="text"
-                        className="inputProfile"
-                    />
-                    <span className="texterr"> {formErrors.lastName}</span>
-                    <br />
-                    <label className="labelInputEdit">Date Of Birth* :</label>
-                    <br />
-                    <input
-                        onChange={handleChange}
-                        value={userData.birthDate}
-                        name="birthDate"
-                        type="date"
-                        className="inputProfile"
-                    />
-                    <span className="texterr"> {formErrors.birthDate}</span>
-                    <br />
-                    <label className="labelInputEdit">Weight* :</label>
-                    <br />
-                    <input
-                        onChange={handleChange}
-                        value={userData.weight}
-                        name="weight"
-                        type="number"
-                        className="inputProfile"
-                        placeholder=" kg"
-                    />
-                    <span className="texterr"> {formErrors.weight}</span>
-                    <br />
-                    <label className="labelInputEdit">Height* : </label>
-                    <br />
-                    <input
-                        onChange={handleChange}
-                        value={userData.height}
-                        name="height"
-                        type="number"
-                        className="inputProfile"
-                        placeholder=" cm"
-                    />
-                    <span className="texterr"> {formErrors.height}</span>
-                    <br />
-                    <label className="labelInputEdit">Email* :</label>
-                    <br />
-                    <input
-                        onChange={handleChange}
-                        value={userData.email}
-                        name="email"
-                        type="email"
-                        className="inputProfile"
-                    />
-                    <span className="texterr"> {formErrors.email}</span>
-                    <br />
+
+                    {/* First Name */}
+                    <div className="profile-field">
+                        <label className="labelInputEdit">First Name* :</label>
+                        <input
+                            type="text"
+                            id="firstname"
+                            value={userData.firstName}
+                            onChange={handleChange}
+                            name="firstName"
+                            className="inputProfile"
+                        />
+                        <span className="texterr"> {formErrors.firstName}</span>
+                    </div>
+
+                    {/* Last Name */}
+                    <div className="profile-field">
+                        <label className="labelInputEdit">Last Name* :</label>
+                        <input
+                            onChange={handleChange}
+                            name="lastName"
+                            value={userData.lastName}
+                            type="text"
+                            className="inputProfile"
+                        />
+                        <span className="texterr"> {formErrors.lastName}</span>
+                    </div>
+
+                    {/* Date of Birth */}
+                    <div className="profile-field">
+                        <label className="labelInputEdit">Date Of Birth* :</label>
+                        <input
+                            onChange={handleChange}
+                            value={userData.birthDate}
+                            name="birthDate"
+                            type="date"
+                            className="inputProfile"
+                        />
+                        <span className="texterr"> {formErrors.birthDate}</span>
+                    </div>
+
+                    {/* Weight */}
+                    <div className="profile-field">
+                        <label className="labelInputEdit">Weight* :</label>
+                        <input
+                            onChange={handleChange}
+                            value={userData.weight}
+                            name="weight"
+                            type="number"
+                            className="inputProfile"
+                            placeholder=" kg"
+                        />
+                        <span className="texterr"> {formErrors.weight}</span>
+                    </div>
+
+                    {/* Height */}
+                    <div className="profile-field">
+                        <label className="labelInputEdit">Height* : </label>
+                        <input
+                            onChange={handleChange}
+                            value={userData.height}
+                            name="height"
+                            type="number"
+                            className="inputProfile"
+                            placeholder=" cm"
+                        />
+                        <span className="texterr"> {formErrors.height}</span>
+                    </div>
+
+                    {/* Email */}
+                    <div className="profile-field">
+                        <label className="labelInputEdit">Email* :</label>
+                        <input
+                            onChange={handleChange}
+                            value={userData.email}
+                            name="email"
+                            type="email"
+                            className="inputProfile"
+                        />
+                        <span className="texterr"> {formErrors.email}</span>
+                    </div>
+
+                    {/* Gender */}
                     <div className="radio" id="genderForProfile">
                         <input
                             onChange={handleChange}
@@ -159,9 +174,8 @@ const ProfileForm = ({
                             className="selctorGender"
                         />
                         <label>Female</label>
+                        <span className="texterr"> {formErrors.gender}</span>
                     </div>
-                    <span className="texterr"> {formErrors.gender}</span>
-                    <br />
                 </div>
             </div>
         </form>
