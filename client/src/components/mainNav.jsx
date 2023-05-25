@@ -95,21 +95,32 @@ export default function MainNav() {
         <li>
           <div className="arrow-up"></div>
         </li>
-        <li>
-          <a className="navbar-link" href="#features">
-            Features
-          </a>
-        </li>
-        <li>
-          <a className="navbar-link" href="#bmi">
-            BMI
-          </a>
-        </li>
-        <li>
-          <a className="navbar-link" href="#how">
-            How it Work
-          </a>
-        </li>
+        {window.location.pathname === "/" && (
+          <>
+            <li>
+              <a className="navbar-link" href="#features">
+                Features
+              </a>
+            </li>
+            <li>
+              <a className="navbar-link" href="#bmi">
+                BMI
+              </a>
+            </li>
+            <li>
+              <a className="navbar-link" href="#how">
+                How it Work
+              </a>
+            </li>
+          </>
+        )}
+        {window.location.pathname !== "/" && (
+          <li>
+            <Link className="navbar-link" to="/">
+              Home
+            </Link>
+          </li>
+        )}
         <li>
           <Link className="navbar-link" to="/login">
             Login
