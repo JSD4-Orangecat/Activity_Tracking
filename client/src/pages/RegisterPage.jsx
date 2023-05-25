@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { validate } from "../utils/validate";
+import { validate } from "../utils/validateRegister";
 import RegisterForm from "../components/authenticateComponents/RegisterForm";
 import Layout from "../components/Layout";
 import axios from "axios";

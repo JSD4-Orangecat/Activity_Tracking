@@ -4,7 +4,7 @@ import CreateCard from "./CreateCard";
 import Dashboard from "./DashBoard";
 import EditCard from "./EditCard";
 import ReadCard from "./ReadCard";
-import Profile from "./Profilepage";
+import Profile from "./ProfilePage";
 function AuthenticatedApp() {
   return (
     <div className="App">
