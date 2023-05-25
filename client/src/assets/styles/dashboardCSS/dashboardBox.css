@@ -90,3 +90,27 @@
         right: -5%;
     }
 }
+
+@media screen and (max-width: 400px) {
+
+    .dashboard-page .r-prevcard,
+    .dashboard-page .blankCard {
+        border-radius: 19px;
+        width: 278px;
+    }
+    .dashboard-page {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .dashboard-container{
+        
+        width: 90%;
+    }
+    .dashboard-column{
+        display: flex;
+        align-items: center;
+       flex-direction: column;
+        width: 300px;
+    }
+}
