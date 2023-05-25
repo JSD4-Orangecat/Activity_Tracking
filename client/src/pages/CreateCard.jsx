@@ -71,8 +71,12 @@ function CreateCard() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const backend = import.meta.env.VITE_BACKEND_URL;
-    console.log(inputs)
-    if (inputs.duration === "0 h 0 m" || inputs.duration === " 0 m" || inputs.duration === " ") {
+
+    if (
+      inputs.duration === "0 h 0 m" ||
+      inputs.duration === " 0 m" ||
+      inputs.duration === " "
+    ) {
       setDurationAlert(true);
       return;
     }
@@ -94,7 +98,7 @@ function CreateCard() {
       );
 
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      console.log(currentUser)
+
       currentUser.rank = response.data.rank;
 
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
