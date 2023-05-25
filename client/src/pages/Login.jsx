@@ -14,7 +14,9 @@ export default function Login() {
     <Layout>
       <div className="login-page">
         <LoginBox className="login-box" />
-        <img className="login-image" src={Cat} alt="Muscular Orange Cat" />
+        <div className="login-image-container">
+          <img className="login-image" src={Cat} alt="Muscular Orange Cat" />
+        </div>
       </div>
     </Layout>
   );

@@ -147,7 +147,19 @@ Main : #FF7B54
 @media only screen and (max-width: 990px) {
 
     .nav,
-    .nav-login-container,
+    .nav-login-container, {
+        display: none;
+    }
+
+    .profile-container {
+        position: absolute;
+        right: 20px
+    }
+
+
+}
+
+@media only screen and (max-width: 650px) {
     .profile-container {
         display: none;
     }

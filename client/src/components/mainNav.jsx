@@ -1,7 +1,7 @@
 import navLogoImage from "/cat/navbar-logo.png";
 import "../assets/styles/mainNav.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faBars } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
@@ -161,7 +161,7 @@ export default function MainNav() {
 
       <span className="dropdown-btn">
         {/* toggle dropdown-menu */}
-        {/* <FontAwesomeIcon onClick={() => setIsDropdown(!isDropdown)} icon={faBars} size="xl"/> */}
+        <FontAwesomeIcon onClick={() => setIsDropdown(!isDropdown)} icon={faBars} size="xl"/>
       </span>
 
       {isDropdown && dropdown}
