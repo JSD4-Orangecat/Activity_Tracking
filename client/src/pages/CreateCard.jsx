@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authentication";
 import { calcDuration } from "../utils/calcDuration";
@@ -19,6 +19,7 @@ function CreateCard() {
   const [filename, setFilename] = useState("no selected file");
   const [durationAlert, setDurationAlert] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [errorImg, setErrorImg] = useState("");
 
   const [inputs, setInputs] = useState({
     title: "This is title",
@@ -71,7 +72,7 @@ function CreateCard() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const backend = import.meta.env.VITE_BACKEND_URL;
-
+    setErrorImg("");
     if (
       inputs.duration === "0 h 0 m" ||
       inputs.duration === " 0 m" ||
@@ -98,7 +99,6 @@ function CreateCard() {
       );
 
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
       currentUser.rank = response.data.rank;
 
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -107,12 +107,23 @@ function CreateCard() {
       navigate("/readcard");
     } catch (error) {
       console.log(error);
+      setIsProcessing(false);
+      if (error.request.status === 500) {
+        setErrorImg("Invalid file image type!");
+        swal("Oops", "Invalid file image type!", "error");
+      } else {
+        swal("Oops", "Something went wrong!", "error");
+      }
     }
   };
 
   const handleCancel = async (e) => {
     navigate("/readcard");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Layout>
@@ -139,6 +150,7 @@ function CreateCard() {
             durationAlert={durationAlert}
             isProcessing={isProcessing}
             handleCancel={handleCancel}
+            errorImg={errorImg}
           />
         </div>
       </div>
